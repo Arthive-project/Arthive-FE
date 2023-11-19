@@ -8,7 +8,7 @@ import MyRegisterDetail from './pages/MyRegisterDetail';
 import Search from './pages/Search';
 import MyLikes from './pages/MyLikes';
 import Exhibition from './pages/Boards/Exhibition';
-import ExhibitionDeatil from './pages/Boards/ExhibitionDetail';
+import ExhibitionDetail from './pages/Boards/ExhibitionDetail';
 import ExhibitionRegisterUser from './pages/Boards/ExhibitionRegisterUser';
 import Gallery from './pages/Boards/Gallery';
 import GalleryDetail from './pages/Boards/GalleryDetail';
@@ -32,7 +32,7 @@ function Main() {
 
           <Route path='exhibition'>
             <Route index element={<Exhibition />} />
-            <Route path='/exhibitionId' element={<ExhibitionDeatil />} />
+            <Route path='/exhibitionId' element={<ExhibitionDetail />} />
             <Route path='register' element={<ExhibitionRegisterUser />} />
           </Route>
 
