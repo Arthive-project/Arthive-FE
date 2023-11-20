@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const GalleryItem = ({ gallery }) => {
   return (
-    <div css={itemWrap}>
+    <div css={galleryItem}>
       <div css={poster}>
         <Link to={`/gallery/${gallery.id}`}>
           <img src={gallery.posterUrl} alt='포스터' />
@@ -13,12 +13,20 @@ const GalleryItem = ({ gallery }) => {
       <div css={title}>
         <Link to={`/gallery/${gallery.id}`}>{gallery.galleryName}</Link>
       </div>
-      <div css={SubTitle}>{gallery.address}</div>
+      <div css={title_sub}>{gallery.address}</div>
     </div>
   );
 };
 
 export default GalleryItem;
+
+const galleryItem = css`
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  height: 437px;
+  margin-bottom: 20px;
+`;
 
 const poster = css`
   cursor: pointer;
@@ -54,14 +62,6 @@ const title = css`
   }
 `;
 
-const SubTitle = css`
+const title_sub = css`
   font-size: 15px;
-`;
-
-const itemWrap = css`
-  display: flex;
-  flex-direction: column;
-  width: 250px;
-  height: 437px;
-  margin-bottom: 20px;
 `;

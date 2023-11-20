@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 export const ExhibitionItem = ({ exhibition }) => {
   return (
     <div css={exhibitionItem}>
-      <Link to={`/exhibition/${exhibition.id}`}>
-        <div css={poster}>
+      <div css={poster}>
+        <Link to={`/exhibition/${exhibition.id}`}>
           <img src={exhibition.posterUrl} alt='포스터' />
-        </div>
-      </Link>
+        </Link>
+      </div>
       <div css={title}>
         <Link to={`/exhibition/${exhibition.id}`}>{exhibition.title}</Link>
       </div>
