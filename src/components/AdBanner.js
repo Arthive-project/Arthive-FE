@@ -69,7 +69,6 @@ const AdBanner = () => {
 export default AdBanner;
 
 const adBanner_wrap = css`
-  border: 1px solid pink;
   width: 1160px;
   margin-top: 50px;
   margin-bottom: 150px;
