@@ -1,5 +1,5 @@
-const ExhibitionDeatil = () => {
-  return <h1>ExhibitionDeatil 페이지</h1>;
+const ExhibitionDetail = () => {
+  return <h1>ExhibitionDetail 페이지</h1>;
 };
 
-export default ExhibitionDeatil;
+export default ExhibitionDetail;
