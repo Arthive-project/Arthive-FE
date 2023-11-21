@@ -54,7 +54,7 @@ function Main() {
             <Route path='register' element={<ExhibitionRegisterUser />} />
           </Route>
 
-          <Route path='galelry'>
+          <Route path='gallery'>
             <Route index element={<Gallery />} />
             <Route path='galleryId' element={<GalleryDetail />} />
           </Route>
