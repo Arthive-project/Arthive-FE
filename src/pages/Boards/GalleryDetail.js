@@ -3,6 +3,8 @@ import BoardDetail from '../../components/BoardDetail';
 import BoardHeader from '../../components/BoardHeader';
 import { getGalleryById } from '../../api';
 import LikeBtn from '../../components/LikeBtn';
+import KaKaoMap from '../../components/KakaoMap';
+import MapContainer from './MapContainer';
 
 const GalleryDetail = () => {
   const { galleryId } = useParams();
@@ -52,6 +54,10 @@ const GalleryDetail = () => {
         </table>
         <LikeBtn />
       </BoardDetail>
+
+      <MapContainer>
+        <KaKaoMap address={gallery.address} />
+      </MapContainer>
     </>
   );
 };
