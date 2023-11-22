@@ -22,7 +22,13 @@ function filterByKeyword(items, keyword) {
   );
 }
 
+// 게시판 아이템 리스트
 export function getGalleries(keyword) {
   if (!keyword) return galleries;
   return filterByKeyword(galleries, keyword);
+}
+
+// 디테일 페이지
+export function getGalleryById(galleryId) {
+  return galleries.find((gallery) => gallery.id === galleryId);
 }

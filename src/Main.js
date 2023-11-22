@@ -50,13 +50,13 @@ function Main() {
 
           <Route path='exhibition'>
             <Route index element={<Exhibition />} />
-            <Route path='/exhibitionId' element={<ExhibitionDetail />} />
+            <Route path=':exhibitionId' element={<ExhibitionDetail />} />
             <Route path='register' element={<ExhibitionRegisterUser />} />
           </Route>
 
           <Route path='gallery'>
             <Route index element={<Gallery />} />
-            <Route path='galleryId' element={<GalleryDetail />} />
+            <Route path=':galleryId' element={<GalleryDetail />} />
           </Route>
 
           <Route path='admin'>
