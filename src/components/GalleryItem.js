@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
+import LikeBtn from './LikeBtn';
 
-const GalleryItem = ({ gallery }) => {
+const GalleryItem = ({ gallery, showLikeBtn = 'true' }) => {
   return (
     <div css={galleryItem}>
       <div css={poster}>
@@ -12,6 +13,7 @@ const GalleryItem = ({ gallery }) => {
       </div>
       <div css={title}>
         <Link to={`/gallery/${gallery.id}`}>{gallery.galleryName}</Link>
+        {showLikeBtn && <LikeBtn />}
       </div>
       <div css={title_sub}>{gallery.address}</div>
     </div>
@@ -24,7 +26,7 @@ const galleryItem = css`
   display: flex;
   flex-direction: column;
   width: 250px;
-  height: 437px;
+  height: 400px;
   margin-bottom: 20px;
 `;
 
@@ -35,7 +37,7 @@ const poster = css`
     height: 100%;
     box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.25);
   }
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
 const title = css`
@@ -44,8 +46,9 @@ const title = css`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 38px;
+  height: 34px;
   font-size: 20px;
+  font-weight: 500;
 
   span {
     text-align: right;
@@ -63,5 +66,5 @@ const title = css`
 `;
 
 const title_sub = css`
-  font-size: 15px;
+  font-size: 14px;
 `;

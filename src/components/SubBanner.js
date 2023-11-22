@@ -46,7 +46,7 @@ const SubBanner = ({
                     key={exhibition.id}
                     exhibition={exhibition}
                     {...exhibition}
-                    showHeart={false}
+                    showLikeBtn={false}
                   />
                 }
               </SwiperSlide>
@@ -61,7 +61,7 @@ const SubBanner = ({
                     key={gallery.id}
                     gallery={gallery}
                     {...gallery}
-                    showHeart={false}
+                    showLikeBtn={false}
                   />
                 }
               </SwiperSlide>
