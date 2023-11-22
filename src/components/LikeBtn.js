@@ -18,6 +18,7 @@ const like_btn = css`
   border: none;
   background-color: transparent;
   height: 25px;
+  float: right;
 
   img {
     width: 23px;

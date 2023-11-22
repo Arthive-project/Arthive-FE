@@ -19,7 +19,7 @@ const detail_wrap = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid red;
+  // border: 1px solid red;
   width: 1120px;
   height: 500px;
   margin: 0 auto 100px auto;
@@ -37,6 +37,40 @@ const img_wrap = css`
     box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.25);
   }
 `;
+
 const detail_table = css`
-  border: 1px solid blue;
+  // border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 473px;
+
+  table {
+    height: 260px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  th,
+  td {
+    border-bottom: 1px solid #e9e9e9;
+    font-weight: normal;
+  }
+
+  td {
+    padding-left: 20px;
+    color: #464646;
+  }
+
+  span {
+    float: right;
+    color: #d9d9d9;
+    height: 30px;
+  }
+
+  img {
+    float: right;
+    width: 28px;
+    margin-right: 10px;
+  }
 `;
