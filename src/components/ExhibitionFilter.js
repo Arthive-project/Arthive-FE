@@ -72,7 +72,7 @@ const exhibition_filter = css`
   flex-direction: row;
   justify-content: flex-end;
   gap: 16px;
-  width: 1156px;
+  width: 1140px;
   max-width: 100%;
   height: 42px;
   margin: 0 auto;
