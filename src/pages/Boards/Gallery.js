@@ -1,7 +1,7 @@
 import BoardHeader from '../../components/BoardHeader';
-import GalleryItem from '../../components/GalleryItem';
 import { getGalleries } from '../../api';
 import BoardList from '../../components/BoardList';
+import BoardItem from '../../components/BoardItem';
 
 const Gallery = () => {
   const galleries = getGalleries();
@@ -10,11 +10,13 @@ const Gallery = () => {
     <div>
       <BoardHeader text='Gallery' showHr={true} />
       <BoardList>
-        {galleries.map((gallery) => {
-          return (
-            <GalleryItem key={gallery.id} gallery={gallery} {...gallery} />
-          );
-        })}
+        {galleries.map((gallery) => (
+          <BoardItem
+            key={gallery.id}
+            data={gallery}
+            linkPath={`/gallery/${gallery.id}`}
+          />
+        ))}
       </BoardList>
     </div>
   );
