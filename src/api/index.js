@@ -40,6 +40,6 @@ export function getGalleryById(galleryId) {
   return galleries.find((gallery) => gallery.id === galleryId);
 }
 
-export function getExhbitionById(exhibitionId) {
+export function getExhibitionById(exhibitionId) {
   return exhibitions.find((exhibition) => exhibition.id === exhibitionId);
 }

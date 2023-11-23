@@ -12,7 +12,8 @@
       "openTime": "10:00",
       "closedTime": "17:00",
       "closedDay": "토, 일 공휴일",
-      "gallerySiteUrl": "https://www.daum.net/"
+      "gallerySiteUrl": "https://www.daum.net/",
+      "entranceFee": "7,000원"
     },
     {
       "id": "2",
@@ -26,7 +27,8 @@
       "openTime": "10:00",
       "closedTime": "17:00",
       "closedDay": "토, 일 공휴일",
-      "gallerySiteUrl": "https://www.daum.net/"
+      "gallerySiteUrl": "https://www.daum.net/",
+      "entranceFee": "7,000원"
     },
     {
       "id": "3",
@@ -40,7 +42,8 @@
       "openTime": "10:00",
       "closedTime": "17:00",
       "closedDay": "토, 일 공휴일",
-      "gallerySiteUrl": "https://www.daum.net/"
+      "gallerySiteUrl": "https://www.daum.net/",
+      "entranceFee": "7,000원"
     },
     {
       "id": "4",
@@ -54,7 +57,8 @@
       "openTime": "10:00",
       "closedTime": "17:00",
       "closedDay": "토, 일 공휴일",
-      "gallerySiteUrl": "https://www.daum.net/"
+      "gallerySiteUrl": "https://www.daum.net/",
+      "entranceFee": "7,000원"
     },
     {
       "id": "5",
@@ -68,7 +72,8 @@
       "openTime": "10:00",
       "closedTime": "17:00",
       "closedDay": "토, 일 공휴일",
-      "gallerySiteUrl": "https://www.daum.net/"
+      "gallerySiteUrl": "https://www.daum.net/",
+      "entranceFee": "7,000원"
     },
     {
       "id": "6",
@@ -82,7 +87,8 @@
       "openTime": "10:00",
       "closedTime": "17:00",
       "closedDay": "토, 일 공휴일",
-      "gallerySiteUrl": "https://www.daum.net/"
+      "gallerySiteUrl": "https://www.daum.net/",
+      "entranceFee": "7,000원"
     },
     {
       "id": "7",
@@ -96,7 +102,8 @@
       "openTime": "10:00",
       "closedTime": "17:00",
       "closedDay": "토, 일 공휴일",
-      "gallerySiteUrl": "https://www.daum.net/"
+      "gallerySiteUrl": "https://www.daum.net/",
+      "entranceFee": "7,000원"
     },
     {
       "id": "8",
@@ -110,7 +117,8 @@
       "openTime": "10:00",
       "closedTime": "17:00",
       "closedDay": "토, 일 공휴일",
-      "gallerySiteUrl": "https://www.daum.net/"
+      "gallerySiteUrl": "https://www.daum.net/",
+      "entranceFee": "7,000원"
     },
     {
       "id": "9",
@@ -124,7 +132,8 @@
       "openTime": "10:00",
       "closedTime": "17:00",
       "closedDay": "토, 일 공휴일",
-      "gallerySiteUrl": "https://www.daum.net/"
+      "gallerySiteUrl": "https://www.daum.net/",
+      "entranceFee": "7,000원"
     },
     {
       "id": "10",
@@ -138,7 +147,8 @@
       "openTime": "10:00",
       "closedTime": "17:00",
       "closedDay": "토, 일 공휴일",
-      "gallerySiteUrl": "https://www.daum.net/"
+      "gallerySiteUrl": "https://www.daum.net/",
+      "entranceFee": "7,000원"
     }
   ]
 }
