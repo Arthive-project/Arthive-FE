@@ -2,6 +2,7 @@ import { getExhibitions } from '../../api';
 import BoardHeader from '../../components/BoardHeader';
 import BoardList from '../../components/BoardList';
 import BoardItem from '../../components/BoardItem';
+import ExhibitionFilter from '../../components/ExhibitionFilter';
 
 const Exhibition = () => {
   const exhibitions = getExhibitions();
@@ -9,6 +10,7 @@ const Exhibition = () => {
   return (
     <div>
       <BoardHeader text='Exhibition' showHr={true} />
+      <ExhibitionFilter />
       <BoardList>
         {exhibitions.map((exhibition) => (
           <BoardItem
