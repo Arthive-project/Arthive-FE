@@ -1,15 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BoardHeader from '../../components/BoardHeader';
 import InfoList from '../../components/InfoList';
+import Button from '../../components/Button';
 
 const INITIAL_INPUT = {
   username: '',
   email: '',
   phoneNumber: '',
   exhibitionTitle: '',
-  gallery: '',
+  galleryName: '',
   address: '',
   startDate: '',
   endDate: '',
@@ -22,6 +24,7 @@ const INITIAL_INPUT = {
 };
 
 const ExhibitionRegisterUser = () => {
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState(INITIAL_INPUT);
 
   const {
@@ -29,7 +32,7 @@ const ExhibitionRegisterUser = () => {
     email,
     phoneNumber,
     exhibitionTitle,
-    gallery,
+    galleryName,
     address,
     startDate,
     endDate,
@@ -49,17 +52,29 @@ const ExhibitionRegisterUser = () => {
     });
   };
 
+  const handleSubmitRegister = (e) => {
+    e.preventDefault();
+    alert('입력하신 정보로 등록 신청되었습니다.');
+    console.log(inputs);
+    navigate('/exhibition');
+  };
+
   return (
     <>
       <BoardHeader
         text='아타이브 전시 등록 신청'
         showHr={false}
         showText={true}
-        subText='전시회 자료를 등록해주셔서 감사합니다.
-      등록하신 자료는 전시 등록 지원팀이 확인 후 아타이브 웹페이지에 게재됩니다.'
+        subText={`전시회 자료를 등록해주셔서 감사합니다.
+        
+        등록하신 자료는 전시 등록 지원팀이 확인 후 아타이브 웹페이지에 게재됩니다.`}
       />
       <div css={register_wrap}>
-        <form css={register_form}>
+        <form
+          css={register_form}
+          id='exhibitionRegister'
+          onSubmit={handleSubmitRegister}
+        >
           <section css={form_applicant}>
             <p css={form_title}>1. 신청인 정보</p>
             <InfoList
@@ -103,8 +118,8 @@ const ExhibitionRegisterUser = () => {
             <InfoList
               label={'전시 위치 (갤러리명)*'}
               input={{
-                name: 'gallery',
-                value: gallery,
+                name: 'galleryName',
+                value: galleryName,
                 onChange: handleChangeInputs,
                 placeholder: '예술의 전당 한가람미술관',
               }}
@@ -202,13 +217,14 @@ const ExhibitionRegisterUser = () => {
                 name: 'file',
                 value: file,
                 type: 'file',
-                accept: '.zip',
+                accept: 'img/*',
                 onChange: handleChangeInputs,
               }}
               labelSub={true}
               labelSubText='*전시 소개 텍스트 및 추가 이미지는 메일로 보내주세요. (contact@arthive.co.kr)'
             />
           </section>
+          <Button name='신청하기' type='submit' form='exhibitionRegister' />
         </form>
       </div>
     </>
@@ -218,7 +234,7 @@ const ExhibitionRegisterUser = () => {
 export default ExhibitionRegisterUser;
 
 const register_wrap = css`
-  border: 1px solid red;
+  // border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -243,6 +259,7 @@ const register_form = css`
 const form_applicant = css`
   height: 410px;
 `;
+
 const form_exhibition_info = css`
   height: 930px;
 `;
