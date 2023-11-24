@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const INITIAL_STATE = {
   period: '현재전시',
@@ -25,6 +26,9 @@ const ExhibitionFilter = () => {
 
   return (
     <div css={exhibition_filter}>
+      <button css={register_btn}>
+        <Link to='/exhibition/register'>등록신청</Link>
+      </button>
       <select
         name='period'
         value={state.period}
@@ -111,4 +115,8 @@ const filter_btn = css`
 
 const filter_btn_local = css`
   width: 122px;
+`;
+
+const register_btn = css`
+  margin-right: auto;
 `;
