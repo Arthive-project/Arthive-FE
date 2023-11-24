@@ -17,7 +17,7 @@ const button = css`
   background: #000;
   color: #fff;
   font-size: 18px;
-  margin-top: 40px;
+  margin-top: 30px;
   border: none;
   cursor: pointer;
 `;
