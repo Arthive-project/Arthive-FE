@@ -8,9 +8,11 @@ const InfoList = ({ label, input, labelSub = false, labelSubText }) => {
     type,
     onChange,
     placeholder,
-    // checkInput = '',
+    checkInput = '',
     accept,
   } = input;
+
+  const isError = value?.length !== 0 && checkInput.isConfirm === false;
 
   return (
     <div css={info_list}>
@@ -25,6 +27,7 @@ const InfoList = ({ label, input, labelSub = false, labelSubText }) => {
           placeholder={placeholder}
           accept={accept}
         />
+        {isError && <span css={error_msg}>{checkInput.errorMessage}</span>}
       </div>
     </div>
   );
@@ -64,4 +67,9 @@ const label_sub = css`
   font-weight: 400;
   color: #5e5e5e;
   margin: 5px 2px;
+`;
+
+const error_msg = css`
+  font-size: 12px;
+  color: red;
 `;
