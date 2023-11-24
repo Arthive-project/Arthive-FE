@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
+import LikeBtn from './LikeBtn';
 
-export const ExhibitionItem = ({ exhibition }) => {
+export const ExhibitionItem = ({ exhibition, showLikeBtn = 'true' }) => {
   return (
     <div css={exhibitionItem}>
       <div css={poster}>
@@ -12,9 +13,10 @@ export const ExhibitionItem = ({ exhibition }) => {
       </div>
       <div css={title}>
         <Link to={`/exhibition/${exhibition.id}`}>{exhibition.title}</Link>
+        {showLikeBtn && <LikeBtn />}
       </div>
       <div css={location}>
-        {exhibition.gallery}/ {exhibition.location}
+        {exhibition.galleryName}/ {exhibition.area}
       </div>
       <div css={period}>
         {exhibition.startDate} ~ {exhibition.endDate}

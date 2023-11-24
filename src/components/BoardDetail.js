@@ -46,7 +46,8 @@ const detail_table = css`
   width: 473px;
 
   table {
-    height: 260px;
+    // height: 260px;
+    height: 460px;
     font-size: 16px;
     margin-bottom: 10px;
   }
