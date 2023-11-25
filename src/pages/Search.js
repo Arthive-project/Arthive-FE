@@ -6,6 +6,7 @@ import BoardHeader from '../components/BoardHeader';
 import { getExhibitions, getGalleries } from '../api';
 import ExhibitionItem from '../components/ExhibitionItem';
 import GalleryItem from '../components/GalleryItem';
+import BoardList from '../components/BoardList';
 
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,7 +21,6 @@ const Search = () => {
   const handleKeywordChange = (e) => setKeyword(e.target.value);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
     e.preventDefault();
 
     setExhibitions([]);
@@ -98,24 +98,35 @@ const Search = () => {
         </div>
         <div css={search_result}>
           <div id='exhibition'>
-            <h3>전시({exhibitions.length})</h3> <hr />
-            {exhibitions.map((exhibition) => {
-              return (
-                <ExhibitionItem
-                  key={exhibition.id}
-                  exhibition={exhibition}
-                  {...exhibition}
-                />
-              );
-            })}
+            <div css={result_title}>
+              <h3>전시({exhibitions.length})</h3>
+            </div>
+            <hr />
+            <BoardList>
+              {exhibitions.map((exhibition) => {
+                return (
+                  <ExhibitionItem
+                    key={exhibition.id}
+                    exhibition={exhibition}
+                    {...exhibition}
+                  />
+                );
+              })}
+            </BoardList>
           </div>
           <div id='gallery'>
             <h3>갤러리({galleries.length})</h3> <hr />
-            {galleries.map((gallery) => {
-              return (
-                <GalleryItem key={gallery.id} gallery={gallery} {...gallery} />
-              );
-            })}
+            <BoardList>
+              {galleries.map((gallery) => {
+                return (
+                  <GalleryItem
+                    key={gallery.id}
+                    gallery={gallery}
+                    {...gallery}
+                  />
+                );
+              })}
+            </BoardList>
           </div>
         </div>
       </div>
@@ -126,12 +137,12 @@ const Search = () => {
 export default Search;
 
 const search = css`
+  // border: 1px solid red;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
-  width: 1040px;
+  width: 1160px;
   margin: 0 auto;
 `;
 
@@ -192,7 +203,7 @@ const board_btn = css`
 
   div {
     border: 1px solid black;
-    width: 520px;
+    width: 580px;
     height: 60px;
     display: flex;
     justify-content: center;
@@ -207,10 +218,35 @@ const board_btn = css`
 `;
 
 const search_result = css`
-  width: 1040px;
+  width: 100%;
   margin: 70px 0;
 
   hr {
     margin: 30px 0 100px;
   }
 `;
+
+const result_title = css`
+  // border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
+`;
+
+// const more_btn = css`
+//   width: 60px;
+//   height: 25px;
+//   background-color: #c3fd1e;
+//   color: black;
+//   border-radius: 20px;
+//   border: none;
+//   curso a {
+//     color: black;
+//     padding: 2px 9px;
+//     font-size: 13px;
+//     font-weight: 500;
+//     align-items: center;
+//     text-decoration: none;
+//   }
+// `;
