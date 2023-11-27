@@ -151,7 +151,8 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "검토중",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "artist": "아티스트1"
     },
     {
       "id": "10",
@@ -168,7 +169,8 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "검토중",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "artist": "아티스트1"
     },
     {
       "id": "11",
@@ -185,7 +187,8 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "검토중",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "artist": "아티스트1"
     },
     {
       "id": "12",
@@ -202,7 +205,8 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "검토중",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "artist": "아티스트1"
     },
     {
       "id": "13",
@@ -219,7 +223,8 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "검토중",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "artist": "아티스트1"
     },
     {
       "id": "14",
@@ -236,7 +241,8 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "검토중",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "artist": "아티스트1"
     },
     {
       "id": "15",
@@ -253,7 +259,8 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "검토중",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "artist": "아티스트1"
     },
     {
       "id": "16",
@@ -270,7 +277,8 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "검토중",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "artist": "아티스트1"
     },
     {
       "id": "17",
@@ -287,7 +295,8 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "검토중",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "artist": "아티스트1"
     },
     {
       "id": "18",
@@ -304,7 +313,8 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "검토중",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "artist": "아티스트1"
     }
   ]
 }

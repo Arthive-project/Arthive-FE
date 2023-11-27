@@ -17,7 +17,7 @@ import ExhibitionRegister from './pages/Admin/ExhibitionRegister';
 import GalleryRegister from './pages/Admin/GalleryRegister';
 import About from './pages/Boards/About';
 import NotFound from './pages/NotFound';
-import MyRegisterList from './components/MyRegisterList';
+import MyRegisterList from './pages/MyRegisterList';
 import MyRegisterDetail from './pages/MyRegisterDetail';
 
 export const globalStyle = css`

@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import React, { useState, useEffect } from 'react';
-import BoardHeader from './BoardHeader';
+import BoardHeader from '../components/BoardHeader';
 import { getMyRegisters } from '../api';
 import { Link } from 'react-router-dom';
-import Pagination from './Pagination';
+import Pagination from '../components/Pagination';
 
 const MyRegisterList = () => {
   const [posts, setPosts] = useState([]);
