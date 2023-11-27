@@ -1,8 +1,10 @@
 import galleryMock from './gallery-mock.json';
 import exhibitionMock from './exhibition-mock.json';
+import myRegisterMock from './myRegister-mock.json';
 
 const { galleries } = galleryMock;
 const { exhibitions } = exhibitionMock;
+const { myRegisters } = myRegisterMock;
 
 function filterByKeyword(items, keyword) {
   const lowered = keyword.toLowerCase();
@@ -42,4 +44,14 @@ export function getGalleryById(galleryId) {
 
 export function getExhibitionById(exhibitionId) {
   return exhibitions.find((exhibition) => exhibition.id === exhibitionId);
+}
+
+// 마이페이지 - 전시 등록 신청 내역
+export function getMyRegisters() {
+  return myRegisters;
+}
+
+// 마이페이지 - 전시 등록 신청 내역 - 디테일 페이지
+export function getMyRegisterById(registerId) {
+  return myRegisters.find((register) => register.id === registerId);
 }

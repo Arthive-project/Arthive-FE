@@ -1,10 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import BoardHeader from '../components/BoardHeader';
 import InfoList from '../components/InfoList';
 import Button from '../components/Button';
+// import MyRegisterList from '../components/MyRegisterList';
 
 const MyPage = () => {
   const [inputs, setInputs] = useState({
@@ -75,12 +76,12 @@ const MyPage = () => {
         subText='회원 정보 관리 페이지입니다.'
       />
       <div css={board_btn}>
-        <Link to={'/my-page'}>
+        <a href={'/my-page'}>
           <div>회원 정보 수정</div>
-        </Link>
-        <Link to={'/my-register'}>
+        </a>
+        <a href={'/my-register'}>
           <div>전시 등록 신청 내역</div>
-        </Link>
+        </a>
       </div>
       <div css={user_info}>
         <h2>기본정보</h2>
@@ -170,6 +171,7 @@ const my_page = css`
   align-items: center;
   width: 1160px;
   margin: 0 auto;
+  border: 1px solid red;
 `;
 
 const board_btn = css`
