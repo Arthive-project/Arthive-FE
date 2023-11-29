@@ -6,7 +6,6 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import MyPage from './pages/MyPage';
-import MyRegisterDetail from './pages/MyRegisterDetail';
 import Search from './pages/Search';
 import MyLikes from './pages/MyLikes';
 import Exhibition from './pages/Boards/Exhibition';
@@ -18,6 +17,8 @@ import ExhibitionRegister from './pages/Admin/ExhibitionRegister';
 import GalleryRegister from './pages/Admin/GalleryRegister';
 import About from './pages/Boards/About';
 import NotFound from './pages/NotFound';
+import MyRegisterList from './pages/MyRegisterList';
+import MyRegisterDetail from './pages/MyRegisterDetail';
 
 export const globalStyle = css`
   * {
@@ -44,7 +45,11 @@ function Main() {
           <Route path='login' element={<Login />} />
           <Route path='sign-up' element={<SignUp />} />
           <Route path='my-page' element={<MyPage />} />
-          <Route path='my-register' element={<MyRegisterDetail />} />
+          <Route path='my-register' element={<MyRegisterList />} />
+          <Route
+            path='my-register/:registerId'
+            element={<MyRegisterDetail />}
+          />
           <Route path='search' element={<Search />} />
           <Route path='my-likes' element={<MyLikes />} />
 

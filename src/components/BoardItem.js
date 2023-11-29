@@ -43,6 +43,7 @@ const item = css`
   width: 250px;
   height: 100%;
   margin-bottom: 20px;
+  border
 `;
 
 const poster = css`
