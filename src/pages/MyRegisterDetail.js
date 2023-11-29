@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { getMyRegisterById } from '../api';
 import { locationLists } from '../data/locationLists';
 import BoardHeader from '../components/BoardHeader';
 import FormInput from '../components/FormInput';
 import Form from '../components/Form';
 import Button from '../components/Button';
+import FileInput from '../components/FileInput';
 
 const MyRegisterDetail = () => {
   // TODO: 등록 완료 게시물일 경우 수정 불가
@@ -16,6 +17,7 @@ const MyRegisterDetail = () => {
   const { registerId } = useParams();
   const register = getMyRegisterById(registerId);
   const [inputs, setInputs] = useState(register);
+  const imgRef = useRef();
 
   const locationOptions = [...locationLists];
 
@@ -32,7 +34,7 @@ const MyRegisterDetail = () => {
     artist,
     entranceFee,
     gallerySiteUrl,
-    file,
+    // posterUrl,
   } = inputs;
 
   const handleChangeInfoInputs = (e) => {
@@ -141,13 +143,20 @@ const MyRegisterDetail = () => {
           value={gallerySiteUrl}
           onChange={handleChangeInfoInputs}
         />
-        <FormInput
+        {/* <FormInput
           label='포스터 이미지'
           name='file'
           value={file}
           onChange={handleChangeInfoInputs}
+        /> */}
+        <FileInput
+          name='posterUrl'
+          value={''}
+          onChange={handleChangeInfoInputs}
+          imgRef={imgRef}
         />
       </Form>
+
       {register.status === '검토중' ? (
         <div css={buttonWrap}>
           <Button name={'저장하기'} form='myRegisterDetail' type='submit' />
