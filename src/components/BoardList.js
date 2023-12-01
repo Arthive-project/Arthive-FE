@@ -8,7 +8,6 @@ const BoardList = ({ children }) => {
 export default BoardList;
 
 const board_list = css`
-  // border: 1px solid blue;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

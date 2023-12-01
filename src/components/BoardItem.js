@@ -3,12 +3,7 @@ import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import LikeBtn from './LikeBtn';
 
-const BoardItem = ({
-  data,
-  linkPath,
-  showLikeBtn = true,
-  showAddress = true,
-}) => {
+const BoardItem = ({ data, linkPath, showLikeBtn = true }) => {
   return (
     <div css={item}>
       <div css={poster}>
@@ -17,20 +12,12 @@ const BoardItem = ({
         </Link>
       </div>
       <div css={title}>
-        <Link to={linkPath}>{data.title || data.galleryName}</Link>
+        <Link to={linkPath}>{data.title}</Link>
         {showLikeBtn && <LikeBtn />}
       </div>
-      {data.area && (
-        <div css={location}>
-          {data.galleryName}/ {data.area}
-        </div>
-      )}
-      {showAddress && data.address && <div css={title_sub}>{data.address}</div>}
-      {data.startDate && data.endDate && (
-        <div css={period}>
-          {data.startDate} ~ {data.endDate}
-        </div>
-      )}
+      <div css={period}>
+        {data.startDate} ~ {data.endDate}
+      </div>
     </div>
   );
 };
@@ -78,14 +65,6 @@ const title = css`
     width: 22px;
     cursor: pointer;
   }
-`;
-
-const location = css`
-  font-size: 15px;
-`;
-
-const title_sub = css`
-  font-size: 14px;
 `;
 
 const period = css`

@@ -16,7 +16,7 @@ export default BoardHeader;
 const boardHeader = css`
   display: flex;
   flex-direction: column;
-  height: 200px;
+  height: 300px;
   font-size: 23px;
   font-weight: bold;
   justify-content: center;
