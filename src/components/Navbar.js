@@ -1,33 +1,101 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Link, NavLink } from 'react-router-dom';
-
-function getLinkStyle({ isActive }) {
-  return {
-    color: isActive ? '#c3fd1e' : undefined,
-  };
-}
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const Navbar = () => {
+  const [isSubMenuVisible, setSubMenuVisible] = useState(false);
+
   return (
-    <div css={nav_wrap}>
-      <div css={nav_contents}>
-        <section css={nav_logo}>
+    <header css={nav_wrap}>
+      <div
+        css={header_sub_menu}
+        onMouseEnter={() => setSubMenuVisible(true)}
+        onMouseLeave={() => setSubMenuVisible(false)}
+        style={{ display: isSubMenuVisible ? 'block' : 'none' }}
+      ></div>
+      <nav css={nav_contents}>
+        <h1 css={nav_logo}>
           <Link to='/'>
             Arth<span>!</span>ve
           </Link>
-        </section>
-        <section css={nav_boards}>
-          <NavLink to='exhibition' style={getLinkStyle}>
-            EXHIBITION
-          </NavLink>
-          <NavLink to='gallery' style={getLinkStyle}>
-            GALLERY
-          </NavLink>
-          <NavLink to='about' style={getLinkStyle}>
-            ABOUT
-          </NavLink>
-        </section>
+        </h1>
+
+        <div css={nav_boards}>
+          <li
+            onMouseEnter={() => setSubMenuVisible(true)}
+            onMouseLeave={() => setSubMenuVisible(false)}
+          >
+            <span>EXHIBITION</span>
+            <ul
+              css={sub_ul}
+              style={{ display: isSubMenuVisible ? 'block' : 'none' }}
+            >
+              <li>
+                <Link>전시/미술</Link>
+              </li>
+            </ul>
+          </li>
+          <li
+            onMouseEnter={() => setSubMenuVisible(true)}
+            onMouseLeave={() => setSubMenuVisible(false)}
+          >
+            <span>CONCERT</span>
+            <ul
+              css={sub_ul}
+              style={{ display: isSubMenuVisible ? 'block' : 'none' }}
+            >
+              <li>
+                <Link>전통/역사</Link>
+              </li>
+              <li>
+                <Link>자연/경관</Link>
+              </li>
+              <li>
+                <Link>시민/화합</Link>
+              </li>
+              <li>
+                <Link>문화/예술</Link>
+              </li>
+              <li>
+                <Link>기타</Link>
+              </li>
+            </ul>
+          </li>
+          <li
+            onMouseEnter={() => setSubMenuVisible(true)}
+            onMouseLeave={() => setSubMenuVisible(false)}
+          >
+            <span>FESTIVAL</span>
+            <ul
+              css={sub_ul}
+              style={{ display: isSubMenuVisible ? 'block' : 'none' }}
+            >
+              <li>
+                <Link>연극</Link>
+              </li>
+              <li>
+                <Link>뮤지컬/오페라</Link>
+              </li>
+              <li>
+                <Link>무용</Link>
+              </li>
+              <li>
+                <Link>클래식</Link>
+              </li>
+              <li>
+                <Link>콘서트</Link>
+              </li>
+            </ul>
+          </li>
+          <li
+            onMouseEnter={() => setSubMenuVisible(true)}
+            onMouseLeave={() => setSubMenuVisible(false)}
+          >
+            <span>ABOUT</span>
+          </li>
+        </div>
+
         <section css={nav_links}>
           <Link to='my-page'>
             <img
@@ -48,23 +116,26 @@ const Navbar = () => {
             />
           </Link>
         </section>
-        <section css={nav_user}>
-          <Link to='/login'>로그인</Link>
-          <Link to='/sign-up'>회원가입</Link>
-        </section>
-      </div>
-    </div>
+
+        <span css={nav_user}>
+          {/* <div id='user-loggedIn'></div> */}
+          <div id='user-loggedOut'>
+            <Link to='/login'>로그인</Link>
+            <Link to='/sign-up'>회원가입</Link>
+          </div>
+        </span>
+      </nav>
+    </header>
   );
 };
 
 export default Navbar;
 
 const nav_wrap = css`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  position: fixed;
+  width: 100%;
   height: 60px;
+  left: 0;
   background-color: black;
   color: white;
 
@@ -74,18 +145,65 @@ const nav_wrap = css`
   }
 `;
 
+const header_sub_menu = css`
+  position: absolute;
+  height: 190px;
+  top: 100%;
+  right: 0;
+  left: 0;
+  border-top: 1px solid #eee;
+  background-color: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+`;
+
+const sub_ul = css`
+  display: block;
+  position: absolute;
+  top: 60px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 350;
+
+  a {
+    z-index: 10;
+    display: inline-block;
+    text-decoration: none;
+    padding: 6px 10px;
+    margin-left: 13px;
+    text-align: center;
+    color: gray;
+    &:hover {
+      font-weight: 450;
+      color: black;
+    }
+  }
+`;
+
 const nav_contents = css`
+  // border: 3px solid green;
+  position: relative;
+  margin: 0 auto;
   max-width: 1140px;
+  height: 100%;
   width: 100%;
+  display: block;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
 const nav_logo = css`
-  display: block;
-  font-size: 28px;
+  // border: 1px solid pink;
+  display: inline-block;
+  float: left;
+  font-size: 30px;
   font-weight: 600;
+  height: 55px;
+
+  a {
+    vertical-align: middle;
+  }
 
   span {
     color: #c3fd1e;
@@ -93,36 +211,50 @@ const nav_logo = css`
 `;
 
 const nav_boards = css`
-  width: 800px;
-  min-width: 380px;
+  // border: 1px solid red;
+  list-style: none;
+  min-width: 710px;
   display: flex;
   justify-content: flex-end;
-  overflow: hidden;
   font-weight: 500;
 
-  a {
-    margin-left: 40px;
+  li {
+    cursor: pointer;
+
+    span {
+      display: block;
+      padding: 17px 22px;
+      height: 100%;
+      &:hover {
+        color: #c3fd1e;
+      }
+    }
   }
 `;
 
 const nav_links = css`
+  // border: 1px solid red;
   display: flex;
   padding-left: 20px;
   padding-right: 20px;
-  margin-left: 25px;
+  float: right;
 
   img {
-    width: 34px;
+    width: 35px;
     padding: 5px 5px 5px 5px;
     margin-top: 5px;
   }
 `;
 
 const nav_user = css`
+  // border: 1px solid purple;
   display: flex;
   justify-content: flex-end;
-  min-width: 140px;
+  min-width: 170px;
+
   a {
-    margin-left: 15px;
+    // border: 1px solid red;
+    display: inline-block;
+    padding: 9px 15px;
   }
 `;
