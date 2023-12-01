@@ -93,6 +93,14 @@ const Navbar = () => {
             onMouseLeave={() => setSubMenuVisible(false)}
           >
             <span>ABOUT</span>
+            <ul
+              css={sub_ul}
+              style={{ display: isSubMenuVisible ? 'block' : 'none' }}
+            >
+              <li>
+                <Link to={'about'}>아타이브 소개</Link>
+              </li>
+            </ul>
           </li>
         </div>
 
@@ -170,7 +178,7 @@ const sub_ul = css`
     display: inline-block;
     text-decoration: none;
     padding: 6px 10px;
-    margin-left: 13px;
+    margin-left: 12px;
     text-align: center;
     color: gray;
     &:hover {
