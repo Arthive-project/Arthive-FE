@@ -32,7 +32,7 @@ const Navbar = () => {
               style={{ display: isSubMenuVisible ? 'block' : 'none' }}
             >
               <li>
-                <Link>전시/미술</Link>
+                <Link to={'exhibition'}>전시/미술</Link>
               </li>
             </ul>
           </li>
@@ -46,19 +46,19 @@ const Navbar = () => {
               style={{ display: isSubMenuVisible ? 'block' : 'none' }}
             >
               <li>
-                <Link>전통/역사</Link>
+                <Link to={'theater'}>연극</Link>
               </li>
               <li>
-                <Link>자연/경관</Link>
+                <Link to={'musical'}>뮤지컬/오페라</Link>
               </li>
               <li>
-                <Link>시민/화합</Link>
+                <Link to={'dance'}>무용</Link>
               </li>
               <li>
-                <Link>문화/예술</Link>
+                <Link to={'classical'}>클래식</Link>
               </li>
               <li>
-                <Link>기타</Link>
+                <Link to={'concert'}>콘서트</Link>
               </li>
             </ul>
           </li>
@@ -72,19 +72,19 @@ const Navbar = () => {
               style={{ display: isSubMenuVisible ? 'block' : 'none' }}
             >
               <li>
-                <Link>연극</Link>
+                <Link to={'tradition'}>전통/역사</Link>
               </li>
               <li>
-                <Link>뮤지컬/오페라</Link>
+                <Link to={'nature'}>자연/경관</Link>
               </li>
               <li>
-                <Link>무용</Link>
+                <Link to={'citizen'}>시민/화합</Link>
               </li>
               <li>
-                <Link>클래식</Link>
+                <Link to={'culture'}>문화/예술</Link>
               </li>
               <li>
-                <Link>콘서트</Link>
+                <Link to={'other-festival'}>기타</Link>
               </li>
             </ul>
           </li>
@@ -163,6 +163,7 @@ const sub_ul = css`
   margin-top: 8px;
   font-size: 14px;
   font-weight: 350;
+  list-style-type: none;
 
   a {
     z-index: 10;
