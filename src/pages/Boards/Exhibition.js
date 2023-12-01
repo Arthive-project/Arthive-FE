@@ -9,7 +9,7 @@ const Exhibition = () => {
 
   return (
     <div>
-      <BoardHeader text='Exhibition' showHr={true} />
+      <BoardHeader text='전시' showText='false' subText='전시/미술' />
       <ExhibitionFilter />
       <BoardList>
         {exhibitions.map((exhibition) => (
