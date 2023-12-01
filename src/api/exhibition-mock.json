@@ -2,6 +2,7 @@
   "exhibitions": [
     {
       "id": "1",
+      "category": "전시/미술",
       "posterUrl": "https://img.seoul.co.kr/img/upload/2021/09/17/SSI_20210917150355.jpg",
       "title": "전시 이름",
       "galleryName": "ART369(아트369)",
@@ -17,6 +18,7 @@
     },
     {
       "id": "2",
+      "category": "공연",
       "posterUrl": "https://m.prugna.co.kr/web/product/big/202211/9d7750409c1193bb10a15dcba01f3d6a.jpg",
       "title": "전시 이름",
       "galleryName": "ART369(아트369)",

@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import BoardHeader from '../components/BoardHeader';
-import { getExhibitions, getGalleries } from '../api';
+import { getExhibitions } from '../api';
 import ExhibitionItem from '../components/ExhibitionItem';
 import GalleryItem from '../components/GalleryItem';
 import BoardList from '../components/BoardList';
@@ -45,17 +45,13 @@ const Search = () => {
       const exhibitionsData = await getExhibitions(trimmedKeyword);
       setExhibitions(exhibitionsData);
 
-      const galleriesData = await getGalleries(trimmedKeyword);
-      setGalleries(galleriesData);
-
-      setCount(exhibitions.length + galleries.length);
+      setCount(exhibitions.length);
     } catch (error) {
       console.error('데이터를 가져오는 데 실패했습니다.:', error);
     }
 
     console.log(keyword);
     console.log(exhibitions);
-    console.log(galleries);
   };
 
   return (

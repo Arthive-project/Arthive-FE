@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 const BoardHeader = ({ text, showText = false, subText }) => {
   return (
     <div css={boardHeader}>
-      <p>{text}</p>
+      <h2>{text}</h2>
       {showText && <p css={sub_text}>{subText}</p>}
     </div>
   );
@@ -20,6 +20,12 @@ const boardHeader = css`
   font-weight: bold;
   justify-content: center;
   align-items: center;
+
+  h2 {
+    margin-top: 30px;
+    font-size: 37px;
+    font-weight: bold;
+  }
 `;
 
 const sub_text = css`

@@ -14,7 +14,7 @@ const Theater = () => {
           <BoardItem
             key={theater.id}
             data={theater}
-            linkPath={`/dance/${theater.id}`}
+            linkPath={`/theater/${theater.id}`}
           />
         ))}
       </BoardList>

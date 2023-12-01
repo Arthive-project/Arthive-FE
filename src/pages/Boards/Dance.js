@@ -15,7 +15,6 @@ const Dance = () => {
             key={dance.id}
             data={dance}
             linkPath={`/dance/${dance.id}`}
-            showAddress={false}
           />
         ))}
       </BoardList>
