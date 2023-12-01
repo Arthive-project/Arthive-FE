@@ -11,8 +11,6 @@ import MyLikes from './pages/MyLikes';
 import Exhibition from './pages/Boards/Exhibition';
 import ExhibitionDetail from './pages/Boards/ExhibitionDetail';
 import ExhibitionRegisterUser from './pages/Boards/ExhibitionRegisterUser';
-import Gallery from './pages/Boards/Gallery';
-import GalleryDetail from './pages/Boards/GalleryDetail';
 import ExhibitionRegister from './pages/Admin/ExhibitionRegister';
 import GalleryRegister from './pages/Admin/GalleryRegister';
 import About from './pages/Boards/About';
@@ -57,11 +55,6 @@ function Main() {
             <Route index element={<Exhibition />} />
             <Route path=':exhibitionId' element={<ExhibitionDetail />} />
             <Route path='register' element={<ExhibitionRegisterUser />} />
-          </Route>
-
-          <Route path='gallery'>
-            <Route index element={<Gallery />} />
-            <Route path=':galleryId' element={<GalleryDetail />} />
           </Route>
 
           <Route path='admin'>
