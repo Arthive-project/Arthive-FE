@@ -100,6 +100,9 @@ const Navbar = () => {
               <li>
                 <Link to={'about'}>아타이브 소개</Link>
               </li>
+              <li>
+                <Link to={'application'}>공연/행사 등록신청</Link>
+              </li>
             </ul>
           </li>
         </div>

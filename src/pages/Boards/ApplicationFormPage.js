@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import BoardHeader from '../../components/BoardHeader';
 import InfoList from '../../components/InfoList';
 import Button from '../../components/Button';
+import { locationLists } from '../../data/locationLists';
 
 const INITIAL_INPUT = {
   username: '',
@@ -21,9 +22,10 @@ const INITIAL_INPUT = {
   homePage: '',
   entranceFee: '',
   file: '',
+  area: '',
 };
 
-const ExhibitionRegisterUser = () => {
+const ApplicationFormPage = () => {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState(INITIAL_INPUT);
 
@@ -41,6 +43,7 @@ const ExhibitionRegisterUser = () => {
     artist,
     homePage,
     entranceFee,
+    area,
     file,
   } = inputs;
 
@@ -52,6 +55,8 @@ const ExhibitionRegisterUser = () => {
     });
   };
 
+  const locationOptions = [...locationLists];
+
   const handleSubmitRegister = (e) => {
     e.preventDefault();
     alert('입력하신 정보로 등록 신청되었습니다.');
@@ -61,14 +66,7 @@ const ExhibitionRegisterUser = () => {
 
   return (
     <>
-      <BoardHeader
-        text='아타이브 전시 등록 신청'
-        showHr={false}
-        showText={true}
-        subText={`전시회 자료를 등록해주셔서 감사합니다.
-        
-        등록하신 자료는 전시 등록 지원팀이 확인 후 아타이브 웹페이지에 게재됩니다.`}
-      />
+      <BoardHeader text='공연/행사 등록 신청' showHr={true} showText={true} />
       <div css={register_wrap}>
         <form
           css={register_form}
@@ -106,9 +104,9 @@ const ExhibitionRegisterUser = () => {
             />
           </section>
           <section css={form_exhibition_info}>
-            <p css={form_title}>2. 전시 정보</p>
+            <p css={form_title}>2. 기본 정보</p>
             <InfoList
-              label={'전시명*'}
+              label={'공연/행사명*'}
               input={{
                 name: 'exhibitionTitle',
                 value: exhibitionTitle,
@@ -116,10 +114,21 @@ const ExhibitionRegisterUser = () => {
               }}
             />
             <InfoList
-              label={'전시 위치 (갤러리명)*'}
+              label={'자치구*'}
+              input={{
+                name: 'area',
+                value: area,
+                onChange: handleChangeInputs,
+              }}
+              typeIs={'select'}
+              options={locationOptions}
+            />
+            <InfoList
+              label={'장소*'}
               input={{
                 name: 'galleryName',
                 value: galleryName,
+                type: 'select',
                 onChange: handleChangeInputs,
                 placeholder: '예술의 전당 한가람미술관',
               }}
@@ -136,7 +145,7 @@ const ExhibitionRegisterUser = () => {
             />
             <div css={exhibition_period}>
               <InfoList
-                label={'전시 기간*'}
+                label={'기간*'}
                 input={{
                   name: 'startDate',
                   value: startDate,
@@ -183,7 +192,7 @@ const ExhibitionRegisterUser = () => {
               />
             </div>
             <InfoList
-              label={'작가*'}
+              label={'출연자 정보'}
               input={{
                 name: 'artist',
                 value: artist,
@@ -191,7 +200,7 @@ const ExhibitionRegisterUser = () => {
               }}
             />
             <InfoList
-              label={'전시회 홈페이지'}
+              label={'홈페이지 주소'}
               input={{
                 name: 'homePage',
                 value: homePage,
@@ -199,7 +208,16 @@ const ExhibitionRegisterUser = () => {
               }}
             />
             <InfoList
-              label={'관람료*'}
+              label={'유무료*'}
+              input={{
+                name: 'entranceFee',
+                value: entranceFee,
+                onChange: handleChangeInputs,
+              }}
+              labelSub={true}
+            />
+            <InfoList
+              label={'이용요금*'}
               input={{
                 name: 'entranceFee',
                 value: entranceFee,
@@ -212,7 +230,7 @@ const ExhibitionRegisterUser = () => {
           <section css={form_file}>
             <p css={form_title}>3. 첨부 파일</p>
             <InfoList
-              label={'전시 포스터 이미지'}
+              label={'포스터 이미지'}
               input={{
                 name: 'file',
                 value: file,
@@ -231,7 +249,7 @@ const ExhibitionRegisterUser = () => {
   );
 };
 
-export default ExhibitionRegisterUser;
+export default ApplicationFormPage;
 
 const register_wrap = css`
   // border: 1px solid red;

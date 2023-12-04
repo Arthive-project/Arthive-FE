@@ -8,8 +8,6 @@ import SignUp from './pages/SignUp';
 import MyPage from './pages/MyPage';
 import Search from './pages/Search';
 import MyLikes from './pages/MyLikes';
-// import ExhibitionDetail from './pages/Boards/ExhibitionDetail';
-// import ExhibitionRegisterUser from './pages/Boards/ExhibitionRegisterUser';
 import About from './pages/Boards/About';
 import NotFound from './pages/NotFound';
 import MyRegisterList from './pages/MyRegisterList';
@@ -30,6 +28,7 @@ import Concert from './pages/Boards/Concert';
 import ExhibitionRegister from './pages/Admin/ExhibitionRegister';
 import GalleryRegister from './pages/Admin/GalleryRegister';
 import DetailPage from './pages/Boards/DetailPage';
+import ApplicationFormPage from './pages/Boards/ApplicationFormPage';
 
 export const globalStyle = css`
   * {
@@ -69,6 +68,7 @@ function Main() {
           <Route index element={<Home />} />
           <Route path='login' element={<Login />} />
           <Route path='sign-up' element={<SignUp />} />
+          <Route path='application' element={<ApplicationFormPage />} />
           <Route path='my-page' element={<MyPage />} />
           <Route path='my-register' element={<MyRegisterList />} />
           <Route
