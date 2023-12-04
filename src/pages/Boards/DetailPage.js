@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+// import { css } from '@emotion/react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import BoardDetail from '../../components/BoardDetail';
@@ -27,24 +29,37 @@ const DetailPage = ({ category }) => {
 
   return (
     <>
-      <BoardHeader text={item.category} />
+      <BoardHeader text={item.category} showHr={true} />
       <BoardDetail src={item.posterUrl}>
+        <h2>
+          서울시향과 함께하는 미라클(美樂Classic)서울 - 크리스마스 페스티벌
+          {item.title}
+        </h2>
         <table>
           <tbody>
             <tr>
-              <th>
-                제목
-                <span>|</span>
-              </th>
-              <td>{item.title}</td>
+              <th>장소</th>
+              <td>{item.address}</td>
             </tr>
             <tr>
-              <th>
-                기간
-                <span>|</span>
-              </th>
+              <th>기간</th>
               <td>
                 {item.startDate} ~ {item.endDate}
+              </td>
+            </tr>
+            <tr>
+              <th>대상</th>
+              <td>{item.target}</td>
+            </tr>
+            <tr>
+              <th>요금</th>
+              {/* 이용요금 값 없을 시 유무료 값 보여줌 */}
+              <td>{item.entranceFee}</td>
+            </tr>
+            <tr>
+              <th>사이트</th>
+              <td>
+                <a href={item.gallerySiteUrl}>홈페이지 바로가기</a>
               </td>
             </tr>
           </tbody>
