@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import BoardHeader from '../../components/BoardHeader';
 import InfoList from '../../components/InfoList';
 import Button from '../../components/Button';
-import { locationLists } from '../../data/locationLists';
+import { FeeOptions, locationLists } from '../../data/formOptions';
 
 const INITIAL_INPUT = {
   username: '',
@@ -22,7 +22,8 @@ const INITIAL_INPUT = {
   homePage: '',
   entranceFee: '',
   file: '',
-  area: '',
+  area: '중랑구',
+  isFree: '무료',
 };
 
 const ApplicationFormPage = () => {
@@ -45,6 +46,7 @@ const ApplicationFormPage = () => {
     entranceFee,
     area,
     file,
+    isFree,
   } = inputs;
 
   const handleChangeInputs = (e) => {
@@ -56,6 +58,7 @@ const ApplicationFormPage = () => {
   };
 
   const locationOptions = [...locationLists];
+  const isFreeOptions = [...FeeOptions];
 
   const handleSubmitRegister = (e) => {
     e.preventDefault();
@@ -103,7 +106,7 @@ const ApplicationFormPage = () => {
               }}
             />
           </section>
-          <section css={form_exhibition_info}>
+          <section css={form_info}>
             <p css={form_title}>2. 기본 정보</p>
             <InfoList
               label={'공연/행사명*'}
@@ -210,11 +213,12 @@ const ApplicationFormPage = () => {
             <InfoList
               label={'유무료*'}
               input={{
-                name: 'entranceFee',
-                value: entranceFee,
+                name: 'isFree',
+                value: isFree,
                 onChange: handleChangeInputs,
               }}
-              labelSub={true}
+              typeIs={'select'}
+              options={isFreeOptions}
             />
             <InfoList
               label={'이용요금*'}
@@ -278,8 +282,8 @@ const form_applicant = css`
   height: 410px;
 `;
 
-const form_exhibition_info = css`
-  height: 930px;
+const form_info = css`
+  height: 1080px;
 `;
 
 const exhibition_period = css`

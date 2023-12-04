@@ -26,7 +26,7 @@ const InfoList = ({
       <div css={info_label}>{label}</div>
       {labelSub && <p css={label_sub}>{labelSubText}</p>}
       {typeIs === 'select' ? (
-        <select>
+        <select name={name} value={value} onChange={onChange}>
           {options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}

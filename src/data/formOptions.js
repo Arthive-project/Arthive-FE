@@ -22,3 +22,8 @@ export const locationLists = [
   { label: '강동구', value: '강동구' },
   { label: '강남구', value: '강남구' },
 ];
+
+export const FeeOptions = [
+  { label: '유료', value: '유료' },
+  { label: '무료', value: '무료' },
+];
