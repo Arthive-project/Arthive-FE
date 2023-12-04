@@ -146,6 +146,7 @@ const nav_wrap = css`
   left: 0;
   background-color: black;
   color: white;
+  z-index: 1000000001;
 
   a {
     text-decoration: none;
@@ -174,7 +175,7 @@ const sub_ul = css`
   list-style-type: none;
 
   a {
-    z-index: 10;
+    z-index: 1000000002;
     display: inline-block;
     text-decoration: none;
     padding: 6px 10px;
