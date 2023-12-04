@@ -21,5 +21,4 @@ export default App;
 const wrapper = css`
   height: auto;
   min-height: calc(100vh - 230px);
-  // padding-bottom: 230px;
 `;

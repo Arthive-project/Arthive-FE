@@ -71,9 +71,6 @@ const footer_wrap = css`
   color: white;
   font-size: 14px;
 
-  position: relative;
-  // transform: translateY(-100%);
-
   hr {
     width: 50%;
     border: 0.5px solid white;
