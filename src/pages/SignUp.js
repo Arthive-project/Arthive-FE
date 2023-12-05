@@ -170,6 +170,10 @@ const SignUp = () => {
 export default SignUp;
 
 const signup = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   background-color: #fbfbfb;
   padding: 120px 0 190px;
 `;
@@ -179,7 +183,6 @@ const signup_wrap = css`
   flex-direction: column;
   border: 1px solid #d9d9d9;
   width: 457px;
-  // height: 480px;
   border-radius: 30px;
   background-color: white;
   margin: 0 auto;
