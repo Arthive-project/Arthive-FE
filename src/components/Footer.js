@@ -70,7 +70,6 @@ const footer_wrap = css`
   background-color: black;
   color: white;
   font-size: 14px;
-  bottom: 0;
 
   hr {
     width: 50%;

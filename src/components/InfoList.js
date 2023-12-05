@@ -1,7 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-const InfoList = ({ label, input, labelSub = false, labelSubText }) => {
+const InfoList = ({
+  label,
+  input,
+  typeIs,
+  options,
+  labelSub = false,
+  labelSubText,
+}) => {
   const {
     name,
     value,
@@ -18,17 +25,27 @@ const InfoList = ({ label, input, labelSub = false, labelSubText }) => {
     <div css={info_list}>
       <div css={info_label}>{label}</div>
       {labelSub && <p css={label_sub}>{labelSubText}</p>}
-      <div css={info_input}>
-        <input
-          name={name}
-          value={value}
-          type={type}
-          onChange={onChange}
-          placeholder={placeholder}
-          accept={accept}
-        />
-        {isError && <span css={error_msg}>{checkInput.errorMessage}</span>}
-      </div>
+      {typeIs === 'select' ? (
+        <select name={name} value={value} onChange={onChange}>
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      ) : (
+        <div css={info_input}>
+          <input
+            name={name}
+            value={value}
+            type={type}
+            onChange={onChange}
+            placeholder={placeholder}
+            accept={accept}
+          />
+          {isError && <span css={error_msg}>{checkInput.errorMessage}</span>}
+        </div>
+      )}
     </div>
   );
 };
@@ -39,6 +56,14 @@ const info_list = css`
   // border: 1px solid pink;
   margin: 10px 0 10px 0;
   width: 100%;
+
+  select {
+    width: 100%;
+    height: 34px;
+    border: 1px solid #d9d9d9;
+    padding: 0 8px;
+    margin-top: 4px;
+  }
 `;
 
 const info_label = css`

@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { useParams } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import { getMyRegisterById } from '../api';
-import { locationLists } from '../data/locationLists';
+import { locationLists } from '../data/formOptions';
 import BoardHeader from '../components/BoardHeader';
 import FormInput from '../components/FormInput';
 import Form from '../components/Form';

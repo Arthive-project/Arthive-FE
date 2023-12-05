@@ -8,17 +8,27 @@ import SignUp from './pages/SignUp';
 import MyPage from './pages/MyPage';
 import Search from './pages/Search';
 import MyLikes from './pages/MyLikes';
-import Exhibition from './pages/Boards/Exhibition';
-import ExhibitionDetail from './pages/Boards/ExhibitionDetail';
-import ExhibitionRegisterUser from './pages/Boards/ExhibitionRegisterUser';
-import Gallery from './pages/Boards/Gallery';
-import GalleryDetail from './pages/Boards/GalleryDetail';
-import ExhibitionRegister from './pages/Admin/ExhibitionRegister';
-import GalleryRegister from './pages/Admin/GalleryRegister';
 import About from './pages/Boards/About';
 import NotFound from './pages/NotFound';
 import MyRegisterList from './pages/MyRegisterList';
 import MyRegisterDetail from './pages/MyRegisterDetail';
+// 카테고리
+import Exhibition from './pages/Boards/Exhibition';
+import Tradition from './pages/Boards/Tradition';
+import Citizen from './pages/Boards/Citizen';
+import Classical from './pages/Boards/Classical';
+import Nature from './pages/Boards/Nature';
+import Culture from './pages/Boards/Culture';
+import OtherFestival from './pages/Boards/OtherFestival';
+import Theater from './pages/Boards/Theater';
+import Musical from './pages/Boards/Musical';
+import Dance from './pages/Boards/Dance';
+import Concert from './pages/Boards/Concert';
+// 어드민
+import ExhibitionRegister from './pages/Admin/ExhibitionRegister';
+import GalleryRegister from './pages/Admin/GalleryRegister';
+import DetailPage from './pages/Boards/DetailPage';
+import ApplicationFormPage from './pages/Boards/ApplicationFormPage';
 
 export const globalStyle = css`
   * {
@@ -35,15 +45,30 @@ export const globalStyle = css`
   }
 `;
 
+const categoryList = [
+  { name: 'exhibition', component: <Exhibition /> },
+  { name: 'tradition', component: <Tradition /> },
+  { name: 'nature', component: <Nature /> },
+  { name: 'citizen', component: <Citizen /> },
+  { name: 'culture', component: <Culture /> },
+  { name: 'other-festival', component: <OtherFestival /> },
+  { name: 'theater', component: <Theater /> },
+  { name: 'musical', component: <Musical /> },
+  { name: 'dance', component: <Dance /> },
+  { name: 'classical', component: <Classical /> },
+  { name: 'concert', component: <Concert /> },
+];
+
 function Main() {
   return (
     <BrowserRouter>
       <Global styles={globalStyle} />
       <Routes>
-        <Route pate='/' element={<App />}>
+        <Route path='/' element={<App />}>
           <Route index element={<Home />} />
           <Route path='login' element={<Login />} />
           <Route path='sign-up' element={<SignUp />} />
+          <Route path='application' element={<ApplicationFormPage />} />
           <Route path='my-page' element={<MyPage />} />
           <Route path='my-register' element={<MyRegisterList />} />
           <Route
@@ -53,16 +78,24 @@ function Main() {
           <Route path='search' element={<Search />} />
           <Route path='my-likes' element={<MyLikes />} />
 
-          <Route path='exhibition'>
-            <Route index element={<Exhibition />} />
-            <Route path=':exhibitionId' element={<ExhibitionDetail />} />
-            <Route path='register' element={<ExhibitionRegisterUser />} />
-          </Route>
+          {categoryList.map((category) => (
+            <Route
+              key={category.name}
+              path={category.name}
+              element={category.component}
+            />
+          ))}
 
-          <Route path='gallery'>
-            <Route index element={<Gallery />} />
-            <Route path=':galleryId' element={<GalleryDetail />} />
-          </Route>
+          {/* 각 카테고리의 상세 페이지에 대한 동적 라우팅 설정 */}
+          {categoryList.map((category) => (
+            <Route
+              key={`${category.name}-detail`}
+              path={`${category.name}/:itemId`}
+              element={<DetailPage category={category.name} />}
+            />
+          ))}
+
+          {/* Admin */}
 
           <Route path='admin'>
             {/* <Route index element={<Admin />} /> */}

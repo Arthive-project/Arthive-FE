@@ -41,5 +41,6 @@ const banners_wrap = css`
   width: 1220px;
   height: 100%;
   margin: 0 auto;
+  padding-top: 60px;
   margin-bottom: 10px;
 `;

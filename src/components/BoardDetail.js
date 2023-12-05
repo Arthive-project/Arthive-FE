@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-// import BoardHeader from './BoardHeader';
 
 const BoardDetail = ({ children, src }) => {
   return (
@@ -43,13 +42,24 @@ const detail_table = css`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 473px;
+  width: 478px;
+
+  h2 {
+    color: #222222;
+  }
 
   table {
-    // height: 260px;
-    height: 460px;
+    // height: 460px;
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+  }
+
+  th {
+    // border: 1px solid red;
+    padding: 18px 10px;
+    marin-right: 10px;
+    border-right: 1px solid #e9e9e9;
   }
 
   th,
