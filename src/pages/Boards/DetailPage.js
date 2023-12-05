@@ -54,7 +54,7 @@ const DetailPage = ({ category }) => {
             <tr>
               <th>요금</th>
               {/* 이용요금 값 없을 시 유무료 값 보여줌 */}
-              <td>{item.entranceFee}</td>
+              <td>{item.isFree || item.entranceFee}</td>
             </tr>
             <tr>
               <th>사이트</th>
