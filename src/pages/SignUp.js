@@ -187,7 +187,6 @@ const signup_wrap = css`
   background-color: white;
   margin: 0 auto;
   padding: 50px 35px;
-  overflow: scroll;
 `;
 
 const signup_title = css`
