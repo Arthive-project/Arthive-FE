@@ -62,6 +62,10 @@ const Login = () => {
 export default Login;
 
 const login = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   background-color: #fbfbfb;
   padding: 120px 0 190px;
 `;

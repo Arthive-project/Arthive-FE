@@ -10,6 +10,7 @@ const SIGN_UP_INPUTS = {
   name: '',
   phoneNumber: '',
   password: '',
+  birthday: '',
 };
 
 const EMAIL_REGEX =
@@ -23,7 +24,7 @@ const SignUp = () => {
 
   const [inputs, setInputs] = useState(SIGN_UP_INPUTS);
 
-  const { emailAddress, name, phoneNumber, password } = inputs;
+  const { emailAddress, name, phoneNumber, password, birthday } = inputs;
   const [checkPassword, setCheckPassword] = useState('');
 
   const handleChangeInfoInputs = (e) => {
@@ -104,32 +105,6 @@ const SignUp = () => {
             }}
           />
           <InfoList
-            label={'성함'}
-            input={{
-              name: 'name',
-              value: name,
-              onChange: handleChangeInfoInputs,
-              placeholder: '홍길동',
-              checkInput: {
-                isConfirm: isConfirmName,
-                errorMessage: '이름을 정확히 입력해주세요. (ex. 홍길동)',
-              },
-            }}
-          />
-          <InfoList
-            label={'휴대전화'}
-            input={{
-              name: 'phoneNumber',
-              value: phoneNumber,
-              placeholder: '010-0000-0000',
-              onChange: handleChangeInfoInputs,
-              checkInput: {
-                isConfirm: isConfirmPhoneNumber,
-                errorMessage: '형식에 맞춰 입력해주세요. (ex. 010-0000-0000)',
-              },
-            }}
-          />
-          <InfoList
             label={'비밀번호'}
             input={{
               name: 'password',
@@ -158,6 +133,42 @@ const SignUp = () => {
               },
             }}
           />
+          <InfoList
+            label={'성함'}
+            input={{
+              name: 'name',
+              value: name,
+              onChange: handleChangeInfoInputs,
+              placeholder: '홍길동',
+              checkInput: {
+                isConfirm: isConfirmName,
+                errorMessage: '이름을 정확히 입력해주세요. (ex. 홍길동)',
+              },
+            }}
+          />
+          <InfoList
+            label={'생년월일'}
+            input={{
+              name: 'birthday',
+              value: birthday,
+              type: 'date',
+              onChange: handleChangeInfoInputs,
+              placeholder: '홍길동',
+            }}
+          />
+          <InfoList
+            label={'휴대전화'}
+            input={{
+              name: 'phoneNumber',
+              value: phoneNumber,
+              placeholder: '010-0000-0000',
+              onChange: handleChangeInfoInputs,
+              checkInput: {
+                isConfirm: isConfirmPhoneNumber,
+                errorMessage: '형식에 맞춰 입력해주세요. (ex. 010-0000-0000)',
+              },
+            }}
+          />
           <section>
             <Button name='가입하기' form='signUp' type='submit' />
           </section>
@@ -170,6 +181,10 @@ const SignUp = () => {
 export default SignUp;
 
 const signup = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   background-color: #fbfbfb;
   padding: 120px 0 190px;
 `;
@@ -179,12 +194,10 @@ const signup_wrap = css`
   flex-direction: column;
   border: 1px solid #d9d9d9;
   width: 457px;
-  // height: 480px;
   border-radius: 30px;
   background-color: white;
   margin: 0 auto;
   padding: 50px 35px;
-  overflow: scroll;
 `;
 
 const signup_title = css`
