@@ -10,6 +10,7 @@ const SIGN_UP_INPUTS = {
   name: '',
   phoneNumber: '',
   password: '',
+  birthday: '',
 };
 
 const EMAIL_REGEX =
@@ -23,7 +24,7 @@ const SignUp = () => {
 
   const [inputs, setInputs] = useState(SIGN_UP_INPUTS);
 
-  const { emailAddress, name, phoneNumber, password } = inputs;
+  const { emailAddress, name, phoneNumber, password, birthday } = inputs;
   const [checkPassword, setCheckPassword] = useState('');
 
   const handleChangeInfoInputs = (e) => {
@@ -143,6 +144,16 @@ const SignUp = () => {
                 isConfirm: isConfirmName,
                 errorMessage: '이름을 정확히 입력해주세요. (ex. 홍길동)',
               },
+            }}
+          />
+          <InfoList
+            label={'생년월일'}
+            input={{
+              name: 'birthday',
+              value: birthday,
+              type: 'date',
+              onChange: handleChangeInfoInputs,
+              placeholder: '홍길동',
             }}
           />
           <InfoList
