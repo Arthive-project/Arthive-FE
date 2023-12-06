@@ -104,32 +104,6 @@ const SignUp = () => {
             }}
           />
           <InfoList
-            label={'성함'}
-            input={{
-              name: 'name',
-              value: name,
-              onChange: handleChangeInfoInputs,
-              placeholder: '홍길동',
-              checkInput: {
-                isConfirm: isConfirmName,
-                errorMessage: '이름을 정확히 입력해주세요. (ex. 홍길동)',
-              },
-            }}
-          />
-          <InfoList
-            label={'휴대전화'}
-            input={{
-              name: 'phoneNumber',
-              value: phoneNumber,
-              placeholder: '010-0000-0000',
-              onChange: handleChangeInfoInputs,
-              checkInput: {
-                isConfirm: isConfirmPhoneNumber,
-                errorMessage: '형식에 맞춰 입력해주세요. (ex. 010-0000-0000)',
-              },
-            }}
-          />
-          <InfoList
             label={'비밀번호'}
             input={{
               name: 'password',
@@ -155,6 +129,32 @@ const SignUp = () => {
               checkInput: {
                 isConfirm: isConfirmCheckPassword,
                 errorMessage: '비밀번호가 일치하지 않습니다.',
+              },
+            }}
+          />
+          <InfoList
+            label={'성함'}
+            input={{
+              name: 'name',
+              value: name,
+              onChange: handleChangeInfoInputs,
+              placeholder: '홍길동',
+              checkInput: {
+                isConfirm: isConfirmName,
+                errorMessage: '이름을 정확히 입력해주세요. (ex. 홍길동)',
+              },
+            }}
+          />
+          <InfoList
+            label={'휴대전화'}
+            input={{
+              name: 'phoneNumber',
+              value: phoneNumber,
+              placeholder: '010-0000-0000',
+              onChange: handleChangeInfoInputs,
+              checkInput: {
+                isConfirm: isConfirmPhoneNumber,
+                errorMessage: '형식에 맞춰 입력해주세요. (ex. 010-0000-0000)',
               },
             }}
           />
