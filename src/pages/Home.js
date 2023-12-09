@@ -7,6 +7,8 @@ import data from '../api/home-mock.json';
 const Home = () => {
   const { hotExhibitions, recConcert, recFestival } = data;
 
+  const currentMonth = new Date().getMonth() + 1;
+
   return (
     <div css={banners_wrap}>
       <AdBanner />
@@ -23,7 +25,7 @@ const Home = () => {
         showExhibit={true}
       />
       <SubBanner
-        name='0월 추천 축제'
+        name={`${currentMonth}월 추천 축제`}
         mapPoint={'/festival'}
         data={recFestival}
         showGallery={true}
