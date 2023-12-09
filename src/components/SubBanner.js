@@ -5,17 +5,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
-// import ExhibitionItem from './ExhibitionItem';
-import GalleryItem from './GalleryItem';
 import BoardItem from './BoardItem';
 
-const SubBanner = ({
-  name,
-  mapPoint,
-  data,
-  showExhibit = false,
-  showGallery = false,
-}) => {
+const SubBanner = ({ name, mapPoint, data }) => {
   return (
     <div css={subBanner}>
       <div css={subBanner_title}>
@@ -38,36 +30,20 @@ const SubBanner = ({
           '--swiper-navigation-size': '28px',
         }}
       >
-        {showExhibit &&
-          data.map((exhibition) => {
-            return (
-              <SwiperSlide key={exhibition.id}>
-                {
-                  <BoardItem
-                    key={exhibition.id}
-                    data={exhibition}
-                    {...exhibition}
-                    showLikeBtn={false}
-                  />
-                }
-              </SwiperSlide>
-            );
-          })}
-        {showGallery &&
-          data.map((gallery) => {
-            return (
-              <SwiperSlide key={gallery.id}>
-                {
-                  <GalleryItem
-                    key={gallery.id}
-                    gallery={gallery}
-                    {...gallery}
-                    showLikeBtn={false}
-                  />
-                }
-              </SwiperSlide>
-            );
-          })}
+        {data.map((item) => {
+          return (
+            <SwiperSlide key={item.id}>
+              {
+                <BoardItem
+                  key={item.id}
+                  data={item}
+                  {...item}
+                  showLikeBtn={false}
+                />
+              }
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </div>
   );

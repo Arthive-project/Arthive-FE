@@ -16,19 +16,16 @@ const Home = () => {
         name='요즘 뜨는 전시'
         mapPoint={'/exhibition'}
         data={hotExhibitions}
-        showExhibit={true}
       />
       <SubBanner
         name='꼭 가봐야 할 공연'
         mapPoint={'/concert'}
         data={recConcert}
-        showExhibit={true}
       />
       <SubBanner
         name={`${currentMonth}월 추천 축제`}
         mapPoint={'/festival'}
         data={recFestival}
-        showGallery={true}
       />
     </div>
   );

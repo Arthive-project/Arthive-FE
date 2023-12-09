@@ -5,7 +5,6 @@ import { useSearchParams } from 'react-router-dom';
 import BoardHeader from '../components/BoardHeader';
 import { getExhibitions } from '../api';
 import ExhibitionItem from '../components/ExhibitionItem';
-import GalleryItem from '../components/GalleryItem';
 import BoardList from '../components/BoardList';
 
 const Search = () => {
@@ -115,7 +114,7 @@ const Search = () => {
             <BoardList>
               {galleries.map((gallery) => {
                 return (
-                  <GalleryItem
+                  <ExhibitionItem
                     key={gallery.id}
                     gallery={gallery}
                     {...gallery}
