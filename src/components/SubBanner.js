@@ -5,8 +5,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import ExhibitionItem from './ExhibitionItem';
+// import ExhibitionItem from './ExhibitionItem';
 import GalleryItem from './GalleryItem';
+import BoardItem from './BoardItem';
 
 const SubBanner = ({
   name,
@@ -42,9 +43,9 @@ const SubBanner = ({
             return (
               <SwiperSlide key={exhibition.id}>
                 {
-                  <ExhibitionItem
+                  <BoardItem
                     key={exhibition.id}
-                    exhibition={exhibition}
+                    data={exhibition}
                     {...exhibition}
                     showLikeBtn={false}
                   />

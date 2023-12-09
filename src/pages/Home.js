@@ -5,7 +5,7 @@ import SubBanner from '../components/SubBanner';
 import data from '../api/home-mock.json';
 
 const Home = () => {
-  const { hotExhibitions, monExhibitions, recGalleries } = data;
+  const { hotExhibitions, recConcert, recFestival } = data;
 
   return (
     <div css={banners_wrap}>
@@ -17,15 +17,15 @@ const Home = () => {
         showExhibit={true}
       />
       <SubBanner
-        name='12월 추천 전시회'
-        mapPoint={'/exhibition'}
-        data={monExhibitions}
+        name='꼭 가봐야 할 공연'
+        mapPoint={'/concert'}
+        data={recConcert}
         showExhibit={true}
       />
       <SubBanner
-        name='이번주 추천 갤러리'
-        mapPoint={'/gallery'}
-        data={recGalleries}
+        name='0월 추천 축제'
+        mapPoint={'/festival'}
+        data={recFestival}
         showGallery={true}
       />
     </div>

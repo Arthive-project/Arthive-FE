@@ -4,8 +4,6 @@
       "id": "3",
       "posterUrl": "https://posterdesign.kr/wp-content/uploads/2021/10/%E1%84%91%E1%85%A9%E1%84%83%E1%85%B5-%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B5%E1%84%92%E1%85%AC-%E1%84%91%E1%85%A9%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5-%E1%84%89%E1%85%A2%E1%86%B7%E1%84%91%E1%85%B3%E1%86%AF.png",
       "title": "전시이름3",
-      "location": "서울",
-      "gallery": "갤러리 이름",
       "startDate": "2023-07-04",
       "endDate": "2023-07-10"
     },
@@ -46,7 +44,7 @@
       "endDate": "2023-07-10"
     }
   ],
-  "monExhibitions": [
+  "recConcert": [
     {
       "id": "3",
       "posterUrl": "https://posterdesign.kr/wp-content/uploads/2021/10/%E1%84%91%E1%85%A9%E1%84%83%E1%85%B5-%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B5%E1%84%92%E1%85%AC-%E1%84%91%E1%85%A9%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5-%E1%84%89%E1%85%A2%E1%86%B7%E1%84%91%E1%85%B3%E1%86%AF.png",
@@ -93,7 +91,7 @@
       "endDate": "2023-07-10"
     }
   ],
-  "recGalleries": [
+  "recFestival": [
     {
       "id": "1",
       "posterUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtsyCDDAyroX7lxLf5qlzrOG0pQAgh1-bkvuTB97kLYPE2ykIVehydHntKygrIyeKStvc&usqp=CAU",
