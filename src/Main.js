@@ -29,6 +29,8 @@ import ExhibitionRegister from './pages/Admin/ExhibitionRegister';
 import GalleryRegister from './pages/Admin/GalleryRegister';
 import DetailPage from './pages/Boards/DetailPage';
 import ApplicationFormPage from './pages/Boards/ApplicationFormPage';
+import ConcertAll from './pages/Boards/ConcertAll';
+import FestivalAll from './pages/Boards/FestivalAll';
 
 export const globalStyle = css`
   * {
@@ -47,16 +49,18 @@ export const globalStyle = css`
 
 const categoryList = [
   { name: 'exhibition', component: <Exhibition /> },
-  { name: 'tradition', component: <Tradition /> },
-  { name: 'nature', component: <Nature /> },
-  { name: 'citizen', component: <Citizen /> },
-  { name: 'culture', component: <Culture /> },
-  { name: 'other-festival', component: <OtherFestival /> },
+  { name: 'concert-all', component: <ConcertAll /> },
   { name: 'theater', component: <Theater /> },
   { name: 'musical', component: <Musical /> },
   { name: 'dance', component: <Dance /> },
   { name: 'classical', component: <Classical /> },
   { name: 'concert', component: <Concert /> },
+  { name: 'festival-all', component: <FestivalAll /> },
+  { name: 'tradition', component: <Tradition /> },
+  { name: 'nature', component: <Nature /> },
+  { name: 'citizen', component: <Citizen /> },
+  { name: 'culture', component: <Culture /> },
+  { name: 'other-festival', component: <OtherFestival /> },
 ];
 
 function Main() {
