@@ -8,7 +8,7 @@ const FestivalAll = () => {
 
   return (
     <>
-      <BoardHeader text='축제' showText='false' subText='축제 전체' />
+      <BoardHeader text='축제' showText='false' subText='전체' />
       <BoardList>
         {festivalAll.map((festival) => (
           <BoardItem

@@ -8,7 +8,7 @@ const ConcertAll = () => {
 
   return (
     <>
-      <BoardHeader text='공연' showText='false' subText='공연 전체' />
+      <BoardHeader text='공연' showText='false' subText='전체' />
       <BoardList>
         {concertAll.map((concert) => (
           <BoardItem
