@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import BoardDetail from '../../components/BoardDetail';
 import BoardHeader from '../../components/BoardHeader';
-import MapContainer from './MapContainer';
+import MapContainer from '../../components/MapContainer';
 import KaKaoMap from '../../components/KakaoMap';
 import LikeBtn from '../../components/LikeBtn';
 import { getDetailByCategory } from '../../api';
