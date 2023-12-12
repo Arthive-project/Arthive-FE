@@ -5,7 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import BoardHeader from '../../components/BoardHeader';
 import InfoList from '../../components/InfoList';
 import Button from '../../components/Button';
-import { FeeOptions, locationLists } from '../../data/formOptions';
+import {
+  FeeOptions,
+  locationLists,
+  categories,
+  codenames,
+} from '../../data/formOptions';
 
 const INITIAL_INPUT = {
   username: '',
@@ -23,7 +28,9 @@ const INITIAL_INPUT = {
   entranceFee: '',
   file: '',
   area: '중랑구',
-  isFree: '무료',
+  isFree: '유료',
+  category: '전시',
+  codename: '전시/미술',
 };
 
 const ApplicationFormPage = () => {
@@ -47,6 +54,8 @@ const ApplicationFormPage = () => {
     area,
     file,
     isFree,
+    category,
+    codename,
   } = inputs;
 
   const handleChangeInputs = (e) => {
@@ -108,6 +117,26 @@ const ApplicationFormPage = () => {
           </section>
           <section css={form_info}>
             <p css={form_title}>2. 기본 정보</p>
+            <InfoList
+              label={'카테고리*'}
+              input={{
+                name: 'category',
+                value: category,
+                onChange: handleChangeInputs,
+              }}
+              typeIs={'select'}
+              options={[...categories]}
+            />
+            <InfoList
+              label={''}
+              input={{
+                name: 'codename',
+                value: codename,
+                onChange: handleChangeInputs,
+              }}
+              typeIs={'select'}
+              options={[...codenames]}
+            />
             <InfoList
               label={'공연/행사명*'}
               input={{
