@@ -29,8 +29,8 @@ const INITIAL_INPUT = {
   file: '',
   area: '중랑구',
   isFree: '유료',
-  category: '전시',
-  codename: '전시/미술',
+  category: '',
+  codename: '',
 };
 
 const ApplicationFormPage = () => {

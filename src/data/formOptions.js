@@ -1,10 +1,12 @@
 export const categories = [
+  { label: '대분류', value: '' },
   { label: '전시', value: '전시' },
   { label: '공연', value: '공연' },
   { label: '축제', value: '축제' },
 ];
 
 export const codenames = [
+  { label: '소분류', value: '' },
   { label: '전시/미술', value: '전시/미술' },
   { label: '연극', value: '연극' },
   { label: '뮤지컬/오페라', value: '뮤지컬/오페라' },
