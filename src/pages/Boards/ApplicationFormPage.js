@@ -117,26 +117,30 @@ const ApplicationFormPage = () => {
           </section>
           <section css={form_info}>
             <p css={form_title}>2. 기본 정보</p>
-            <InfoList
-              label={'카테고리*'}
-              input={{
-                name: 'category',
-                value: category,
-                onChange: handleChangeInputs,
-              }}
-              typeIs={'select'}
-              options={[...categories]}
-            />
-            <InfoList
-              label={''}
-              input={{
-                name: 'codename',
-                value: codename,
-                onChange: handleChangeInputs,
-              }}
-              typeIs={'select'}
-              options={[...codenames]}
-            />
+            <div css={exhibition_period}>
+              <InfoList
+                label={'카테고리*'}
+                input={{
+                  name: 'category',
+                  value: category,
+                  onChange: handleChangeInputs,
+                }}
+                typeIs={'select'}
+                options={[...categories]}
+                labelSub={true}
+                labelSubText='*대-소분류 카테고리를 모두 선택해주세요.'
+              />
+              <InfoList
+                label={''}
+                input={{
+                  name: 'codename',
+                  value: codename,
+                  onChange: handleChangeInputs,
+                }}
+                typeIs={'select'}
+                options={[...codenames]}
+              />
+            </div>
             <InfoList
               label={'공연/행사명*'}
               input={{
@@ -312,7 +316,7 @@ const form_applicant = css`
 `;
 
 const form_info = css`
-  height: 1080px;
+  height: 1200px;
 `;
 
 const exhibition_period = css`
