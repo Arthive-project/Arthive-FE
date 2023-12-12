@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import BoardHeader from '../components/BoardHeader';
 import { getExhibitions } from '../api';
-import ExhibitionItem from '../components/ExhibitionItem';
 import BoardList from '../components/BoardList';
+import BoardItem from '../components/BoardItem';
 
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,7 +15,8 @@ const Search = () => {
   const [count, setCount] = useState(null);
 
   const [exhibitions, setExhibitions] = useState([]);
-  const [galleries, setGalleries] = useState([]);
+  const [concerts, setConcerts] = useState([]);
+  const [festivals, setFestivals] = useState([]);
 
   const handleKeywordChange = (e) => setKeyword(e.target.value);
 
@@ -23,7 +24,8 @@ const Search = () => {
     e.preventDefault();
 
     setExhibitions([]);
-    setGalleries([]);
+    setConcerts([]);
+    setFestivals([]);
 
     const trimmedKeyword = keyword.trim();
     if (trimmedKeyword === '') {
@@ -87,8 +89,11 @@ const Search = () => {
           <a href='#exhibition'>
             <div>전시</div>
           </a>
-          <a href='#gallery'>
-            <div>갤러리</div>
+          <a href='#concert'>
+            <div>공연</div>
+          </a>
+          <a href='#festival'>
+            <div>축제</div>
           </a>
         </div>
         <div css={search_result}>
@@ -100,25 +105,31 @@ const Search = () => {
             <BoardList>
               {exhibitions.map((exhibition) => {
                 return (
-                  <ExhibitionItem
+                  <BoardItem
                     key={exhibition.id}
-                    exhibition={exhibition}
+                    data={exhibition}
                     {...exhibition}
                   />
                 );
               })}
             </BoardList>
           </div>
-          <div id='gallery'>
-            <h3>갤러리({galleries.length})</h3> <hr />
+          <div id='concert'>
+            <h3>공연({concerts.length})</h3> <hr />
             <BoardList>
-              {galleries.map((gallery) => {
+              {concerts.map((concert) => {
                 return (
-                  <ExhibitionItem
-                    key={gallery.id}
-                    gallery={gallery}
-                    {...gallery}
-                  />
+                  <BoardItem key={concert.id} data={concert} {...concert} />
+                );
+              })}
+            </BoardList>
+          </div>
+          <div id='festival'>
+            <h3>축제({festivals.length})</h3> <hr />
+            <BoardList>
+              {festivals.map((festival) => {
+                return (
+                  <BoardItem key={festival.id} data={festival} {...festival} />
                 );
               })}
             </BoardList>
@@ -132,7 +143,6 @@ const Search = () => {
 export default Search;
 
 const search = css`
-  // border: 1px solid red;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -152,6 +162,7 @@ const search_bar = css`
   border: 2px solid #070707;
   background: #f9f9f9;
   margin-bottom: 100px;
+  margin-top: -80px;
 
   input {
     width: 400px;
@@ -198,7 +209,7 @@ const board_btn = css`
 
   div {
     border: 1px solid black;
-    width: 580px;
+    width: 385px;
     height: 60px;
     display: flex;
     justify-content: center;
@@ -222,26 +233,8 @@ const search_result = css`
 `;
 
 const result_title = css`
-  // border: 1px solid red;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: end;
 `;
-
-// const more_btn = css`
-//   width: 60px;
-//   height: 25px;
-//   background-color: #c3fd1e;
-//   color: black;
-//   border-radius: 20px;
-//   border: none;
-//   curso a {
-//     color: black;
-//     padding: 2px 9px;
-//     font-size: 13px;
-//     font-weight: 500;
-//     align-items: center;
-//     text-decoration: none;
-//   }
-// `;
