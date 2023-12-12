@@ -32,17 +32,17 @@ const MyRegisterList = () => {
 
   return (
     <div css={my_register_list}>
-      <BoardHeader text='전시 신청 내역' />
+      <BoardHeader text='공연/행사 신청 내역' />
       <div css={board_btn}>
         <a href={'/my-page'}>
           <div>회원 정보 수정</div>
         </a>
         <a href={'/my-register'}>
-          <div>전시 등록 신청 내역</div>
+          <div>공연/행사 신청 내역</div>
         </a>
       </div>
       <div css={register_list}>
-        <h2>전시 등록 신청 내역</h2>
+        <h2>공연/행사 신청 내역</h2>
         <table>
           <tbody>
             <tr>
