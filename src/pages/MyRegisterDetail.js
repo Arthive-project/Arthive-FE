@@ -3,7 +3,12 @@ import { css } from '@emotion/react';
 import { useParams } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import { getMyRegisterById } from '../api';
-import { locationLists } from '../data/formOptions';
+import {
+  locationLists,
+  categories,
+  codenames,
+  FeeOptions,
+} from '../data/formOptions';
 import BoardHeader from '../components/BoardHeader';
 import FormInput from '../components/FormInput';
 import Form from '../components/Form';
@@ -30,11 +35,13 @@ const MyRegisterDetail = () => {
     endDate,
     openTime,
     closedTime,
-    closedDay,
     artist,
-    entranceFee,
     gallerySiteUrl,
     // posterUrl,
+    category,
+    codename,
+    Fee,
+    entranceFee,
   } = inputs;
 
   const handleChangeInfoInputs = (e) => {
@@ -47,46 +54,64 @@ const MyRegisterDetail = () => {
 
   return (
     <div css={my_register_detail}>
-      <BoardHeader text='전시 등록 신청 내역' />
+      <BoardHeader text='공연/행사 등록 신청 내역' />
       <Form buttonName='수정하기' formId='myRegisterDetail'>
         <tr>
           <th>신청 일시</th>
           <td>{register.registerDay}</td>
         </tr>
+        <tr>
+          <th>신청자</th>
+          <td>{register.applicant}</td>
+        </tr>
+        <tr>
+          <th>이메일</th>
+          <td>{register.email}</td>
+        </tr>
         <FormInput
-          label='전시명'
+          label='대분류'
+          name='category'
+          value={category}
+          type={'select'}
+          options={[...categories]}
+          onChange={handleChangeInfoInputs}
+        />
+        <FormInput
+          label='소분류'
+          name='codename'
+          value={codename}
+          type={'select'}
+          options={[...codenames]}
+          onChange={handleChangeInfoInputs}
+        />
+        <FormInput
+          label='공연/행사명'
           name='title'
           value={title}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
-          label='작가'
-          name='artist'
-          value={artist}
-          onChange={handleChangeInfoInputs}
-        />
-        <FormInput
-          label='전시 위치 (갤러리명)'
-          name='galleryName'
-          value={galleryName}
-          onChange={handleChangeInfoInputs}
-        />
-        <FormInput
-          label='전시 주소'
-          name='address'
-          value={address}
-          onChange={handleChangeInfoInputs}
-        />
-        <FormInput
-          label='지역'
+          label='자치구'
           name='area'
           value={area}
           type={'select'}
           options={locationOptions}
           onChange={handleChangeInfoInputs}
         />
+        <FormInput
+          label='장소'
+          name='galleryName'
+          value={galleryName}
+          onChange={handleChangeInfoInputs}
+        />
+        <FormInput
+          label='상세 주소'
+          name='address'
+          value={address}
+          onChange={handleChangeInfoInputs}
+        />
         <tr>
-          <th>전시 기간</th>
+          <th>기간</th>
           <td>
             <div css={exhibition_period}>
               <input
@@ -126,29 +151,31 @@ const MyRegisterDetail = () => {
           </td>
         </tr>
         <FormInput
-          label='휴관일'
-          name='closedDay'
-          value={closedDay}
+          label='출연자 정보'
+          name='artist'
+          value={artist}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
-          label='관람료'
-          name='entranceFee'
-          value={entranceFee}
-          onChange={handleChangeInfoInputs}
-        />
-        <FormInput
-          label='전시회 홈페이지'
+          label='홈페이지 주소'
           name='gallerySiteUrl'
           value={gallerySiteUrl}
           onChange={handleChangeInfoInputs}
         />
-        {/* <FormInput
-          label='포스터 이미지'
-          name='file'
-          value={file}
+        <FormInput
+          label='유무료'
+          name='Fee'
+          value={Fee}
+          type={'select'}
+          options={[...FeeOptions]}
           onChange={handleChangeInfoInputs}
-        /> */}
+        />
+        <FormInput
+          label='이용 요금'
+          name='entranceFee'
+          value={entranceFee}
+          onChange={handleChangeInfoInputs}
+        />
         <FileInput
           name='posterUrl'
           value={''}

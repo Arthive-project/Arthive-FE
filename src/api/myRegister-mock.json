@@ -15,7 +15,9 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "등록 완료",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "applicant": "홍길동",
+      "email": "email123@email.com"
     },
     {
       "id": "2",
@@ -32,7 +34,9 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "등록 완료",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "applicant": "홍길동",
+      "email": "email123@email.com"
     },
     {
       "id": "3",
@@ -49,7 +53,9 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "등록 완료",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "applicant": "홍길동",
+      "email": "email123@email.com"
     },
     {
       "id": "4",
@@ -66,7 +72,9 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "등록 완료",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "applicant": "홍길동",
+      "email": "email123@email.com"
     },
     {
       "id": "5",
@@ -83,7 +91,9 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "등록 완료",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "applicant": "홍길동",
+      "email": "email123@email.com"
     },
     {
       "id": "6",
@@ -100,7 +110,9 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "검토중",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "applicant": "홍길동",
+      "email": "email123@email.com"
     },
     {
       "id": "7",
@@ -117,7 +129,9 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "검토중",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "applicant": "홍길동",
+      "email": "email123@email.com"
     },
     {
       "id": "8",
@@ -134,7 +148,9 @@
       "gallerySiteUrl": "https://www.daum.net/",
       "entranceFee": "7,000원",
       "status": "검토중",
-      "registerDay": "2023-01-01"
+      "registerDay": "2023-01-01",
+      "applicant": "홍길동",
+      "email": "email123@email.com"
     },
     {
       "id": "9",
@@ -152,7 +168,9 @@
       "entranceFee": "7,000원",
       "status": "검토중",
       "registerDay": "2023-01-01",
-      "artist": "아티스트1"
+      "artist": "아티스트1",
+      "applicant": "홍길동",
+      "email": "email123@email.com"
     },
     {
       "id": "10",
@@ -170,7 +188,9 @@
       "entranceFee": "7,000원",
       "status": "검토중",
       "registerDay": "2023-01-01",
-      "artist": "아티스트1"
+      "artist": "아티스트1",
+      "applicant": "홍길동",
+      "email": "email123@email.com"
     },
     {
       "id": "11",
@@ -188,7 +208,9 @@
       "entranceFee": "7,000원",
       "status": "검토중",
       "registerDay": "2023-01-01",
-      "artist": "아티스트1"
+      "artist": "아티스트1",
+      "applicant": "홍길동",
+      "email": "email123@email.com"
     },
     {
       "id": "12",
@@ -206,7 +228,9 @@
       "entranceFee": "7,000원",
       "status": "검토중",
       "registerDay": "2023-01-01",
-      "artist": "아티스트1"
+      "artist": "아티스트1",
+      "applicant": "홍길동",
+      "email": "email123@email.com"
     },
     {
       "id": "13",
@@ -224,7 +248,8 @@
       "entranceFee": "7,000원",
       "status": "검토중",
       "registerDay": "2023-01-01",
-      "artist": "아티스트1"
+      "artist": "아티스트1",
+      "email": "email123@email.com"
     },
     {
       "id": "14",
