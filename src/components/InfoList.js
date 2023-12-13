@@ -33,6 +33,15 @@ const InfoList = ({
             </option>
           ))}
         </select>
+      ) : type === 'textarea' ? (
+        <div css={info_textarea}>
+          <textarea
+            name={name}
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder}
+          />
+        </div>
       ) : (
         <div css={info_input}>
           <input
@@ -71,6 +80,21 @@ const info_label = css`
   font-weight: 400;
   color: #282828;
   margin-bottom: 3px;
+`;
+
+const info_textarea = css`
+  textarea {
+    width: 100%;
+    height: 74px;
+    border: 1px solid #d9d9d9;
+    padding: 3px 8px;
+    margin-top: 4px;
+    resize: none;
+  }
+
+  textarea::placeholder {
+    color: #999999;
+  }
 `;
 
 const info_input = css`
