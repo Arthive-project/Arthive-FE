@@ -33,8 +33,6 @@ const MyRegisterDetail = () => {
     address,
     startDate,
     endDate,
-    openTime,
-    closedTime,
     artist,
     gallerySiteUrl,
     // posterUrl,
@@ -125,26 +123,6 @@ const MyRegisterDetail = () => {
                 name='endDate'
                 value={endDate}
                 type={'date'}
-                onChange={handleChangeInfoInputs}
-              />
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>운영 시간</th>
-          <td>
-            <div css={exhibition_period}>
-              <input
-                name='openTime'
-                value={openTime}
-                type={'time'}
-                onChange={handleChangeInfoInputs}
-              />
-              ~
-              <input
-                name='closedTime'
-                value={closedTime}
-                type={'time'}
                 onChange={handleChangeInfoInputs}
               />
             </div>
