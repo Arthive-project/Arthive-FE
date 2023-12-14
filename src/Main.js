@@ -31,6 +31,7 @@ import DetailPage from './pages/Boards/DetailPage';
 import ApplicationFormPage from './pages/Boards/ApplicationFormPage';
 import ConcertAll from './pages/Boards/ConcertAll';
 import FestivalAll from './pages/Boards/FestivalAll';
+import ScrollToTop from './components/ScrollToTop';
 
 export const globalStyle = css`
   * {
@@ -66,6 +67,7 @@ const categoryList = [
 function Main() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Global styles={globalStyle} />
       <Routes>
         <Route path='/' element={<App />}>
