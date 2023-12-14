@@ -39,6 +39,10 @@ const DetailPage = ({ category }) => {
           <tbody>
             <tr>
               <th>장소</th>
+              <td>{item.galleryName}</td>
+            </tr>
+            <tr>
+              <th>주소</th>
               <td>{item.address}</td>
             </tr>
             <tr>
@@ -49,7 +53,7 @@ const DetailPage = ({ category }) => {
             </tr>
             <tr>
               <th>대상</th>
-              <td>{item.target}</td>
+              <td>{item.use_trgt}</td>
             </tr>
             <tr>
               <th>요금</th>
