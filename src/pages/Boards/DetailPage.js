@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
-// import { css } from '@emotion/react';
+import { css } from '@emotion/react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import BoardDetail from '../../components/BoardDetail';
 import BoardHeader from '../../components/BoardHeader';
-import MapContainer from '../../components/MapContainer';
+import AddContainer from '../../components/AddContainer';
 import KaKaoMap from '../../components/KakaoMap';
 import LikeBtn from '../../components/LikeBtn';
 import { getDetailByCategory } from '../../api';
@@ -71,11 +71,48 @@ const DetailPage = ({ category }) => {
         <LikeBtn />
       </BoardDetail>
 
-      <MapContainer>
+      <AddContainer>
+        {item.player || item.program || item.etc_des ? (
+          <div css={additional_info}>
+            <h2>추가 정보</h2>
+            <p>
+              ㅇ<span>출연자 정보: </span>
+              {item.player}
+            </p>
+            <p>
+              ㅇ <span>프로그램 소개: </span>
+              {item.program}
+            </p>
+            <p>
+              ㅇ <span>기타 내용: </span>
+              {item.etc_des}
+            </p>
+          </div>
+        ) : (
+          <></>
+        )}
+        <h2>위치 안내</h2>
         <KaKaoMap address={item.address} />
-      </MapContainer>
+      </AddContainer>
     </>
   );
 };
 
 export default DetailPage;
+
+const additional_info = css`
+  // border: 1px solid gray;
+  width: 700px;
+  margin-bottom: 50px;
+  text-align: center;
+
+  p {
+    font-size: 15px;
+    margin: 15px;
+
+    span {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+`;
