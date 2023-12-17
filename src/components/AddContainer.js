@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-const MapContainer = ({ children }) => {
+const AddContainer = ({ children }) => {
   return <div css={map_container}>{children}</div>;
 };
 
-export default MapContainer;
+export default AddContainer;
 
 const map_container = css`
   display: flex;
@@ -15,4 +15,8 @@ const map_container = css`
   padding: 100px;
   border-top: 1px solid gray;
   margin: 0 auto;
+
+  h2 {
+    margin-bottom: 30px;
+  }
 `;

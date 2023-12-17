@@ -5,7 +5,9 @@ import SubBanner from '../components/SubBanner';
 import data from '../api/home-mock.json';
 
 const Home = () => {
-  const { hotExhibitions, monExhibitions, recGalleries } = data;
+  const { hotExhibitions, recConcert, recFestival } = data;
+
+  const currentMonth = new Date().getMonth() + 1;
 
   return (
     <div css={banners_wrap}>
@@ -14,19 +16,16 @@ const Home = () => {
         name='요즘 뜨는 전시'
         mapPoint={'/exhibition'}
         data={hotExhibitions}
-        showExhibit={true}
       />
       <SubBanner
-        name='12월 추천 전시회'
-        mapPoint={'/exhibition'}
-        data={monExhibitions}
-        showExhibit={true}
+        name='꼭 가봐야 할 공연'
+        mapPoint={'/concert-all'}
+        data={recConcert}
       />
       <SubBanner
-        name='이번주 추천 갤러리'
-        mapPoint={'/gallery'}
-        data={recGalleries}
-        showGallery={true}
+        name={`${currentMonth}월 추천 축제`}
+        mapPoint={'/festival-all'}
+        data={recFestival}
       />
     </div>
   );

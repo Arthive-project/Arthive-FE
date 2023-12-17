@@ -15,7 +15,11 @@
       "closedDay": "토, 일 공휴일",
       "gallerySiteUrl": "https://www.daum.net/",
       "isFree": "유료",
-      "entranceFee": "7,000원"
+      "entranceFee": "7,000원",
+      "use_trgt": "만 7세 이상",
+      "player": "",
+      "program": "옹기테마체험관 프로그램 매달 20일 오전 9시부터 온라인 접수 옹기공예, 한지공예 프로그램을 운영, 대상은 5세~성인 참여 가능합니다.",
+      "etc_des": "아동들이 자유롭게 참여할 수 있는 놀이 형태의 체험을 통해 환경 이슈에 친숙하게 접근하고, 환경 감수성 증진을 도모하기 위한 행사 입니다."
     },
     {
       "id": "2",
@@ -32,7 +36,11 @@
       "closedDay": "토, 일 공휴일",
       "gallerySiteUrl": "https://www.daum.net/",
       "isFree": "유료",
-      "entranceFee": ""
+      "entranceFee": "",
+      "use_trgt": "누구나",
+      "player": "",
+      "program": "",
+      "etc_des": "아동들이 자유롭게 참여할 수 있는 놀이 형태의 체험을 통해 환경 이슈에 친숙하게 접근하고, 환경 감수성 증진을 도모하기 위한 행사 입니다."
     },
     {
       "id": "3",
@@ -48,7 +56,11 @@
       "closedDay": "토, 일 공휴일",
       "gallerySiteUrl": "https://www.daum.net/",
       "isFree": "무료",
-      "entranceFee": ""
+      "entranceFee": "",
+      "use_trgt": "만 7세 이상",
+      "player": "",
+      "program": "",
+      "etc_des": ""
     },
     {
       "id": "4",

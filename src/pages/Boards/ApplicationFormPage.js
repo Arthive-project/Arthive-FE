@@ -5,7 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import BoardHeader from '../../components/BoardHeader';
 import InfoList from '../../components/InfoList';
 import Button from '../../components/Button';
-import { FeeOptions, locationLists } from '../../data/formOptions';
+import {
+  FeeOptions,
+  locationLists,
+  categories,
+  codenames,
+} from '../../data/formOptions';
 
 const INITIAL_INPUT = {
   username: '',
@@ -16,14 +21,15 @@ const INITIAL_INPUT = {
   address: '',
   startDate: '',
   endDate: '',
-  openTime: '',
-  closedTime: '',
-  artist: '',
+  player: '',
   homePage: '',
   entranceFee: '',
   file: '',
   area: '중랑구',
-  isFree: '무료',
+  isFree: '유료',
+  category: '',
+  codename: '',
+  use_trgt: '',
 };
 
 const ApplicationFormPage = () => {
@@ -35,18 +41,21 @@ const ApplicationFormPage = () => {
     email,
     phoneNumber,
     exhibitionTitle,
-    galleryName,
+    place,
     address,
     startDate,
     endDate,
-    openTime,
-    closedTime,
-    artist,
+    player,
+    program,
     homePage,
     entranceFee,
     area,
     file,
     isFree,
+    category,
+    codename,
+    etc_des,
+    use_trgt,
   } = inputs;
 
   const handleChangeInputs = (e) => {
@@ -95,6 +104,8 @@ const ApplicationFormPage = () => {
                 onChange: handleChangeInputs,
                 placeholder: 'arthive@gmail.com',
               }}
+              labelSub={true}
+              labelSubText='*신청하는 공간의 대표 이메일을 입력해주새요.'
             />
             <InfoList
               label={'휴대폰 번호*'}
@@ -108,6 +119,30 @@ const ApplicationFormPage = () => {
           </section>
           <section css={form_info}>
             <p css={form_title}>2. 기본 정보</p>
+            <div css={exhibition_period}>
+              <InfoList
+                label={'카테고리*'}
+                input={{
+                  name: 'category',
+                  value: category,
+                  onChange: handleChangeInputs,
+                }}
+                typeIs={'select'}
+                options={[...categories]}
+                labelSub={true}
+                labelSubText='*대-소분류 카테고리를 모두 선택해주세요.'
+              />
+              <InfoList
+                label={''}
+                input={{
+                  name: 'codename',
+                  value: codename,
+                  onChange: handleChangeInputs,
+                }}
+                typeIs={'select'}
+                options={[...codenames]}
+              />
+            </div>
             <InfoList
               label={'공연/행사명*'}
               input={{
@@ -129,19 +164,19 @@ const ApplicationFormPage = () => {
             <InfoList
               label={'장소*'}
               input={{
-                name: 'galleryName',
-                value: galleryName,
-                type: 'select',
+                name: 'place',
+                value: place,
                 onChange: handleChangeInputs,
                 placeholder: '예술의 전당 한가람미술관',
               }}
             />
             <InfoList
-              label={'전시 주소*'}
+              label={'상세 주소*'}
               input={{
                 name: 'address',
                 value: address,
                 onChange: handleChangeInputs,
+                placeholder: '서울특별시 서초구 남부순환로 2406',
               }}
               labelSub={true}
               labelSubText='*미술관, 갤러리 등 구체적인 장소의 이름과 정확한 주소를 작성해주세요.'
@@ -170,45 +205,25 @@ const ApplicationFormPage = () => {
                 }}
               />
             </div>
-            <div css={exhibition_period}>
-              <InfoList
-                label={'운영 시간*'}
-                input={{
-                  name: 'openTime',
-                  value: openTime,
-                  type: 'time',
-                  onChange: handleChangeInputs,
-                  placeholder: '00:00 ~ 00:00',
-                }}
-                labelSub={true}
-                labelSubText='*오픈 시간 ~ 종료 시간'
-              />
-              <InfoList
-                label={''}
-                input={{
-                  name: 'closedTime',
-                  value: closedTime,
-                  type: 'time',
-                  onChange: handleChangeInputs,
-                  placeholder: '종료 일',
-                }}
-              />
-            </div>
             <InfoList
-              label={'출연자 정보'}
+              label={'홈페이지 주소*'}
               input={{
-                name: 'artist',
-                value: artist,
+                name: 'homePage',
+                value: homePage,
+                type: 'url',
                 onChange: handleChangeInputs,
               }}
             />
             <InfoList
-              label={'홈페이지 주소'}
+              label={'이용 대상*'}
               input={{
-                name: 'homePage',
-                value: homePage,
+                name: 'use_trgt',
+                value: use_trgt,
                 onChange: handleChangeInputs,
+                placeholder: 'ex. 만 7세 이상',
               }}
+              labelSub={true}
+              labelSubText='*이용 가능한 연령대를 기재해 주세요.'
             />
             <InfoList
               label={'유무료*'}
@@ -221,14 +236,48 @@ const ApplicationFormPage = () => {
               options={isFreeOptions}
             />
             <InfoList
-              label={'이용요금*'}
+              label={'이용요금'}
               input={{
                 name: 'entranceFee',
                 value: entranceFee,
                 onChange: handleChangeInputs,
               }}
               labelSub={true}
-              labelSubText='*성인 1명, 미할인 기준의 관람료를 작성해주세요. (무료인 경우 0으로 작성)'
+              labelSubText='*1명 당 미할인 기준의 관람료를 작성해주세요.'
+            />
+          </section>
+          <section css={form_info_more}>
+            <p css={form_title}>3. 추가 정보</p>
+            <InfoList
+              label={'출연자 정보'}
+              input={{
+                name: 'player',
+                value: player,
+                onChange: handleChangeInputs,
+                placeholder: '출연자 이름, 단체명 등',
+              }}
+            />
+            <span css={info_program}>
+              <InfoList
+                label={'프로그램 소개'}
+                input={{
+                  name: 'program',
+                  value: program,
+                  type: 'textarea',
+                  onChange: handleChangeInputs,
+                  placeholder:
+                    '신청하는 행사에 대한 소개를 간략하게 입력해주세요.',
+                }}
+              />
+            </span>
+            <InfoList
+              label={'기타 내용'}
+              input={{
+                name: 'etc_des',
+                value: etc_des,
+                onChange: handleChangeInputs,
+                placeholder: '기타 참고 사항',
+              }}
             />
           </section>
           <section css={form_file}>
@@ -279,13 +328,27 @@ const register_form = css`
 `;
 
 const form_applicant = css`
-  height: 410px;
+  height: 430px;
 `;
 
 const form_info = css`
-  height: 1080px;
+  height: 1110px;
 `;
 
+const form_info_more = css`
+  height: 450px;
+`;
+
+const info_program = css`
+  width: 100%;
+  input {
+    width: 100%;
+    height: 84px;
+    border: 1px solid #d9d9d9;
+    padding: 0 8px;
+    margin-top: 4px;
+  }
+`;
 const exhibition_period = css`
   width: 100%;
   display: flex;

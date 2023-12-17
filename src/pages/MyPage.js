@@ -1,20 +1,19 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
 import BoardHeader from '../components/BoardHeader';
 import InfoList from '../components/InfoList';
 import Button from '../components/Button';
-// import MyRegisterList from '../components/MyRegisterList';
 
 const MyPage = () => {
   const [inputs, setInputs] = useState({
+    currentPwd: '',
     newPwd: '',
     checkNewPwd: '',
     phoneNumber: '010-2323-3434', // 서버에서 받아 온다.
   });
 
-  const { newPwd, checkNewPwd, phoneNumber } = inputs;
+  const { newPwd, checkNewPwd, phoneNumber, currentPwd } = inputs;
 
   // 입력값 상태 변경
   const handleChangeInfoInputs = (e) => {
@@ -25,6 +24,7 @@ const MyPage = () => {
     });
   };
 
+  // 회원 정보 수정
   const handleSubmitInfo = (e) => {
     e.preventDefault();
     if (!(isConfirmPwd && isConfirmCheckPwd && isConfirmPhoneNumber)) {
@@ -84,7 +84,7 @@ const MyPage = () => {
         </a>
       </div>
       <div css={user_info}>
-        <h2>기본정보</h2>
+        <h2>기본 정보</h2>
         <form id='newMyInfo' onSubmit={handleSubmitInfo}>
           <table>
             <tbody>
@@ -96,6 +96,20 @@ const MyPage = () => {
               <tr>
                 <th>비밀번호 변경</th>
                 <td>
+                  <InfoList
+                    label={'현재 비밀번호'}
+                    input={{
+                      name: 'currentPwd',
+                      value: currentPwd,
+                      type: 'password',
+                      onChange: handleChangeInfoInputs,
+                      checkInput: {
+                        isConfirm: isConfirmPwd,
+                        errorMessage:
+                          '영문, 숫자, 특수문자 포함 8~20자 사이로 입력해주세요.',
+                      },
+                    }}
+                  />
                   <InfoList
                     label={'새 비밀번호'}
                     input={{
@@ -155,7 +169,7 @@ const MyPage = () => {
             </tbody>
           </table>
           <div css={button_wrap}>
-            <Button name={'저장하기'} form='newMyInfo' type='submit' />
+            <Button name={'수정하기'} form='newMyInfo' type='submit' />
           </div>
         </form>
       </div>
@@ -171,7 +185,6 @@ const my_page = css`
   align-items: center;
   width: 1160px;
   margin: 0 auto;
-  border: 1px solid red;
 `;
 
 const board_btn = css`
@@ -209,8 +222,8 @@ const user_info = css`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   margin-bottom: 100px;
+  margin-top: 100px;
 
   h2 {
     margin-bottom: 20px;
@@ -254,6 +267,7 @@ const user_info = css`
 
   button {
     width: 370px;
+    margin: 50px 5px;
   }
 `;
 

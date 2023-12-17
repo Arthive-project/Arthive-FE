@@ -26,7 +26,9 @@ const Navbar = () => {
             onMouseEnter={() => setSubMenuVisible(true)}
             onMouseLeave={() => setSubMenuVisible(false)}
           >
-            <span>EXHIBITION</span>
+            <Link to={'exhibition'}>
+              <span>EXHIBITION</span>
+            </Link>
             <ul
               css={sub_ul}
               style={{ display: isSubMenuVisible ? 'block' : 'none' }}
@@ -40,7 +42,9 @@ const Navbar = () => {
             onMouseEnter={() => setSubMenuVisible(true)}
             onMouseLeave={() => setSubMenuVisible(false)}
           >
-            <span>CONCERT</span>
+            <Link to={'concert-all'}>
+              <span>CONCERT</span>
+            </Link>
             <ul
               css={sub_ul}
               style={{ display: isSubMenuVisible ? 'block' : 'none' }}
@@ -66,7 +70,9 @@ const Navbar = () => {
             onMouseEnter={() => setSubMenuVisible(true)}
             onMouseLeave={() => setSubMenuVisible(false)}
           >
-            <span>FESTIVAL</span>
+            <Link to={'festival-all'}>
+              <span>FESTIVAL</span>
+            </Link>
             <ul
               css={sub_ul}
               style={{ display: isSubMenuVisible ? 'block' : 'none' }}
