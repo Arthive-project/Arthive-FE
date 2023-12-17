@@ -5,13 +5,21 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 
 const App = () => {
+  const isAdmin = true;
+
   return (
     <>
-      <div css={wrapper}>
-        <Navbar />
+      {isAdmin ? (
         <Outlet />
-      </div>
-      <Footer />
+      ) : (
+        <>
+          <div css={wrapper}>
+            <Navbar />
+            <Outlet />
+          </div>
+          <Footer />
+        </>
+      )}
     </>
   );
 };

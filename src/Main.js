@@ -25,13 +25,17 @@ import Musical from './pages/Boards/Musical';
 import Dance from './pages/Boards/Dance';
 import Concert from './pages/Boards/Concert';
 // 어드민
-import ExhibitionRegister from './pages/Admin/ExhibitionRegister';
-import GalleryRegister from './pages/Admin/GalleryRegister';
 import DetailPage from './pages/Boards/DetailPage';
 import ApplicationFormPage from './pages/Boards/ApplicationFormPage';
 import ConcertAll from './pages/Boards/ConcertAll';
 import FestivalAll from './pages/Boards/FestivalAll';
 import ScrollToTop from './components/ScrollToTop';
+import Admin from './pages/Admin/Admin';
+import Posts from './pages/Admin/Posts';
+import PostsDetail from './pages/Admin/PostDetail';
+import Application from './pages/Admin/Application';
+import ApplicationDetail from './pages/Admin/ApplicationDetail';
+import PostRegister from './pages/Admin/PostRegister';
 
 export const globalStyle = css`
   * {
@@ -104,15 +108,12 @@ function Main() {
           {/* Admin */}
 
           <Route path='admin'>
-            {/* <Route index element={<Admin />} /> */}
-            <Route
-              path='exhibition-register/:exhibitionId'
-              element={<ExhibitionRegister />}
-            />
-            <Route
-              path='gallery-register/:galleryId'
-              element={<GalleryRegister />}
-            />
+            <Route index element={<Admin />} />
+            <Route path='posts' element={<Posts />} />
+            <Route path='post-detail' element={<PostsDetail />} />
+            <Route path='post-register' element={<PostRegister />} />
+            <Route path='application' element={<Application />} />
+            <Route path='application-detail' element={<ApplicationDetail />} />
           </Route>
 
           <Route path='about' element={<About />} />
