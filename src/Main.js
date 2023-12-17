@@ -105,6 +105,9 @@ function Main() {
             />
           ))}
 
+          <Route path='about' element={<About />} />
+          <Route path='*' element={<NotFound />} />
+
           {/* Admin */}
 
           <Route path='admin'>
@@ -115,9 +118,6 @@ function Main() {
             <Route path='application' element={<Application />} />
             <Route path='application-detail' element={<ApplicationDetail />} />
           </Route>
-
-          <Route path='about' element={<About />} />
-          <Route path='*' element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

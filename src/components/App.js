@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import AdminHeader from './AdminHeader';
 
 const App = () => {
   const isAdmin = true;
@@ -10,7 +11,10 @@ const App = () => {
   return (
     <>
       {isAdmin ? (
-        <Outlet />
+        <>
+          <AdminHeader />
+          <Outlet />
+        </>
       ) : (
         <>
           <div css={wrapper}>
