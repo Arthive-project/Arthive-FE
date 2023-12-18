@@ -113,10 +113,13 @@ function Main() {
           <Route path='admin'>
             <Route index element={<Admin />} />
             <Route path='posts' element={<Posts />} />
-            <Route path='post-detail' element={<PostsDetail />} />
+            <Route path='post-detail/:postId' element={<PostsDetail />} />
             <Route path='post-register' element={<PostRegister />} />
             <Route path='application' element={<Application />} />
-            <Route path='application-detail' element={<ApplicationDetail />} />
+            <Route
+              path='application-detail/:applicationId'
+              element={<ApplicationDetail />}
+            />
           </Route>
         </Route>
       </Routes>

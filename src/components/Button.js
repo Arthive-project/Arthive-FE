@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-const Button = ({ name }) => {
+const Button = ({ name, onClick }) => {
   return (
-    <button css={button}>
+    <button css={button} onClick={onClick}>
       <span>{name}</span>
     </button>
   );

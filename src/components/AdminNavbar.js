@@ -17,7 +17,7 @@ const AdminNavbar = () => {
 export default AdminNavbar;
 
 const navbar = css`
-  width: 250px;
+  min-width: 250px;
   display: flex;
   flex-direction: column;
   font-size: 1rem;
@@ -26,6 +26,10 @@ const navbar = css`
   border-right: 1px solid $color-gray;
   background-color: $color-white;
   z-index: 200;
+
+  ul {
+    width: 100%;
+  }
 
   li {
     font-size: 16px;

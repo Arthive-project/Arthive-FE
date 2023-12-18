@@ -25,6 +25,7 @@ const FormInfo = css`
   justify-content: center;
   align-content: center;
   align-items: center;
+  margin: 50px 0;
 
   h2 {
     margin-bottom: 20px;

@@ -41,7 +41,7 @@ export default App;
 const admin_wrap = css`
   display: flex;
   width: 100vw;
-  height: 90vh;
+  height: 93vh;
 `;
 
 const admin_outlet_wrap = css`
@@ -53,13 +53,13 @@ const admin_outlet_wrap = css`
 
 const admin_outlet = css`
   border: 1px solid black;
-  width: 100%;
   min-height: 100%;
+  height: 80vh;
   background-color: white;
   border-radius: 10px;
-  box-shadow: $box-shadow-deep;
   padding: 2rem;
   box-sizing: border-box;
+  overflow: scroll;
 `;
 
 const wrapper = css`

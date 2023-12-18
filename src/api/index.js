@@ -1,8 +1,10 @@
 import exhibitionMock from './exhibition-mock.json';
 import myRegisterMock from './myRegister-mock.json';
+import allPostsMock from './admin-posts-mock.json';
 
 const { exhibitions } = exhibitionMock;
 const { myRegisters } = myRegisterMock;
+const { allPosts } = allPostsMock;
 
 function filterByKeyword(items, keyword) {
   const lowered = keyword.toLowerCase();
@@ -55,7 +57,16 @@ export function getMyRegisters() {
   return myRegisters;
 }
 
-// 마이페이지 - 전시 등록 신청 내역 - 디테일 페이지
+// 마이페이지 - 전시 등록 신청 내역 상세 페이지
 export function getMyRegisterById(registerId) {
   return myRegisters.find((register) => register.id === registerId);
+}
+
+// 어드민 - 게시물 관리 (전체 게시물)
+export function getAllPosts() {
+  return allPosts;
+}
+// 어드민 - 게시물 상세 페이지
+export function getAllPostsById(postId) {
+  return allPosts.find((post) => post.id === postId);
 }
