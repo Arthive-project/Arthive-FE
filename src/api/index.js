@@ -1,10 +1,12 @@
 import exhibitionMock from './exhibition-mock.json';
 import myRegisterMock from './myRegister-mock.json';
 import allPostsMock from './admin-posts-mock.json';
+import allApplicationssMock from './admin-application-mock.json';
 
 const { exhibitions } = exhibitionMock;
 const { myRegisters } = myRegisterMock;
 const { allPosts } = allPostsMock;
+const { allApplications } = allApplicationssMock;
 
 function filterByKeyword(items, keyword) {
   const lowered = keyword.toLowerCase();
@@ -69,4 +71,16 @@ export function getAllPosts() {
 // 어드민 - 게시물 상세 페이지
 export function getAllPostsById(postId) {
   return allPosts.find((post) => post.id === postId);
+}
+
+// 어드민 - 등록 신청 내역
+export function getAllApplications() {
+  return allApplications;
+}
+
+// 어드민 - 등록 신청 내역 상세
+export function getApplicationById(applicationId) {
+  return allApplications.find(
+    (application) => application.id === applicationId
+  );
 }

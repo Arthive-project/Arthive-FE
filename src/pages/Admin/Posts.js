@@ -29,12 +29,12 @@ const Posts = () => {
   }, []);
 
   return (
-    <div>
+    <div css={posts}>
       <h2>게시물 관리</h2>
       <div>
         <ExhibitionFilter />
       </div>
-      <div css={register_list}>
+      <div css={list}>
         <table>
           <tbody>
             <tr>
@@ -54,6 +54,9 @@ const Posts = () => {
           paginate={setCurrentPage}
         ></Pagination>
       </div>
+      <button css={rgst_btn}>
+        <Link to={'/admin/post-register'}>등록</Link>
+      </button>
     </div>
   );
 };
@@ -63,17 +66,32 @@ export default Posts;
 export const PostItem = ({ data }) => {
   return (
     <tr>
-      <td css={register_id}>{data.id}</td>
-      <td css={register_codename}>{data.codename}</td>
-      <td css={register_title}>
+      <td css={id}>{data.id}</td>
+      <td css={codename}>{data.codename}</td>
+      <td css={title}>
         <Link to={`/admin/post-detail/${data.id}`}>{data.title}</Link>
       </td>
-      <td css={register_status}>{data.regst_date}</td>
+      <td css={status}>{data.regst_date}</td>
     </tr>
   );
 };
 
-const register_list = css`
+const rgst_btn = css`
+  width: 102px;
+  height: 41px;
+  background-color: white;
+  border: 1px solid #5e5e5e;
+  font-size: 18px;
+  cursor: pointer;
+  float: right;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+`;
+
+const list = css`
   width: 95%;
   min-width: 1000px;
   display: flex;
@@ -119,18 +137,18 @@ const register_list = css`
     }
 `;
 
-const register_id = css`
+const id = css`
   width: 70px;
 `;
 
-const register_codename = css`
+const codename = css`
   width: 100px;
 `;
 
-const register_title = css`
+const title = css`
   width: 400px;
 `;
 
-const register_status = css`
+const status = css`
   width: 100px;
 `;
