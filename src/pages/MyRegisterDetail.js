@@ -16,9 +16,7 @@ import Button from '../components/Button';
 import FileInput from '../components/FileInput';
 
 const MyRegisterDetail = () => {
-  // TODO: 등록 완료 게시물일 경우 수정 불가
   // TODO: 필수 입력란 alert
-
   const { registerId } = useParams();
   const register = getMyRegisterById(registerId);
   const [inputs, setInputs] = useState(register);
