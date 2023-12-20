@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import ExhibitionFilter from '../../components/ExhibitionFilter';
+import AdminFilter from '../../components/AdminFilter';
 import { useState, useEffect } from 'react';
 import { getAllApplications } from '../../api';
 import { Link } from 'react-router-dom';
@@ -32,7 +32,7 @@ const Application = () => {
     <div>
       <h2>등록 신청 내역</h2>
       <div>
-        <ExhibitionFilter />
+        <AdminFilter />
       </div>
       <div css={list}>
         <table>

@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import React, { useState, useEffect } from 'react';
-import ExhibitionFilter from '../../components/ExhibitionFilter';
 import { getAllPosts } from '../../api';
 import { Link } from 'react-router-dom';
 import Pagination from '../../components/Pagination';
+import AdminFilter from '../../components/AdminFilter';
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -32,7 +32,7 @@ const Posts = () => {
     <div css={posts}>
       <h2>게시물 관리</h2>
       <div>
-        <ExhibitionFilter />
+        <AdminFilter />
       </div>
       <div css={list}>
         <table>

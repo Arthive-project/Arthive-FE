@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState } from 'react';
+import { locationLists } from '../data/formOptions';
 
 const INITIAL_STATE = {
   period: '현재전시',
@@ -8,7 +9,7 @@ const INITIAL_STATE = {
   location: '지역 전체',
 };
 
-const ExhibitionFilter = () => {
+const Filter = () => {
   const [state, setState] = useState(INITIAL_STATE);
 
   const handleChangeState = (e) => {
@@ -23,6 +24,7 @@ const ExhibitionFilter = () => {
     setState(INITIAL_STATE);
   };
 
+  console.log(locationLists);
   return (
     <div css={exhibition_filter}>
       <select
@@ -31,9 +33,9 @@ const ExhibitionFilter = () => {
         onChange={handleChangeState}
         css={filter_btn}
       >
-        <option value={'현재전시'}>현재전시</option>
-        <option value={'예정전시'}>예정전시</option>
-        <option value={'지난전시'}>지난전시</option>
+        <option value={'현재공연'}>현재공연</option>
+        <option value={'예정공연'}>예정공연</option>
+        <option value={'지난공연'}>지난공연</option>
       </select>
       <select
         name='order'
@@ -52,20 +54,18 @@ const ExhibitionFilter = () => {
         css={filter_btn_local}
       >
         <option value={'지역전체'}>지역 전체</option>
-        <option value={'서울'}>서울</option>
-        <option value={'경기 인천'}>경기 인천</option>
-        <option value={'대구 경북'}>대구 경북</option>
-        <option value={'부산 울산 경남'}>부산 울산 경남</option>
-        <option value={'광주 전라'}>광주 전라</option>
-        <option value={'대전 충청 세종'}>대전 충청 세종</option>
-        <option value={'제주 강원'}>제주 강원</option>
+        {locationLists.map((group) => (
+          <option key={group.label} value={group.value}>
+            {group.label}
+          </option>
+        ))}
       </select>
       <button onClick={onClearSelect}>초기화</button>
     </div>
   );
 };
 
-export default ExhibitionFilter;
+export default Filter;
 
 const exhibition_filter = css`
   // border: 1px solid red;
