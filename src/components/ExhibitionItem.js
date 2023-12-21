@@ -28,7 +28,6 @@ export const ExhibitionItem = ({ exhibition, showLikeBtn = 'true' }) => {
 export default ExhibitionItem;
 
 const exhibitionItem = css`
-  // border: 1px solid pink;
   display: flex;
   flex-direction: column;
   width: 250px;
@@ -52,7 +51,6 @@ const poster = css`
 `;
 
 const title = css`
-  // border: 1px solid red;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

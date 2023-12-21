@@ -62,7 +62,6 @@ const InfoList = ({
 export default InfoList;
 
 const info_list = css`
-  // border: 1px solid pink;
   margin: 10px 0 10px 0;
   width: 100%;
 

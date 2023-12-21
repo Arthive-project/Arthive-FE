@@ -19,13 +19,7 @@ const DetailPage = ({ category }) => {
       setItem(result);
     };
     fetchItem();
-    console.log(item);
-    console.log(category);
   }, [category, itemId]);
-
-  if (!item) {
-    return <p>Loading..!!.</p>;
-  }
 
   return (
     <>
@@ -57,7 +51,6 @@ const DetailPage = ({ category }) => {
             </tr>
             <tr>
               <th>요금</th>
-              {/* 이용요금 값 없을 시 유무료 값 보여줌 */}
               <td>{item.isFree || item.entranceFee}</td>
             </tr>
             <tr>
@@ -101,7 +94,6 @@ const DetailPage = ({ category }) => {
 export default DetailPage;
 
 const additional_info = css`
-  // border: 1px solid gray;
   width: 700px;
   margin-bottom: 50px;
   text-align: center;

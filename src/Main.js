@@ -24,11 +24,11 @@ import Theater from './pages/Boards/Theater';
 import Musical from './pages/Boards/Musical';
 import Dance from './pages/Boards/Dance';
 import Concert from './pages/Boards/Concert';
-// 어드민
 import DetailPage from './pages/Boards/DetailPage';
 import ApplicationFormPage from './pages/Boards/ApplicationFormPage';
 import ConcertAll from './pages/Boards/ConcertAll';
 import FestivalAll from './pages/Boards/FestivalAll';
+// 어드민
 import ScrollToTop from './components/ScrollToTop';
 import Admin from './pages/Admin/Admin';
 import Posts from './pages/Admin/Posts';
@@ -96,7 +96,6 @@ function Main() {
             />
           ))}
 
-          {/* 각 카테고리의 상세 페이지에 대한 동적 라우팅 설정 */}
           {categoryList.map((category) => (
             <Route
               key={`${category.name}-detail`}

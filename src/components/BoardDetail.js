@@ -38,7 +38,6 @@ const img_wrap = css`
 `;
 
 const detail_table = css`
-  // border: 1px solid blue;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,14 +48,12 @@ const detail_table = css`
   }
 
   table {
-    // height: 460px;
     font-size: 16px;
     margin-top: 20px;
     margin-bottom: 15px;
   }
 
   th {
-    // border: 1px solid red;
     padding: 18px 10px;
     marin-right: 10px;
     border-right: 1px solid #e9e9e9;

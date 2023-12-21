@@ -4,17 +4,16 @@ import { useState } from 'react';
 import BoardHeader from '../components/BoardHeader';
 
 const MyLikes = () => {
-  const [selectedTab, setSelectedTab] = useState('exhibition'); // 초기 선택 탭
+  const [selectedTab, setSelectedTab] = useState('exhibition');
 
   const handleTabClick = (tab) => {
-    setSelectedTab(tab); // 버튼 클릭 시 선택된 탭 업데이트
+    setSelectedTab(tab);
   };
 
-  // 선택된 탭에 따라 결과를 로딩하는 컴포넌트를 리턴
   const renderResult = () => {
     switch (selectedTab) {
       case 'exhibition':
-        return <div>전시 결과가 로딩됩니다.</div>; // BoardItem 컴포넌트 리턴
+        return <div>전시 결과가 로딩됩니다.</div>; // TODO: BoardItem 리턴
       case 'concert':
         return <div>콘서트 결과가 로딩됩니다.</div>;
       case 'festival':

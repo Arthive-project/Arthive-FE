@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const NotFound = () => {
   return (
-    <div css={notFound}>
+    <div css={not_found}>
       <h1>존재하지 않는 페이지입니다.</h1>
       <p>올바른 주소가 맞는지 다시 한 번 확인해 주세요.</p>
       <div css={map_home}>
@@ -16,7 +16,7 @@ const NotFound = () => {
 
 export default NotFound;
 
-const notFound = css`
+const not_found = css`
   height: 70vh;
   display: flex;
   flex-direction: column;

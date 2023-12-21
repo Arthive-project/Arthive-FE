@@ -45,7 +45,6 @@ const admin_wrap = css`
 `;
 
 const admin_outlet_wrap = css`
-  // border: 1px solid red;
   width: 100%;
   background-color: #f2f5e8;
   padding: 2rem;

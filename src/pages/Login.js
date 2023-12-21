@@ -14,6 +14,7 @@ const Login = () => {
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
   };
+
   const onChangePw = (e) => {
     setPw(e.target.value);
   };
@@ -21,7 +22,6 @@ const Login = () => {
   const handleSubmitLogin = (e) => {
     e.preventDefault();
     navigate('/');
-    console.log(email, password);
   };
 
   return (

@@ -17,7 +17,6 @@ const Filter = () => {
       ...state,
       [e.target.name]: e.target.value,
     });
-    // 정렬함수
   };
 
   const onClearSelect = () => {
@@ -68,7 +67,6 @@ const Filter = () => {
 export default Filter;
 
 const exhibition_filter = css`
-  // border: 1px solid red;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

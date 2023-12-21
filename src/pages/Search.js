@@ -42,17 +42,12 @@ const Search = () => {
     );
 
     try {
-      // 검색어가 제출될 때마다 데이터를 가져오기
       const exhibitionsData = await getExhibitions(trimmedKeyword);
       setExhibitions(exhibitionsData);
-
       setCount(exhibitions.length);
     } catch (error) {
       console.error('데이터를 가져오는 데 실패했습니다.:', error);
     }
-
-    console.log(keyword);
-    console.log(exhibitions);
   };
 
   return (

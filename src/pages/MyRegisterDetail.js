@@ -190,7 +190,7 @@ const exhibition_period = css`
     margin-right: 10px;
   }
   input:nth-of-type(2) {
-    margin-left: 10px; // 두 번째 input에만 margin을 주어 간격을 조절합니다.
+    margin-left: 10px;
   }
 `;
 
