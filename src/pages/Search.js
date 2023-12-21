@@ -6,6 +6,7 @@ import BoardHeader from '../components/BoardHeader';
 import { getExhibitions } from '../api';
 import BoardList from '../components/BoardList';
 import BoardItem from '../components/BoardItem';
+import SearchBar from '../components/SearchBar';
 
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -54,19 +55,8 @@ const Search = () => {
     <>
       <div css={search}>
         <BoardHeader text='통합 검색' />
-        <form css={search_bar} onSubmit={handleSubmit}>
-          <input
-            name='keyword'
-            value={keyword}
-            onChange={handleKeywordChange}
-            placeholder='검색어를 입력해주세요.'
-          />
-          <button type='submit'>
-            <img
-              src={`${process.env.PUBLIC_URL}/assets/searchBtn.png`}
-              alt='검색버튼'
-            />
-          </button>
+        <form onSubmit={handleSubmit}>
+          <SearchBar onChange={handleKeywordChange} value={keyword} />
         </form>
         <div css={search_count}>
           {count !== null && count > 0 ? (
@@ -144,45 +134,6 @@ const search = css`
   align-items: center;
   width: 1160px;
   margin: 0 auto;
-`;
-
-const search_bar = css`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 470px;
-  height: 52px;
-  border-radius: 30px;
-  border: 2px solid #070707;
-  background: #f9f9f9;
-  margin-bottom: 100px;
-  margin-top: -80px;
-
-  input {
-    width: 400px;
-    height: 35px;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    font-size: 17px;
-    padding-right: 15px;
-    margin-right: 8px;
-  }
-
-  button {
-    border: none;
-    height: 50px;
-    background-color: transparent;
-    align-items: center;
-    cursor: pointer;
-    padding-top: 10px;
-  }
-
-  img {
-    width: 25px;
-    margin-bottom: 5px;
-  }
 `;
 
 const search_count = css`

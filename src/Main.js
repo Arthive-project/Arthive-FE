@@ -8,7 +8,6 @@ import SignUp from './pages/SignUp';
 import MyPage from './pages/MyPage';
 import Search from './pages/Search';
 import MyLikes from './pages/MyLikes';
-import About from './pages/Boards/About';
 import NotFound from './pages/NotFound';
 import MyRegisterList from './pages/MyRegisterList';
 import MyRegisterDetail from './pages/MyRegisterDetail';
@@ -28,6 +27,7 @@ import DetailPage from './pages/Boards/DetailPage';
 import ApplicationFormPage from './pages/Boards/ApplicationFormPage';
 import ConcertAll from './pages/Boards/ConcertAll';
 import FestivalAll from './pages/Boards/FestivalAll';
+import Review from './pages/Boards/Review';
 // 어드민
 import ScrollToTop from './components/ScrollToTop';
 import Admin from './pages/Admin/Admin';
@@ -66,6 +66,7 @@ const categoryList = [
   { name: 'citizen', component: <Citizen /> },
   { name: 'culture', component: <Culture /> },
   { name: 'other-festival', component: <OtherFestival /> },
+  { name: 'review', component: <Review /> },
 ];
 
 function Main() {
@@ -104,7 +105,6 @@ function Main() {
             />
           ))}
 
-          <Route path='about' element={<About />} />
           <Route path='*' element={<NotFound />} />
 
           {/* Admin */}

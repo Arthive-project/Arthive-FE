@@ -98,13 +98,13 @@ const Navbar = () => {
             onMouseEnter={() => setSubMenuVisible(true)}
             onMouseLeave={() => setSubMenuVisible(false)}
           >
-            <span>ABOUT</span>
+            <span>COMMUNITY</span>
             <ul
               css={sub_ul}
               style={{ display: isSubMenuVisible ? 'block' : 'none' }}
             >
               <li>
-                <Link to={'about'}>아타이브 소개</Link>
+                <Link to={'review'}>리뷰게시판</Link>
               </li>
               <li>
                 <Link to={'application'}>공연/행사 등록신청</Link>
