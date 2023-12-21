@@ -46,7 +46,7 @@ const PostRegister = () => {
   };
 
   const handleRegister = () => {
-    // 등록 로직을 여기에 구현
+    // TODO 등록 로직 구현
     console.log('등록하기');
   };
 
@@ -199,7 +199,7 @@ const period = css`
     margin-right: 10px;
   }
   input:nth-of-type(2) {
-    margin-left: 10px; // 두 번째 input에만 margin을 주어 간격을 조절합니다.
+    margin-left: 10px;
   }
 `;
 

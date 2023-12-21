@@ -50,27 +50,22 @@ const SignUp = () => {
   const validateCheckPassword = () =>
     checkPassword === password || checkPassword.length === 0;
 
-  // 이메일 유효성 검사, 중복검사
   useEffect(() => {
     setIsConfirmEmail(validateEmail());
   }, [emailAddress, validateEmail]);
 
-  // 이름 유효성 검사
   useEffect(() => {
     setIsConfirmName(validateName());
   }, [name, validateName]);
 
-  // 휴대전화 유효성 검사
   useEffect(() => {
     setIsConfirmPhoneNumber(validatePhoneNumber());
   }, [phoneNumber, validatePhoneNumber]);
 
-  // 비밀번호 유효성 검사
   useEffect(() => {
     setIsConfirmPassword(validatePassword());
   }, [password, checkPassword, validatePassword]);
 
-  // 비밀번호 확인 유효성 검사
   useEffect(() => {
     setIsConfirmCheckPassword(validateCheckPassword());
   }, [password, checkPassword, validateCheckPassword]);
@@ -82,7 +77,6 @@ const SignUp = () => {
   const handleSubmitSignUp = (e) => {
     e.preventDefault();
     navigate('/login');
-    console.log(inputs);
   };
 
   return (

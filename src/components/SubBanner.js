@@ -52,7 +52,6 @@ const SubBanner = ({ name, mapPoint, data }) => {
 export default SubBanner;
 
 const subBanner = css`
-  // border: 1px solid pink;
   width: 100%;
   margin-bottom: 120px;
 `;
@@ -81,7 +80,6 @@ const more_btn = css`
 `;
 
 const subBanner_swiper = css`
-  // border: 1px solid black;
   width: 100%;
   padding: 10px 40px 0 40px;
 `;

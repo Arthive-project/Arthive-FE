@@ -23,7 +23,6 @@ const AdminNavItem = ({ page, title }) => {
 export default AdminNavItem;
 
 const activeStyle = css`
-  // Add your active styles here
   background-color: #f0f0f0;
   color: #333;
 `;

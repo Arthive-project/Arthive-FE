@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-// 수정, 등록 폼 공통 컴포넌트
 const Form = ({ formId, onSubmit, children }) => {
   return (
     <div css={FormInfo}>
@@ -87,6 +86,5 @@ const FormInfo = css`
 
   img {
     width: 200px;
-    // height: 280px;
   }
 `;

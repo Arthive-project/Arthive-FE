@@ -16,7 +16,6 @@ import Button from '../../components/Button';
 
 const ApplicationDetail = () => {
   const { applicationId } = useParams();
-  // const [post, setPost] = useState(null);
   const [inputs, setInputs] = useState({});
   const imgRef = useRef();
 
@@ -27,7 +26,7 @@ const ApplicationDetail = () => {
     };
     fetchData();
     console.log(inputs);
-  }, [inputs]); // postId가 변경될 때마다 fetchData 다시 실행
+  }, [inputs]);
 
   const {
     category,
@@ -59,12 +58,12 @@ const ApplicationDetail = () => {
   };
 
   const handleUpdate = () => {
-    // 등록 로직을 여기에 구현
+    // TODO 등록 로직 구현
     console.log('등록하기');
   };
 
   const handleDelete = () => {
-    // 삭제 로직을 여기에 구현
+    // TODO 삭제 로직 구현
     console.log('삭제하기');
   };
 
@@ -224,7 +223,7 @@ const period = css`
     margin-right: 10px;
   }
   input:nth-of-type(2) {
-    margin-left: 10px; // 두 번째 input에만 margin을 주어 간격을 조절합니다.
+    margin-left: 10px;
   }
 `;
 

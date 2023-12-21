@@ -199,7 +199,6 @@ const sub_ul = css`
 `;
 
 const nav_contents = css`
-  // border: 3px solid green;
   position: relative;
   margin: 0 auto;
   max-width: 1140px;
@@ -213,7 +212,6 @@ const nav_contents = css`
 `;
 
 const nav_logo = css`
-  // border: 1px solid pink;
   display: inline-block;
   float: left;
   font-size: 30px;
@@ -230,7 +228,6 @@ const nav_logo = css`
 `;
 
 const nav_boards = css`
-  // border: 1px solid red;
   list-style: none;
   min-width: 710px;
   display: flex;
@@ -252,7 +249,6 @@ const nav_boards = css`
 `;
 
 const nav_links = css`
-  // border: 1px solid red;
   display: flex;
   padding-left: 20px;
   padding-right: 20px;
@@ -266,13 +262,11 @@ const nav_links = css`
 `;
 
 const nav_user = css`
-  // border: 1px solid purple;
   display: flex;
   justify-content: flex-end;
   min-width: 170px;
 
   a {
-    // border: 1px solid red;
     display: inline-block;
     padding: 9px 15px;
   }

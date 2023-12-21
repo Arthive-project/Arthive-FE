@@ -305,7 +305,6 @@ const ApplicationFormPage = () => {
 export default ApplicationFormPage;
 
 const register_wrap = css`
-  // border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -341,6 +340,7 @@ const form_info_more = css`
 
 const info_program = css`
   width: 100%;
+
   input {
     width: 100%;
     height: 84px;

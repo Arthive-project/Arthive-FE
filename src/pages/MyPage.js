@@ -10,12 +10,11 @@ const MyPage = () => {
     currentPwd: '',
     newPwd: '',
     checkNewPwd: '',
-    phoneNumber: '010-2323-3434', // 서버에서 받아 온다.
+    phoneNumber: '010-2323-3434',
   });
 
   const { newPwd, checkNewPwd, phoneNumber, currentPwd } = inputs;
 
-  // 입력값 상태 변경
   const handleChangeInfoInputs = (e) => {
     const { value, name } = e.target;
     setInputs({
@@ -24,21 +23,12 @@ const MyPage = () => {
     });
   };
 
-  // 회원 정보 수정
   const handleSubmitInfo = (e) => {
     e.preventDefault();
     if (!(isConfirmPwd && isConfirmCheckPwd && isConfirmPhoneNumber)) {
       alert('변경 사항을 조건에 맞게 입력해주세요.');
       return;
     }
-
-    const signData = {
-      newPwd,
-      checkNewPwd,
-      phoneNumber,
-    };
-
-    console.log(signData);
   };
 
   // 유효성 검사
