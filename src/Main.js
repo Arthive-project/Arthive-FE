@@ -28,6 +28,8 @@ import ApplicationFormPage from './pages/Boards/ApplicationFormPage';
 import ConcertAll from './pages/Boards/ConcertAll';
 import FestivalAll from './pages/Boards/FestivalAll';
 import Review from './pages/Boards/Review';
+import ReviewWrite from './pages/Boards/ReviewWrite';
+import ReviewDetail from './pages/Boards/ReviewDetail';
 // 어드민
 import ScrollToTop from './components/ScrollToTop';
 import Admin from './pages/Admin/Admin';
@@ -88,6 +90,8 @@ function Main() {
           />
           <Route path='search' element={<Search />} />
           <Route path='my-likes' element={<MyLikes />} />
+          <Route path='review-write' element={<ReviewWrite />} />
+          <Route path='review/:itemId' element={<ReviewDetail />} />
 
           {categoryList.map((category) => (
             <Route
