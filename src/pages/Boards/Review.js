@@ -52,7 +52,7 @@ const Review = () => {
             </tbody>
           </table>
           <button css={rgst_btn}>
-            <Link to={'/admin/post-register'}>등록</Link>
+            <Link to={'/review-write'}>등록</Link>
           </button>
           <Pagination
             postsPerPage={postsPerPage}
