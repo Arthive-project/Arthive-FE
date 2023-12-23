@@ -1,12 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import React, { useState, useEffect } from 'react';
+import axios from '../lib/axios';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import InfoList from '../components/InfoList';
 import Button from '../components/Button';
 
 const SIGN_UP_INPUTS = {
-  emailAddress: '',
+  email: '',
   name: '',
   phoneNumber: '',
   password: '',
@@ -16,16 +17,16 @@ const SIGN_UP_INPUTS = {
 const EMAIL_REGEX =
   /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
 const PWD_REGEX =
-  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
+  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
 const PHONE_REGEX = /^010-\d{4}-\d{4}$/;
 
 const SignUp = () => {
   const navigate = useNavigate();
 
   const [inputs, setInputs] = useState(SIGN_UP_INPUTS);
-
-  const { emailAddress, name, phoneNumber, password, birthday } = inputs;
   const [checkPassword, setCheckPassword] = useState('');
+
+  const { email, name, phoneNumber, password, birthday } = inputs;
 
   const handleChangeInfoInputs = (e) => {
     const { value, name } = e.target;
@@ -43,7 +44,7 @@ const SignUp = () => {
   const [isConfirmCheckPassword, setIsConfirmCheckPassword] = useState(false);
 
   // 각 유효성 검사 함수
-  const validateEmail = () => EMAIL_REGEX.test(emailAddress);
+  const validateEmail = () => EMAIL_REGEX.test(email);
   const validateName = () => name.length > 1;
   const validatePhoneNumber = () => PHONE_REGEX.test(phoneNumber);
   const validatePassword = () => PWD_REGEX.test(password);
@@ -52,7 +53,7 @@ const SignUp = () => {
 
   useEffect(() => {
     setIsConfirmEmail(validateEmail());
-  }, [emailAddress, validateEmail]);
+  }, [email, validateEmail]);
 
   useEffect(() => {
     setIsConfirmName(validateName());
@@ -74,9 +75,29 @@ const SignUp = () => {
     setCheckPassword(e.currentTarget.value);
   };
 
-  const handleSubmitSignUp = (e) => {
+  const handleSubmitSignUp = async (e) => {
     e.preventDefault();
-    navigate('/login');
+
+    if (
+      !(
+        isConfirmEmail &&
+        isConfirmName &&
+        isConfirmPassword &&
+        isConfirmCheckPassword
+      )
+    ) {
+      alert('필수 사항을 조건에 맞게 모두 입력해주세요.');
+      return;
+    }
+
+    try {
+      const response = await axios.post('/user/register', inputs);
+      if (response.status === 201) {
+        navigate('/login');
+      }
+    } catch (error) {
+      if (error.response.status === 400) alert('이미 존재하는 회원입니다.');
+    }
   };
 
   return (
@@ -87,8 +108,8 @@ const SignUp = () => {
           <InfoList
             label={'이메일'}
             input={{
-              name: 'emailAddress',
-              value: emailAddress,
+              name: 'email',
+              value: email,
               onChange: handleChangeInfoInputs,
               placeholder: 'arthive2023@gmail.com',
               checkInput: {
