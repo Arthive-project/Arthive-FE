@@ -38,6 +38,7 @@ import PostsDetail from './pages/Admin/PostDetail';
 import Application from './pages/Admin/Application';
 import ApplicationDetail from './pages/Admin/ApplicationDetail';
 import PostRegister from './pages/Admin/PostRegister';
+import ProtectedRoute from './routes/ProtectedRoute';
 
 export const globalStyle = css`
   * {
@@ -82,16 +83,9 @@ function Main() {
           <Route path='login' element={<Login />} />
           <Route path='sign-up' element={<SignUp />} />
           <Route path='application' element={<ApplicationFormPage />} />
-          <Route path='my-page' element={<MyPage />} />
-          <Route path='my-register' element={<MyRegisterList />} />
-          <Route
-            path='my-register/:registerId'
-            element={<MyRegisterDetail />}
-          />
           <Route path='search' element={<Search />} />
-          <Route path='my-likes' element={<MyLikes />} />
-          <Route path='review-write' element={<ReviewWrite />} />
           <Route path='review/:itemId' element={<ReviewDetail />} />
+          <Route path='*' element={<NotFound />} />
 
           {categoryList.map((category) => (
             <Route
@@ -109,10 +103,19 @@ function Main() {
             />
           ))}
 
-          <Route path='*' element={<NotFound />} />
+          {/* User */}
+          <Route element={<ProtectedRoute />}>
+            <Route path='my-page' element={<MyPage />} />
+            <Route path='my-register' element={<MyRegisterList />} />
+            <Route
+              path='my-register/:registerId'
+              element={<MyRegisterDetail />}
+            />
+            <Route path='my-likes' element={<MyLikes />} />
+            <Route path='review-write' element={<ReviewWrite />} />
+          </Route>
 
           {/* Admin */}
-
           <Route path='admin'>
             <Route index element={<Admin />} />
             <Route path='posts' element={<Posts />} />

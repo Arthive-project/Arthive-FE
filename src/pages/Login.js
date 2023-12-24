@@ -1,15 +1,21 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 import InfoList from '../components/InfoList';
 import Button from '../components/Button';
+import { requestLogin } from '../api/userAPI';
+import { TokenAtom } from '../recoil/TokenAtom';
 
 const Login = () => {
-  const navigate = useNavigate();
-
   const [email, setEmail] = useState('');
   const [password, setPw] = useState('');
+  const setAccessToken = useSetRecoilState(TokenAtom);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.redirectedFrom?.pathname || '/';
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -19,9 +25,14 @@ const Login = () => {
     setPw(e.target.value);
   };
 
-  const handleSubmitLogin = (e) => {
+  const handleSubmitLogin = async (e) => {
     e.preventDefault();
-    navigate('/');
+    const result = await requestLogin(email, password);
+    const { accessToken, refreshToken } = result;
+    localStorage.setItem('access', accessToken);
+    localStorage.setItem('refresh', refreshToken);
+    setAccessToken(accessToken);
+    navigate(from);
   };
 
   return (
