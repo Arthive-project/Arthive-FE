@@ -1,10 +1,36 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { TokenAtom, isLoginSelector } from '../recoil/TokenAtom';
+import { requestLogout } from '../api/userAPI';
 
 const Navbar = () => {
   const [isSubMenuVisible, setSubMenuVisible] = useState(false);
+  const isLogin = useRecoilValue(isLoginSelector);
+  const setAccessToken = useSetRecoilState(TokenAtom);
+
+  const handleLogout = async () => {
+    try {
+      const response = await requestLogout();
+      if (response) {
+        localStorage.removeItem('access');
+        localStorage.removeItem('refresh');
+        setAccessToken(null);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const access = localStorage.getItem('access');
+    const refresh = localStorage.getItem('refresh');
+    if (access && refresh) {
+      setAccessToken(access);
+    }
+  }, [setAccessToken]);
 
   return (
     <header css={nav_wrap}>
@@ -135,11 +161,17 @@ const Navbar = () => {
         </section>
 
         <span css={nav_user}>
-          {/* <div id='user-loggedIn'></div> */}
-          <div id='user-loggedOut'>
-            <Link to='/login'>로그인</Link>
-            <Link to='/sign-up'>회원가입</Link>
-          </div>
+          {isLogin ? (
+            <div id='user-loggedIn'>
+              유저 이름
+              <Link onClick={handleLogout}>로그아웃</Link>
+            </div>
+          ) : (
+            <div id='user-loggedOut'>
+              <Link to='/login'>로그인</Link>
+              <Link to='/sign-up'>회원가입</Link>
+            </div>
+          )}
         </span>
       </nav>
     </header>

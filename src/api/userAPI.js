@@ -17,3 +17,9 @@ export const getNewRefreshToken = async () => {
 
   return result.data;
 };
+
+export const requestLogout = async () => {
+  const result = await axios.post('/auth/logout');
+  if (result.status === 201) return true;
+  else return false;
+};

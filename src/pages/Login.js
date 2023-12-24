@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import InfoList from '../components/InfoList';
@@ -34,6 +34,13 @@ const Login = () => {
     setAccessToken(accessToken);
     navigate(from);
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('access')) {
+      alert('잘못된 접근입니다.');
+      navigate('/');
+    }
+  }, []);
 
   return (
     <div css={login}>
