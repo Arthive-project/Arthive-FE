@@ -6,18 +6,18 @@ export const categories = [
 ];
 
 export const codenames = [
-  { label: '소분류', value: '' },
+  { label: '선택', value: '' },
   { label: '전시/미술', value: '전시/미술' },
   { label: '연극', value: '연극' },
   { label: '뮤지컬/오페라', value: '뮤지컬/오페라' },
   { label: '무용', value: '무용' },
   { label: '클래식', value: '클래식' },
   { label: '콘서트', value: '콘서트' },
-  { label: '전통/역사', value: '전통/역사' },
-  { label: '자연/경관', value: '자연/경관' },
-  { label: '시민/화합', value: '시민/화합' },
-  { label: '문화/예술', value: '문화/예술' },
-  { label: '기타', value: '기타' },
+  { label: '축제-전통/역사', value: '축제-전통/역사' },
+  { label: '축제-자연/경관', value: '축제-자연/경관' },
+  { label: '축제-시민/화합', value: '축제-시민/화합' },
+  { label: '축제-문화/예술', value: '축제-문화/예술' },
+  { label: '축제-기타', value: '축제-기타' },
 ];
 
 export const locationLists = [

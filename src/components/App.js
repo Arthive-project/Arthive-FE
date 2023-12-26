@@ -7,7 +7,7 @@ import AdminHeader from './AdminHeader';
 import AdminNavbar from './AdminNavbar';
 
 const App = () => {
-  const isAdmin = false;
+  const isAdmin = true;
 
   return (
     <>

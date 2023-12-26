@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState } from 'react';
-import { codenames, locationLists } from '../data/formOptions';
+import { codenames } from '../data/formOptions';
 
 const INITIAL_STATE = {
   category: '전체',
@@ -25,7 +25,7 @@ const AdminFilter = () => {
 
   const handleSearch = async () => {
     try {
-      const { category, codename, searchQuery } = state;
+      // const { category, codename, searchQuery } = state;
       // const response = await axios.get('/api/search', {
       //   params: {
       //     category,
@@ -33,13 +33,11 @@ const AdminFilter = () => {
       //     searchQuery,
       //   },
       // });
-      console.log(category, codename, searchQuery);
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  console.log(locationLists);
   return (
     <div css={exhibition_filter}>
       <select

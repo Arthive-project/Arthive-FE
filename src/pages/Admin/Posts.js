@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
-import { getAllPosts } from '../../api';
 import { Link } from 'react-router-dom';
 import Pagination from '../../components/Pagination';
 import AdminFilter from '../../components/AdminFilter';
+import { getListAllPosts, getOpenApi } from '../../api/adminAPI';
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -21,8 +21,11 @@ const Posts = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getAllPosts();
-      setPosts(response);
+      const res = await getOpenApi();
+      if (res) {
+        const response = await getListAllPosts();
+        setPosts(response);
+      }
     };
 
     fetchData();
@@ -67,11 +70,11 @@ export const PostItem = ({ data }) => {
   return (
     <tr>
       <td css={id}>{data.id}</td>
-      <td css={codename}>{data.codename}</td>
+      <td css={codename}>{data.CODENAME}</td>
       <td css={title}>
-        <Link to={`/admin/post-detail/${data.id}`}>{data.title}</Link>
+        <Link to={`/admin/post-detail/${data.id}`}>{data.TITLE}</Link>
       </td>
-      <td css={status}>{data.regst_date}</td>
+      <td css={status}>{data.RGSTDATE}</td>
     </tr>
   );
 };

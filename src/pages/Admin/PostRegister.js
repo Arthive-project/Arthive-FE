@@ -1,41 +1,91 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import FormInput from '../../components/FormInput';
-import {
-  locationLists,
-  categories,
-  codenames,
-  FeeOptions,
-} from '../../data/formOptions';
+import { locationLists, codenames, FeeOptions } from '../../data/formOptions';
 import FileInput from '../../components/FileInput';
 import Form from '../../components/Form';
 import Button from '../../components/Button';
+import { createPost } from '../../api/adminAPI';
+import { useNavigate } from 'react-router-dom';
+
+const today = new Date();
+const year = today.getFullYear();
+const month = String(today.getMonth() + 1).padStart(2, '0');
+const day = String(today.getDate()).padStart(2, '0');
+const formattedDate = `${year}-${month}-${day}`;
+
+const INITIAL_INPUTS = {
+  CODENAME: '',
+  GUNAME: '',
+  TITLE: '',
+  PLACE: '',
+  ORG_NAME: '',
+  DATE: '',
+  USE_TRGT: '',
+  USE_FEE: '',
+  PLAYER: '',
+  PROGRAM: '',
+  ETC_DESC: '',
+  ORG_LINK: '',
+  MAIN_IMG: '',
+  RGSTDATE: formattedDate,
+  TICKET: '',
+  STRTDATE: '',
+  END_DATE: '',
+  THEMECODE: '',
+  LOT: '',
+  LAT: '',
+  IS_FREE: '유료',
+  HMPG_ADDR: 'string',
+};
 
 const PostRegister = () => {
-  const [inputs, setInputs] = useState({});
+  const { kakao } = window;
+  const [inputs, setInputs] = useState(INITIAL_INPUTS);
+  const [address, setAddress] = useState('');
   const imgRef = useRef();
+  const navigate = useNavigate();
 
   const {
-    category,
-    codename,
-    title,
-    guname,
-    place,
-    address,
-    strtdate,
-    end_date,
-    use_trgt,
-    is_free,
-    use_fee,
-    org_link,
-    player,
-    program,
-    etc_des,
-    // posterUrl
+    CODENAME,
+    GUNAME,
+    TITLE,
+    PLACE,
+    ORG_NAME,
+    DATE,
+    USE_TRGT,
+    USE_FEE,
+    PLAYER,
+    PROGRAM,
+    ETC_DESC,
+    ORG_LINK,
+    MAIN_IMG,
+    RGSTDATE,
+    TICKET,
+    STRTDATE,
+    END_DATE,
+    THEMECODE,
+    LOT,
+    LAT,
+    IS_FREE,
+    HMPG_ADDR,
   } = inputs;
 
-  const locationOptions = [...locationLists];
+  useEffect(() => {
+    const geocoder = new kakao.maps.services.Geocoder();
+    const callback = function (result, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        setInputs((prevInputs) => ({
+          ...prevInputs,
+          LAT: result[0].address.x,
+          LOT: result[0].address.y,
+        }));
+      }
+    };
+
+    geocoder.addressSearch(address, callback);
+  }, [address]);
 
   const handleChangeInfoInputs = (e) => {
     const { value, name } = e.target;
@@ -45,65 +95,69 @@ const PostRegister = () => {
     });
   };
 
-  const handleRegister = () => {
-    // TODO 등록 로직 구현
-    console.log('등록하기');
+  const handleRegister = async () => {
+    try {
+      await createPost(inputs);
+      alert('등록되었습니다.');
+      navigate('/admin/posts');
+    } catch (error) {
+      alert(`등록에 실패했습니다. ${error.message}`);
+    }
   };
 
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, '0');
-  const day = String(today.getDate()).padStart(2, '0');
-  const formattedDate = `${year}-${month}-${day}`;
-
   return (
-    <div css={detail_form}>
+    <div>
       <h2>게시물 상세</h2>
       <Form>
         <tr>
           <th>등록일</th>
-          <td>{formattedDate}</td>
+          <td name={RGSTDATE}>{formattedDate}</td>
         </tr>
         <FormInput
-          label='대분류*'
-          name='category'
-          value={category}
-          type={'select'}
-          options={[...categories]}
-          onChange={handleChangeInfoInputs}
-        />
-        <FormInput
-          label='소분류*'
-          name='codename'
-          value={codename}
+          label='주제분류*'
+          name='CODENAME'
+          value={CODENAME}
           type={'select'}
           options={[...codenames]}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='공연/행사명*'
-          name='title'
-          value={title}
+          name='TITLE'
+          value={TITLE}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='자치구*'
-          name='guname'
-          value={guname}
+          name='GUNAME'
+          value={GUNAME}
           type={'select'}
-          options={locationOptions}
+          options={[...locationLists]}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='장소*'
-          name='place'
-          value={place}
+          name='PLACE'
+          value={PLACE}
+          placeholder={'서울시립미술관'}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='상세 주소*'
           name='address'
           value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+        <FormInput
+          label='위도*'
+          name='LAT'
+          value={LAT}
+          onChange={handleChangeInfoInputs}
+        />
+        <FormInput
+          label='경도*'
+          name='LOT'
+          value={LOT}
           onChange={handleChangeInfoInputs}
         />
         <tr>
@@ -111,15 +165,15 @@ const PostRegister = () => {
           <td>
             <div css={period}>
               <input
-                name='strtdate'
-                value={strtdate}
+                name='STRTDATE'
+                value={STRTDATE}
                 type={'date'}
                 onChange={handleChangeInfoInputs}
               />
               ~
               <input
-                name='end_date'
-                value={end_date}
+                name='END_DATE'
+                value={END_DATE}
                 type={'date'}
                 onChange={handleChangeInfoInputs}
               />
@@ -128,51 +182,81 @@ const PostRegister = () => {
         </tr>
         <FormInput
           label='이용 대상'
-          name='use_trgt'
-          value={use_trgt}
+          name='USE_TRGT'
+          value={USE_TRGT}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='유무료*'
-          name='is_free'
-          value={is_free}
+          name='IS_FREE'
+          value={IS_FREE}
           type={'select'}
           options={[...FeeOptions]}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='이용 요금*'
-          name='use_fee'
-          value={use_fee}
+          name='USE_FEE'
+          value={USE_FEE}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='홈페이지 주소'
-          name='org_link'
-          value={org_link}
+          name='ORG_LINK'
+          value={ORG_LINK}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='출연자 정보'
-          name='player'
-          value={player}
+          name='PLAYER'
+          value={PLAYER}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='프로그램 소개'
-          name='program'
-          value={program}
+          name='PROGRAM'
+          value={PROGRAM}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='기타 내용'
-          name='etc_des'
-          value={etc_des}
+          name='ETC_DESC'
+          value={ETC_DESC}
+          onChange={handleChangeInfoInputs}
+        />
+        <FormInput
+          label='ORG_NAME'
+          name='ORG_NAME'
+          value={ORG_NAME}
+          onChange={handleChangeInfoInputs}
+        />
+        <FormInput
+          label='TICKET'
+          name='TICKET'
+          value={TICKET}
+          onChange={handleChangeInfoInputs}
+        />
+        <FormInput
+          label='THEMECODE'
+          name='THEMECODE'
+          value={THEMECODE}
+          onChange={handleChangeInfoInputs}
+        />
+        <FormInput
+          label='HMPG_ADDR'
+          name='HMPG_ADDR'
+          value={HMPG_ADDR}
+          onChange={handleChangeInfoInputs}
+        />
+        <FormInput
+          label='DATE'
+          name='DATE'
+          value={DATE}
           onChange={handleChangeInfoInputs}
         />
         <FileInput
-          name='posterUrl'
-          value={''}
+          name='MAIN_IMG'
+          value={MAIN_IMG}
           onChange={handleChangeInfoInputs}
           imgRef={imgRef}
         />
@@ -186,8 +270,6 @@ const PostRegister = () => {
 };
 
 export default PostRegister;
-
-const detail_form = css``;
 
 const period = css`
   display: flex;
