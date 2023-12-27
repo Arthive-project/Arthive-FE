@@ -88,7 +88,7 @@ const PostRegister = () => {
   }, [address]);
 
   const handleChangeInfoInputs = (e) => {
-    const { value, name } = e.target;
+    const { name, value } = e.target;
     setInputs({
       ...inputs,
       [name]: value,
