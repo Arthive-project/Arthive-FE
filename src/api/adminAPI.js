@@ -23,3 +23,9 @@ export const deletePost = async (postId) => {
 
   return response.data;
 };
+
+export const getListAllUsers = async () => {
+  const response = await axios.get('/user');
+
+  return response.data.data;
+};

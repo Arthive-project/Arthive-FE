@@ -39,6 +39,7 @@ import Application from './pages/Admin/Application';
 import ApplicationDetail from './pages/Admin/ApplicationDetail';
 import PostRegister from './pages/Admin/PostRegister';
 import ProtectedRoute from './routes/ProtectedRoute';
+import UserList from './pages/Admin/UserList';
 
 export const globalStyle = css`
   * {
@@ -126,6 +127,7 @@ function Main() {
               path='application-detail/:applicationId'
               element={<ApplicationDetail />}
             />
+            <Route path='users' element={<UserList />} />
           </Route>
         </Route>
       </Routes>

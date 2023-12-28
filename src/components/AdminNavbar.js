@@ -7,8 +7,10 @@ const AdminNavbar = () => {
     <nav css={navbar}>
       <ul>
         <AdminNavItem page={'/admin'} title={'대시 보드'} />
-        <AdminNavItem page={'/admin/posts'} title={'게시물 관리'} />
+        <AdminNavItem page={'/admin/posts'} title={'문화정보 게시물 관리'} />
         <AdminNavItem page={'/admin/application'} title={'등록 신청 내역'} />
+        <AdminNavItem page={'/admin/users'} title={'유저 관리'} />
+        <AdminNavItem page={'/admin/users'} title={'리뷰 관리'} />
       </ul>
     </nav>
   );
