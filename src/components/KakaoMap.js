@@ -1,45 +1,59 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 const { kakao } = window;
 
-const KaKaoMap = ({ address }) => {
+const KaKaoMap = ({ LAT, LOT, onAddressChange }) => {
   useEffect(() => {
-    const container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스
-    const geocoder = new kakao.maps.services.Geocoder();
+    if (window.kakao && window.kakao.maps) {
+      const container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스
 
-    // KaKao Geocoder를 사용하여 주소를 좌표로 변환
-    geocoder.addressSearch(address, function (result, status) {
-      if (status === kakao.maps.services.Status.OK) {
-        const latitude = result[0].y; // 위도
-        const longitude = result[0].x; // 경도
+      const options = {
+        center: new kakao.maps.LatLng(LOT, LAT),
+        level: 3,
+      };
+      console.log(options);
 
-        const options = {
-          // 지도를 생성할 때 필요한 기본 옵션
-          center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
-          level: 3, // 지도의 레벨(확대, 축소 정도)
-        };
-        const map = new kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
+      const map = new kakao.maps.Map(container, options);
 
-        // 마커가 표시될 위치
-        const markerPosition = new kakao.maps.LatLng(latitude, longitude);
-        // 마커 생성
-        const marker = new kakao.maps.Marker({
-          position: markerPosition,
-        });
+      // 좌표를 주소로 변환하는 함수
+      const geocoder = new kakao.maps.services.Geocoder();
+      const coord = new kakao.maps.LatLng(LOT, LAT);
 
-        // 인포윈도우로 장소에 대한 설명 표시
-        const infowindow = new kakao.maps.InfoWindow({
-          content: `<div style="width:150px;text-align:center;padding:6px 0;font-size: 13px;">${address}</div>`,
-        });
-        infowindow.open(map, marker);
+      geocoder.coord2Address(
+        coord.getLng(),
+        coord.getLat(),
+        function (result, status) {
+          console.log(result);
+          if (status === kakao.maps.services.Status.OK) {
+            const address = result[0].address.address_name;
+            onAddressChange(address);
 
-        // 마커가 지도 위에 표시되도록 설정
-        marker.setMap(map);
-      }
-    });
-  }, [address]);
+            // 인포윈도우로 주소 정보를 표시
+            const infowindow = new kakao.maps.InfoWindow({
+              content: `<div style="width:200px;text-align:center;padding:6px 0;font-size: 14px;">${address}</div>`,
+              position: new kakao.maps.LatLng(LOT, LAT),
+              zIndex: 1, // 다른 마커보다 앞에 표시
+            });
+
+            infowindow.open(map);
+
+            // 마커 생성
+            const marker = new kakao.maps.Marker({
+              position: coord,
+              map: map,
+            });
+
+            // 마커 클릭 시 인포윈도우 표시
+            kakao.maps.event.addListener(marker, 'click', function () {
+              infowindow.open(map, marker);
+            });
+          }
+        }
+      );
+    }
+  }, [LAT, LOT]);
 
   return (
     <div

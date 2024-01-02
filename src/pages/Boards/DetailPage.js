@@ -12,17 +12,20 @@ import { getPostDetailById } from '../../api/requestAPI';
 const DetailPage = () => {
   const { itemId } = useParams();
   const [item, setItem] = useState({});
+  const [address, setAddress] = useState('');
 
   useEffect(() => {
     const fetchItem = async () => {
       const result = await getPostDetailById(itemId);
-      console.log(itemId);
-      console.log(result);
       setItem(result);
     };
 
     fetchItem();
   }, [itemId]);
+
+  const handleAddressChange = (newAddress) => {
+    setAddress(newAddress);
+  };
 
   return (
     <>
@@ -37,7 +40,7 @@ const DetailPage = () => {
             </tr>
             <tr>
               <th>주소</th>
-              <td>{item.address}</td>
+              <td>{address}</td>
             </tr>
             <tr>
               <th>기간</th>
@@ -79,7 +82,11 @@ const DetailPage = () => {
           <></>
         )}
         <h2>위치 안내</h2>
-        <KaKaoMap address={item.address} />
+        <KaKaoMap
+          LOT={item.LOT}
+          LAT={item.LAT}
+          onAddressChange={handleAddressChange}
+        />
       </AddContainer>
     </>
   );
