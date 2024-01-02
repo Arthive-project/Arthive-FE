@@ -70,7 +70,10 @@ const MyPage = () => {
           <div>회원 정보 수정</div>
         </a>
         <a href={'/my-register'}>
-          <div>전시 등록 신청 내역</div>
+          <div>공연/행사 등록신청 내역</div>
+        </a>
+        <a href={'/my-register'}>
+          <div>작성한 리뷰 관리</div>
         </a>
       </div>
       <div css={user_info}>
@@ -193,7 +196,7 @@ const board_btn = css`
 
   div {
     border: 1px solid black;
-    width: 580px;
+    width: 385px;
     height: 60px;
     display: flex;
     justify-content: center;
