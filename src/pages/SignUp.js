@@ -211,7 +211,7 @@ const signup_wrap = css`
   width: 457px;
   border-radius: 30px;
   background-color: white;
-  margin: 0 auto;
+  margin: 70px auto 0 auto;
   padding: 50px 35px;
 `;
 

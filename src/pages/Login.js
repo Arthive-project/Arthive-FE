@@ -68,7 +68,7 @@ const Login = () => {
           <Button name='로그인' form='login' type='submit' />
         </form>
         <section>
-          <Link to='/signup' css={link_signup}>
+          <Link to='/sign-up' css={link_signup}>
             회원가입
           </Link>
         </section>
@@ -96,7 +96,7 @@ const login_wrap = css`
   height: 480px;
   border-radius: 30px;
   background-color: white;
-  margin: 0 auto;
+  margin: 70px auto 0 auto;
   padding: 50px 35px;
   overflow: scroll;
 `;

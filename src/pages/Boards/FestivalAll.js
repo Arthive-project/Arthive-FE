@@ -34,13 +34,23 @@ const FestivalAll = () => {
     <>
       <BoardHeader text='축제' showText='false' subText='전체' />
       <BoardList>
-        {posts.map((festival) => (
-          <BoardItem
-            key={festival.id}
-            data={festival}
-            linkPath={`/festival/${festival.id}`}
-          />
-        ))}
+        {posts.map((festival) => {
+          let linkPath = '';
+          if (festival.category === '축제-전통/역사') {
+            linkPath = `/tradition/${festival.id}`;
+          } else if (festival.category === '축제-자연/경관') {
+            linkPath = `/nature/${festival.id}`;
+          } else if (festival.category === '축제-시민/화합') {
+            linkPath = `/citizen/${festival.id}`;
+          } else if (festival.category === '축제-문화/예술') {
+            linkPath = `/culture/${festival.id}`;
+          } else festival.category === '축제-기타';
+          linkPath = `/other-festival/${festival.id}`;
+
+          return (
+            <BoardItem key={festival.id} data={festival} linkPath={linkPath} />
+          );
+        })}
       </BoardList>
     </>
   );

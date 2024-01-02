@@ -27,7 +27,7 @@ const OtherFestival = () => {
           <BoardItem
             key={other.id}
             data={other}
-            linkPath={`/other/${other.id}`}
+            linkPath={`/other-festival/${other.id}`}
             showAddress={false}
           />
         ))}
