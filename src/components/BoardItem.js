@@ -16,7 +16,8 @@ const BoardItem = ({ data, linkPath, showLikeBtn = true }) => {
         {showLikeBtn && <LikeBtn />}
       </div>
       <div css={period}>
-        {data.STRTDATE} ~ {data.END_DATE}
+        {/* {data.STRTDATE} ~ {data.END_DATE} */}
+        {data.DATE}
       </div>
     </div>
   );
@@ -29,8 +30,8 @@ const item = css`
   flex-direction: column;
   width: 250px;
   height: 100%;
+  max-height: 1000px;
   margin-bottom: 20px;
-  border
 `;
 
 const poster = css`
@@ -48,8 +49,8 @@ const title = css`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 38px;
-  font-size: 20px;
+  max-height: 100%;
+  font-size: 19px;
   font-weight: 500;
 
   a {

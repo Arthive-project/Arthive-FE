@@ -27,7 +27,7 @@ const DetailPage = () => {
   return (
     <>
       <BoardHeader text={item.CODENAME} showHr={true} />
-      <BoardDetail src={item.posterUrl}>
+      <BoardDetail src={item.MAIN_IMG}>
         <h2>{item.TITLE}</h2>
         <table>
           <tbody>
@@ -41,9 +41,7 @@ const DetailPage = () => {
             </tr>
             <tr>
               <th>기간</th>
-              <td>
-                {item.STRTDATE} ~ {item.END_DATE}
-              </td>
+              <td>{item.DATE}</td>
             </tr>
             <tr>
               <th>대상</th>
@@ -65,7 +63,7 @@ const DetailPage = () => {
       </BoardDetail>
 
       <AddContainer>
-        {item.PLAYER || item.PROGRAM || item.ETC_DESC ? (
+        {item.PLAYER || item.PROGRAM ? (
           <div css={additional_info}>
             <h2>추가 정보</h2>
             <p>
@@ -75,10 +73,6 @@ const DetailPage = () => {
             <p>
               ㅇ <span>프로그램 소개: </span>
               {item.PROGRAM}
-            </p>
-            <p>
-              ㅇ <span>기타 내용: </span>
-              {item.ETC_DESC}
             </p>
           </div>
         ) : (

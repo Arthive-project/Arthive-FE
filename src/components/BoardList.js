@@ -15,6 +15,5 @@ const board_list = css`
   gap: 50px;
   width: 1156px;
   height: 100%;
-  margin-bottom: 70px;
-  margin: 0 auto;
+  margin: 0 auto 100px auto;
 `;
