@@ -13,7 +13,6 @@ const KaKaoMap = ({ LAT, LOT, onAddressChange }) => {
         center: new kakao.maps.LatLng(LOT, LAT),
         level: 3,
       };
-      console.log(options);
 
       const map = new kakao.maps.Map(container, options);
 
@@ -25,7 +24,6 @@ const KaKaoMap = ({ LAT, LOT, onAddressChange }) => {
         coord.getLng(),
         coord.getLat(),
         function (result, status) {
-          console.log(result);
           if (status === kakao.maps.services.Status.OK) {
             const address = result[0].address.address_name;
             onAddressChange(address);
