@@ -22,42 +22,42 @@ const AdBanner = () => {
         }}
       >
         <SwiperSlide>
-          <a href='https://www.daum.net/'>
+          <a href='/exhibition/860'>
             <img
-              src='https://newsimg-hams.hankookilbo.com/2022/10/19/7576de8e-e4f6-4827-9f17-cfefe4be052f.jpg'
+              src={`${process.env.PUBLIC_URL}/assets/AdBannerImg/보타닉메이즈.png`}
               alt='광고 이미지_1'
             />
           </a>
         </SwiperSlide>
         <SwiperSlide>
-          <a href='https://www.daum.net/'>
+          <a href='/exhibition/20'>
             <img
-              src='https://newsimg-hams.hankookilbo.com/2022/10/19/64ff9dd1-43eb-4bb7-9fb7-ece0a2f793fc.jpg'
+              src={`${process.env.PUBLIC_URL}/assets/AdBannerImg/오사카파노라마.png`}
               alt='광고 이미지_2'
             />
           </a>
         </SwiperSlide>
         <SwiperSlide>
-          <a href='https://www.daum.net/'>
+          <a href='/exhibition/211'>
             <img
-              src='https://image.tving.com/upload/cms/caip/CAIP0400/P000388342.jpg/dims/resize/1280'
-              alt='광고 이미지_3'
+              src={`${process.env.PUBLIC_URL}/assets/AdBannerImg/아뜰리에광화.png`}
+              alt='광고 이미지_5'
             />
           </a>
         </SwiperSlide>
         <SwiperSlide>
-          <a href='https://www.daum.net/'>
+          <a href='/exhibition/147'>
             <img
-              src='https://tvstore-phinf.pstatic.net/20230619_40/1687163208080VlnMv_JPEG/00031.jpg'
+              src={`${process.env.PUBLIC_URL}/assets/AdBannerImg/서울로미디어캔버스.png`}
               alt='광고 이미지_4'
             />
           </a>
         </SwiperSlide>
         <SwiperSlide>
-          <a href='https://www.daum.net/'>
+          <a href='/concert/25'>
             <img
-              src='https://img.seoul.co.kr/img/upload/2021/09/17/SSI_20210917150355.jpg'
-              alt='광고 이미지_5'
+              src={`${process.env.PUBLIC_URL}/assets/AdBannerImg/노트르담드파리.png`}
+              alt='광고 이미지_3'
             />
           </a>
         </SwiperSlide>
