@@ -28,11 +28,14 @@ const Login = () => {
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
     const result = await requestLogin(email, password);
-    const { accessToken, refreshToken } = result;
-    localStorage.setItem('access', accessToken);
-    localStorage.setItem('refresh', refreshToken);
-    setAccessToken(accessToken);
-    navigate(from);
+
+    if (result) {
+      const { accessToken, refreshToken } = result;
+      localStorage.setItem('access', accessToken);
+      localStorage.setItem('refresh', refreshToken);
+      setAccessToken(accessToken);
+      navigate(from);
+    }
   };
 
   useEffect(() => {
