@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { TokenAtom, isLoginSelector } from '../recoil/TokenAtom';
-import { requestLogout } from '../api/userAPI';
+// import { requestLogout } from '../api/userAPI';
 
 const Navbar = () => {
   const [isSubMenuVisible, setSubMenuVisible] = useState(false);
@@ -13,11 +13,13 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await requestLogout();
-      if (response) {
+      if (window.confirm('로그아웃 하시겠습니까?')) {
+        // const response = await requestLogout();
+        // if (response) {
         localStorage.removeItem('access');
         localStorage.removeItem('refresh');
         setAccessToken(null);
+        // }
       }
     } catch (error) {
       console.log(error);
