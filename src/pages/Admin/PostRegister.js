@@ -17,10 +17,10 @@ const formattedDate = `${year}-${month}-${day}`;
 
 const INITIAL_INPUTS = {
   CODENAME: '',
-  GUNAME: '',
+  GUNAME: '중랑구',
   TITLE: '',
   PLACE: '',
-  ORG_NAME: '',
+  ORG_NAME: 'string',
   DATE: '',
   USE_TRGT: '',
   USE_FEE: '',
@@ -30,10 +30,10 @@ const INITIAL_INPUTS = {
   ORG_LINK: '',
   MAIN_IMG: '',
   RGSTDATE: formattedDate,
-  TICKET: '',
+  TICKET: 'string',
   STRTDATE: '',
   END_DATE: '',
-  THEMECODE: '',
+  THEMECODE: 'string',
   LOT: '',
   LAT: '',
   IS_FREE: '유료',
@@ -52,24 +52,20 @@ const PostRegister = () => {
     GUNAME,
     TITLE,
     PLACE,
-    ORG_NAME,
-    DATE,
     USE_TRGT,
     USE_FEE,
+    DATE,
     PLAYER,
     PROGRAM,
     ETC_DESC,
     ORG_LINK,
     MAIN_IMG,
     RGSTDATE,
-    TICKET,
     STRTDATE,
     END_DATE,
-    THEMECODE,
     LOT,
     LAT,
     IS_FREE,
-    HMPG_ADDR,
   } = inputs;
 
   useEffect(() => {
@@ -84,19 +80,31 @@ const PostRegister = () => {
       }
     };
 
-    geocoder.addressSearch(address, callback);
+    if (address) {
+      geocoder.addressSearch(address, callback);
+    }
   }, [address]);
 
   const handleChangeInfoInputs = (e) => {
     const { name, value } = e.target;
-    setInputs({
-      ...inputs,
+
+    setInputs((prevInputs) => ({
+      ...prevInputs,
       [name]: value,
-    });
+    }));
   };
+
+  useEffect(() => {
+    const dateRange = STRTDATE && END_DATE ? `${STRTDATE} ~ ${END_DATE}` : '';
+    setInputs((prevInputs) => ({
+      ...prevInputs,
+      DATE: dateRange,
+    }));
+  }, [STRTDATE, END_DATE]);
 
   const handleRegister = async () => {
     try {
+      console.log(inputs);
       await createPost(inputs);
       alert('등록되었습니다.');
       navigate('/admin/posts');
@@ -222,30 +230,6 @@ const PostRegister = () => {
           label='기타 내용'
           name='ETC_DESC'
           value={ETC_DESC}
-          onChange={handleChangeInfoInputs}
-        />
-        <FormInput
-          label='ORG_NAME'
-          name='ORG_NAME'
-          value={ORG_NAME}
-          onChange={handleChangeInfoInputs}
-        />
-        <FormInput
-          label='TICKET'
-          name='TICKET'
-          value={TICKET}
-          onChange={handleChangeInfoInputs}
-        />
-        <FormInput
-          label='THEMECODE'
-          name='THEMECODE'
-          value={THEMECODE}
-          onChange={handleChangeInfoInputs}
-        />
-        <FormInput
-          label='HMPG_ADDR'
-          name='HMPG_ADDR'
-          value={HMPG_ADDR}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
