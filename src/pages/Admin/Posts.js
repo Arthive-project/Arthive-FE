@@ -55,11 +55,12 @@ const Posts = () => {
           postsPerPage={postsPerPage}
           totalPosts={posts.length}
           paginate={setCurrentPage}
+          currentPage={currentPage}
         ></Pagination>
       </div>
-      <button css={rgst_btn}>
-        <Link to={'/admin/post-register'}>등록</Link>
-      </button>
+      <Link to={'/admin/post-register'}>
+        <button css={rgst_btn}>등록</button>
+      </Link>
     </div>
   );
 };
