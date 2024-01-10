@@ -18,6 +18,12 @@ export const createPost = async (postData) => {
   return result.data.data;
 };
 
+export const updatePost = async (postId, postData) => {
+  const response = await axios.put(`/cultureInfo/${postId}`, postData);
+
+  return response.data.data;
+};
+
 export const deletePost = async (postId) => {
   const response = await axios.delete(`/cultureInfo/${postId}`);
 
