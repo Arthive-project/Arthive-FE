@@ -1,28 +1,30 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import FormInput from '../../components/FormInput';
 import { locationLists, codenames, FeeOptions } from '../../data/formOptions';
-// import FileInput from '../../components/FileInput';
+import FileInput from '../../components/FileInput';
 import Form from '../../components/Form';
 import Button from '../../components/Button';
 import { getPostById } from '../../api/requestAPI';
-import { deletePost } from '../../api/adminAPI';
+import { deletePost, updatePost } from '../../api/adminAPI';
+import { INITIAL_INPUTS } from '../../data/initialInputs';
 
 const PostsDetail = () => {
   const { postId } = useParams();
   const { kakao } = window;
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState(INITIAL_INPUTS);
   const [address, setAddress] = useState('');
-  // const imgRef = useRef();
+  const [originalInputs, setOriginalInputs] = useState({});
+  const imgRef = useRef();
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await getPostById(postId);
-      console.log(response);
       setInputs(response);
+      setOriginalInputs(response);
     };
     fetchData();
   }, []);
@@ -32,7 +34,6 @@ const PostsDetail = () => {
     GUNAME,
     TITLE,
     PLACE,
-    ORG_NAME,
     DATE,
     USE_TRGT,
     USE_FEE,
@@ -40,16 +41,13 @@ const PostsDetail = () => {
     PROGRAM,
     ETC_DESC,
     ORG_LINK,
-    // MAIN_IMG,
+    MAIN_IMG,
     RGSTDATE,
-    TICKET,
     STRTDATE,
     END_DATE,
-    THEMECODE,
     LOT,
     LAT,
     IS_FREE,
-    HMPG_ADDR,
   } = inputs;
 
   useEffect(() => {
@@ -64,7 +62,9 @@ const PostsDetail = () => {
       }
     };
 
-    geocoder.addressSearch(address, callback);
+    if (address) {
+      geocoder.addressSearch(address, callback);
+    }
   }, [address]);
 
   const handleChangeInfoInputs = (e) => {
@@ -75,8 +75,33 @@ const PostsDetail = () => {
     });
   };
 
+  const findModifiedData = () => {
+    const modifiedData = {};
+    Object.keys(inputs).forEach((key) => {
+      if (
+        inputs[key] !== null &&
+        inputs[key] !== undefined &&
+        inputs[key] !== originalInputs[key]
+      ) {
+        modifiedData[key] = inputs[key];
+      }
+    });
+    return modifiedData;
+  };
+
   const handleUpdate = async () => {
-    console.log('수정하기');
+    try {
+      if (confirm('해당 게시물을 수정하시겠습니까?')) {
+        const modifiedData = findModifiedData();
+
+        console.log(modifiedData);
+        await updatePost(postId, modifiedData);
+        alert('게시물이 수정되었습니다.');
+        navigate('/admin/posts');
+      }
+    } catch (error) {
+      alert(`게시물 수정에 실패했습니다. ${error.message}`);
+    }
   };
 
   const handleDelete = async () => {
@@ -211,41 +236,17 @@ const PostsDetail = () => {
           onChange={handleChangeInfoInputs}
         />
         <FormInput
-          label='ORG_NAME'
-          name='ORG_NAME'
-          value={ORG_NAME}
-          onChange={handleChangeInfoInputs}
-        />
-        <FormInput
-          label='TICKET'
-          name='TICKET'
-          value={TICKET}
-          onChange={handleChangeInfoInputs}
-        />
-        <FormInput
-          label='THEMECODE'
-          name='THEMECODE'
-          value={THEMECODE}
-          onChange={handleChangeInfoInputs}
-        />
-        <FormInput
-          label='HMPG_ADDR'
-          name='HMPG_ADDR'
-          value={HMPG_ADDR}
-          onChange={handleChangeInfoInputs}
-        />
-        <FormInput
           label='DATE'
           name='DATE'
           value={DATE}
           onChange={handleChangeInfoInputs}
         />
-        {/* <FileInput
+        <FileInput
           name='MAIN_IMG'
           value={MAIN_IMG}
           onChange={handleChangeInfoInputs}
           imgRef={imgRef}
-        /> */}
+        />
       </Form>
 
       <div css={btn_wrap}>
