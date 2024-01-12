@@ -40,6 +40,7 @@ import ApplicationDetail from './pages/Admin/ApplicationDetail';
 import PostRegister from './pages/Admin/PostRegister';
 import ProtectedRoute from './routes/ProtectedRoute';
 import UserList from './pages/Admin/UserList';
+import MyPageChangePw from './pages/MyPagePw';
 
 export const globalStyle = css`
   * {
@@ -108,6 +109,7 @@ function Main() {
           <Route element={<ProtectedRoute />}>
             <Route path='my-page' element={<MyPage />} />
             <Route path='my-register' element={<MyRegisterList />} />
+            <Route path='change-password' element={<MyPageChangePw />} />
             <Route
               path='my-register/:registerId'
               element={<MyRegisterDetail />}
