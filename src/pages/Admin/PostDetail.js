@@ -93,8 +93,6 @@ const PostsDetail = () => {
     try {
       if (confirm('해당 게시물을 수정하시겠습니까?')) {
         const modifiedData = findModifiedData();
-
-        console.log(modifiedData);
         await updatePost(postId, modifiedData);
         alert('게시물이 수정되었습니다.');
         navigate('/admin/posts');

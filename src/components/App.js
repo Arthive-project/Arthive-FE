@@ -5,9 +5,11 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import AdminHeader from './AdminHeader';
 import AdminNavbar from './AdminNavbar';
+import { useRecoilState } from 'recoil';
+import { isAdminState } from '../recoil/auth';
 
 const App = () => {
-  const isAdmin = false;
+  const [isAdmin] = useRecoilState(isAdminState);
 
   return (
     <>
