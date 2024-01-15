@@ -5,13 +5,16 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import InfoList from '../components/InfoList';
 import Button from '../components/Button';
-import { requestLogin } from '../api/userAPI';
+import { getUserInfo, requestLogin } from '../api/userAPI';
 import { TokenAtom } from '../recoil/TokenAtom';
+import { getCookie, setCookie } from '../util/cookie';
+import { isAdminState } from '../recoil/auth';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPw] = useState('');
   const setAccessToken = useSetRecoilState(TokenAtom);
+  const setAdmin = useSetRecoilState(isAdminState);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -31,19 +34,37 @@ const Login = () => {
 
     if (result) {
       const { accessToken, refreshToken } = result;
-      localStorage.setItem('access', accessToken);
-      localStorage.setItem('refresh', refreshToken);
+      setCookie('accessToken', accessToken);
+      setCookie('refreshToken', refreshToken);
       setAccessToken(accessToken);
-      navigate(from);
+      const userEmail = await getUserInfo();
+
+      if (userEmail === 'admin123@arthive.com') {
+        setAdmin(true);
+        navigate('/admin');
+      } else {
+        navigate(from);
+      }
     }
   };
 
   useEffect(() => {
-    if (localStorage.getItem('access')) {
-      alert('잘못된 접근입니다.');
-      navigate('/');
-    }
-  }, []);
+    const checkAccessToken = async () => {
+      if (getCookie('accessToken')) {
+        const userEmail = await getUserInfo();
+
+        if (userEmail === 'admin123@arthive.com') {
+          setAdmin(true);
+          navigate('/admin');
+        } else {
+          alert('잘못된 접근입니다.');
+          navigate('/');
+        }
+      }
+    };
+
+    checkAccessToken();
+  }, [navigate, setAdmin]);
 
   return (
     <div css={login}>
