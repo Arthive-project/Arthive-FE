@@ -1,4 +1,5 @@
 import axios from '../lib/axios';
+import { getCookie } from '../util/cookie';
 
 export const requestLogin = async (email, password) => {
   try {
@@ -8,9 +9,8 @@ export const requestLogin = async (email, password) => {
     });
 
     if (result.status === 201) {
+      getUserInfo();
       return result.data.data;
-    } else {
-      throw new Error(`Unexpected status code: ${result.status}`);
     }
   } catch (error) {
     if (error.response && error.response.status === 400) {
@@ -35,9 +35,23 @@ export const getNewRefreshToken = async () => {
 };
 
 export const requestLogout = async () => {
-  const result = await axios.post('/auth/logout');
-  if (result.status === 201) return true;
-  else return false;
+  try {
+    const accessToken = getCookie('accessToken');
+    const result = await axios.post('/auth/logout', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    if (result.status === 201) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.error('로그아웃 실패:', error);
+    return false;
+  }
 };
 
 export const decodeToken = (token) => {
@@ -45,9 +59,6 @@ export const decodeToken = (token) => {
     const [header, payload, signature] = token.split('.');
     const decodedHeader = JSON.parse(atob(header));
     const decodedPayload = JSON.parse(atob(payload));
-
-    console.log('디코딩된 헤더:', decodedHeader);
-    console.log('디코딩된 페이로드:', decodedPayload);
 
     return {
       header: decodedHeader,
@@ -60,18 +71,45 @@ export const decodeToken = (token) => {
   }
 };
 
-// 사용자 정보 가져오기
 export const getUserInfo = async () => {
-  const token = await localStorage.getItem('access');
+  const token = await getCookie('accessToken');
 
   if (token) {
     const decodedToken = decodeToken(token);
 
     if (decodedToken) {
       const { payload } = decodedToken;
-      const { userId, username } = payload;
+      const { userId, userEmail } = payload;
       console.log('사용자 ID:', userId);
-      console.log('사용자 이름:', username);
+      console.log('사용자 userEmail:', userEmail);
+
+      return userEmail;
     }
+  }
+  return null;
+};
+
+export const getUserInfoById = async (userId) => {
+  try {
+    const result = await axios.get(`/user/${userId}`);
+    if (result.status === 200) {
+      return result.data.data;
+    }
+  } catch (error) {
+    alert('유저 정보를 가져오는데 실패했습니다.');
+    return null;
+  }
+};
+
+export const updateUserInfoById = async (userId, info) => {
+  try {
+    const result = await axios.patch(`/user/${userId}`, info);
+    if (result.status === 200) {
+      return result.data.data;
+    }
+  } catch (error) {
+    alert('유저 정보를 수정하는데 실패했습니다.');
+    console.log(error);
+    return null;
   }
 };
