@@ -4,16 +4,30 @@ import { useState, useEffect } from 'react';
 import BoardHeader from '../components/BoardHeader';
 import InfoList from '../components/InfoList';
 import Button from '../components/Button';
+import { getUserInfoById, updateUserInfoById } from '../api/userAPI';
+import { Link } from 'react-router-dom';
 
 const MyPage = () => {
   const [inputs, setInputs] = useState({
-    currentPwd: '',
-    newPwd: '',
-    checkNewPwd: '',
-    phoneNumber: '010-2323-3434',
+    email: '',
+    name: '',
+    phoneNumber: '',
+    birthday: '',
   });
 
-  const { newPwd, checkNewPwd, phoneNumber, currentPwd } = inputs;
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getUserInfoById(1);
+      console.log(response);
+      setInputs({
+        email: response.email,
+        name: response.name,
+        phoneNumber: response.phoneNumber,
+        birthday: response.birthday,
+      });
+    };
+    fetchData();
+  }, []);
 
   const handleChangeInfoInputs = (e) => {
     const { value, name } = e.target;
@@ -23,39 +37,25 @@ const MyPage = () => {
     });
   };
 
-  const handleSubmitInfo = (e) => {
+  const handleSubmitInfo = async (e) => {
     e.preventDefault();
-    if (!(isConfirmPwd && isConfirmCheckPwd && isConfirmPhoneNumber)) {
+    if (isConfirmPhoneNumber) {
+      console.log(inputs);
+      await updateUserInfoById(1, inputs);
+      alert('수정되었습니다.');
+    } else {
       alert('변경 사항을 조건에 맞게 입력해주세요.');
       return;
     }
   };
 
-  // 유효성 검사
-  const [isConfirmPwd, setIsConfirmPassword] = useState(false);
-  const [isConfirmCheckPwd, setIsConfirmCheckPassword] = useState(false);
   const [isConfirmPhoneNumber, setIsConfirmPhoneNumber] = useState(false);
-
-  const PWD_REGEX =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
   const PHONE_REGEX = /^010-\d{4}-\d{4}$/;
-
-  const validatePhoneNumber = () => PHONE_REGEX.test(phoneNumber);
-  const validatePassword = () => PWD_REGEX.test(newPwd);
-  const validateCheckPassword = () =>
-    checkNewPwd === newPwd || newPwd.length === 0;
-
-  useEffect(() => {
-    setIsConfirmPassword(validatePassword());
-  }, [newPwd]);
+  const validatePhoneNumber = () => PHONE_REGEX.test(inputs.phoneNumber);
 
   useEffect(() => {
     setIsConfirmPhoneNumber(validatePhoneNumber());
-  }, [phoneNumber]);
-
-  useEffect(() => {
-    setIsConfirmCheckPassword(validateCheckPassword());
-  }, [checkNewPwd]);
+  }, [inputs.phoneNumber]);
 
   return (
     <div css={my_page}>
@@ -83,59 +83,19 @@ const MyPage = () => {
             <tbody>
               <tr>
                 <th>이메일</th>
-                <td>abc123@naver.com</td>
-                {/* {data?.email} */}
+                <td>{inputs.email}</td>
               </tr>
               <tr>
-                <th>비밀번호 변경</th>
+                <th>비밀번호</th>
                 <td>
-                  <InfoList
-                    label={'현재 비밀번호'}
-                    input={{
-                      name: 'currentPwd',
-                      value: currentPwd,
-                      type: 'password',
-                      onChange: handleChangeInfoInputs,
-                      checkInput: {
-                        isConfirm: isConfirmPwd,
-                        errorMessage:
-                          '영문, 숫자, 특수문자 포함 8~20자 사이로 입력해주세요.',
-                      },
-                    }}
-                  />
-                  <InfoList
-                    label={'새 비밀번호'}
-                    input={{
-                      name: 'newPwd',
-                      value: newPwd,
-                      type: 'password',
-                      onChange: handleChangeInfoInputs,
-                      checkInput: {
-                        isConfirm: isConfirmPwd,
-                        errorMessage:
-                          '영문, 숫자, 특수문자 포함 8~20자 사이로 입력해주세요.',
-                      },
-                    }}
-                  />
-                  <InfoList
-                    label={'비밀번호 확인'}
-                    input={{
-                      name: 'checkNewPwd',
-                      value: checkNewPwd,
-                      type: 'password',
-                      onChange: handleChangeInfoInputs,
-                      checkInput: {
-                        isConfirm: isConfirmCheckPwd,
-                        errorMessage: '비밀번호가 일치하지 않습니다.',
-                      },
-                    }}
-                  />
+                  <Link to={'/change-password'}>
+                    <button css={new_pw}>비밀번호 변경</button>
+                  </Link>
                 </td>
               </tr>
               <tr>
                 <th>이름</th>
-                <td>한유진</td>
-                {/* <td>{data?.name}</td> */}
+                <td>{inputs.name}</td>
               </tr>
               <tr>
                 <th>휴대폰</th>
@@ -143,7 +103,7 @@ const MyPage = () => {
                   <InfoList
                     input={{
                       name: 'phoneNumber',
-                      value: phoneNumber,
+                      value: inputs.phoneNumber,
                       onChange: handleChangeInfoInputs,
                       checkInput: {
                         isConfirm: isConfirmPhoneNumber,
@@ -156,8 +116,7 @@ const MyPage = () => {
               </tr>
               <tr>
                 <th>생년월일</th>
-                <td>1998-09-09</td>
-                {/* <td>{data?.birth}</td> */}
+                <td>{inputs.birthday}</td>
               </tr>
             </tbody>
           </table>
@@ -257,14 +216,19 @@ const user_info = css`
       margin-right: 10px;
     }
   }
+`;
 
+const new_pw = css`
+  width: 100px;
+  height: 30px;
+`;
+
+const button_wrap = css`
   button {
     width: 370px;
     margin: 50px 5px;
   }
-`;
 
-const button_wrap = css`
   display: flex;
   justify-content: center;
 `;
