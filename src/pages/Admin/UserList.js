@@ -3,7 +3,6 @@ import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Pagination from '../../components/Pagination';
-import AdminFilter from '../../components/AdminFilter';
 import { getListAllUsers } from '../../api/adminAPI';
 
 const UserList = () => {
@@ -32,9 +31,6 @@ const UserList = () => {
   return (
     <div css={posts}>
       <h2>유저 관리</h2>
-      <div>
-        <AdminFilter />
-      </div>
       <div css={list}>
         <table>
           <tbody>
@@ -56,9 +52,6 @@ const UserList = () => {
           paginate={setCurrentPage}
         ></Pagination>
       </div>
-      <button css={rgst_btn}>
-        <Link to={'/admin/post-register'}>등록</Link>
-      </button>
     </div>
   );
 };
@@ -79,21 +72,6 @@ export const PostItem = ({ data }) => {
   );
 };
 
-const rgst_btn = css`
-  width: 102px;
-  height: 41px;
-  background-color: white;
-  border: 1px solid #5e5e5e;
-  font-size: 18px;
-  cursor: pointer;
-  float: right;
-
-  a {
-    text-decoration: none;
-    color: black;
-  }
-`;
-
 const list = css`
   width: 95%;
   min-width: 1000px;
@@ -110,6 +88,7 @@ const list = css`
     width: 100%;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
+    margin-top: 80px;
     margin-bottom: 30px;
 
     tr {

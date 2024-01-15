@@ -1,74 +1,26 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useState } from 'react';
-import { codenames } from '../data/formOptions';
 
-const INITIAL_STATE = {
-  category: '전체',
-  codename: '선택',
-  searchQuery: '',
-};
+const AdminFilter = ({ setSearchQuery1 }) => {
+  const [searchQuery, setSearchQuery] = useState('');
 
-const AdminFilter = () => {
-  const [state, setState] = useState(INITIAL_STATE);
-
-  const handleChangeState = (e) => {
-    setState({
-      ...state,
-      [e.target.name]: e.target.value,
-    });
+  const handleSearch = () => {
+    setSearchQuery1(searchQuery);
   };
 
   const onClearSelect = () => {
-    setState(INITIAL_STATE);
-  };
-
-  const handleSearch = async () => {
-    try {
-      // const { category, codename, searchQuery } = state;
-      // const response = await axios.get('/api/search', {
-      //   params: {
-      //     category,
-      //     codename,
-      //     searchQuery,
-      //   },
-      // });
-    } catch (error) {
-      console.log(error.message);
-    }
+    setSearchQuery('');
   };
 
   return (
     <div css={exhibition_filter}>
-      <select
-        name='category'
-        value={state.category}
-        onChange={handleChangeState}
-        css={filter_btn}
-      >
-        <option value={'분야'}>분야</option>
-        <option value={'전시'}>전시</option>
-        <option value={'공연'}>공연</option>
-        <option value={'축제'}>축제</option>
-      </select>
-      <select
-        name='codename'
-        value={state.codename}
-        onChange={handleChangeState}
-        css={codename_btn}
-      >
-        {codenames.map((group) => (
-          <option key={group.label} value={group.value}>
-            {group.label}
-          </option>
-        ))}
-      </select>
       <input
         css={search}
         type='text'
-        placeholder='공연명을 입력하세요'
-        value={state.searchQuery}
-        onChange={(e) => setState({ ...state, searchQuery: e.target.value })}
+        placeholder='공연/행사명을 입력하세요'
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
       ></input>
       <button onClick={handleSearch}>검색</button>
       <button onClick={onClearSelect}>초기화</button>
@@ -115,14 +67,6 @@ const exhibition_filter = css`
     text-decoration: none;
     color: black;
   }
-`;
-
-const filter_btn = css`
-  width: 102px;
-`;
-
-const codename_btn = css`
-  width: 115px;
 `;
 
 const search = css`
