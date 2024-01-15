@@ -12,6 +12,7 @@ const AdminFilter = ({ setSearchQuery, setSearchTriggered }) => {
 
   const onClearSelect = () => {
     setSearchQuery('');
+    setSearchQueryLocal('');
     setSearchTriggered(true);
   };
 
