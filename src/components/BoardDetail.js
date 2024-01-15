@@ -18,7 +18,6 @@ const detail_wrap = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // border: 1px solid red;
   width: 1120px;
   height: 500px;
   margin: 0 auto 100px auto;

@@ -1,70 +1,117 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useParams } from 'react-router-dom';
-import { getAllPostsById } from '../../api';
-import { useEffect, useState, useRef } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 import FormInput from '../../components/FormInput';
-import {
-  locationLists,
-  categories,
-  codenames,
-  FeeOptions,
-} from '../../data/formOptions';
+import { locationLists, codenames, FeeOptions } from '../../data/formOptions';
 import FileInput from '../../components/FileInput';
 import Form from '../../components/Form';
 import Button from '../../components/Button';
+import { getPostById } from '../../api/requestAPI';
+import { deletePost, updatePost } from '../../api/adminAPI';
+import { INITIAL_INPUTS } from '../../data/initialInputs';
 
 const PostsDetail = () => {
   const { postId } = useParams();
-  const [inputs, setInputs] = useState({});
+  const { kakao } = window;
+  const [inputs, setInputs] = useState(INITIAL_INPUTS);
+  const [address, setAddress] = useState('');
+  const [originalInputs, setOriginalInputs] = useState({});
   const imgRef = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getAllPostsById(postId);
+      const response = await getPostById(postId);
       setInputs(response);
+      setOriginalInputs(response);
     };
     fetchData();
-    console.log(inputs);
-  }, [inputs]);
+  }, []);
 
   const {
-    category,
-    codename,
-    title,
-    guname,
-    place,
-    address,
-    strtdate,
-    end_date,
-    use_trgt,
-    is_free,
-    use_fee,
-    org_link,
-    player,
-    program,
-    etc_des,
-    // posterUrl
+    CODENAME,
+    GUNAME,
+    TITLE,
+    PLACE,
+    DATE,
+    USE_TRGT,
+    USE_FEE,
+    PLAYER,
+    PROGRAM,
+    ETC_DESC,
+    ORG_LINK,
+    MAIN_IMG,
+    RGSTDATE,
+    STRTDATE,
+    END_DATE,
+    LOT,
+    LAT,
+    IS_FREE,
   } = inputs;
 
-  const locationOptions = [...locationLists];
+  useEffect(() => {
+    const geocoder = new kakao.maps.services.Geocoder();
+    const callback = function (result, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        setInputs((prevInputs) => ({
+          ...prevInputs,
+          LAT: result[0].address.x,
+          LOT: result[0].address.y,
+        }));
+      }
+    };
+
+    if (address) {
+      geocoder.addressSearch(address, callback);
+    }
+  }, [address]);
 
   const handleChangeInfoInputs = (e) => {
-    const { value, name } = e.target;
+    const { name, value } = e.target;
     setInputs({
       ...inputs,
       [name]: value,
     });
   };
 
-  const handleUpdate = () => {
-    // TODO 수정 로직 구현
-    console.log('수정하기');
+  const findModifiedData = () => {
+    const modifiedData = {};
+    Object.keys(inputs).forEach((key) => {
+      if (
+        inputs[key] !== null &&
+        inputs[key] !== undefined &&
+        inputs[key] !== originalInputs[key]
+      ) {
+        modifiedData[key] = inputs[key];
+      }
+    });
+    return modifiedData;
   };
 
-  const handleDelete = () => {
-    // TODO 삭제 로직 구현
-    console.log('삭제하기');
+  const handleUpdate = async () => {
+    try {
+      if (confirm('해당 게시물을 수정하시겠습니까?')) {
+        const modifiedData = findModifiedData();
+        await updatePost(postId, modifiedData);
+        alert('게시물이 수정되었습니다.');
+        navigate('/admin/posts');
+      }
+    } catch (error) {
+      alert(`게시물 수정에 실패했습니다. ${error.message}`);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      if (confirm('해당 게시물을 삭제하시겠습니까?')) {
+        await deletePost(postId);
+        alert('게시물이 삭제되었습니다.');
+        navigate('/admin/posts');
+      }
+    } catch (error) {
+      alert(`게시물 삭제에 실패했습니다. ${error.message}`);
+    }
   };
 
   return (
@@ -73,48 +120,53 @@ const PostsDetail = () => {
       <Form>
         <tr>
           <th>등록일</th>
-          <td>{inputs.regst_date}</td>
+          <td>{RGSTDATE}</td>
         </tr>
         <FormInput
-          label='대분류*'
-          name='category'
-          value={category}
-          type={'select'}
-          options={[...categories]}
-          onChange={handleChangeInfoInputs}
-        />
-        <FormInput
-          label='소분류*'
-          name='codename'
-          value={codename}
+          label='주제분류*'
+          name='CODENAME'
+          value={CODENAME}
           type={'select'}
           options={[...codenames]}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='공연/행사명*'
-          name='title'
-          value={title}
+          name='TITLE'
+          value={TITLE}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='자치구*'
-          name='guname'
-          value={guname}
+          name='GUNAME'
+          value={GUNAME}
           type={'select'}
-          options={locationOptions}
+          options={[...locationLists]}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='장소*'
-          name='place'
-          value={place}
+          name='PLACE'
+          value={PLACE}
+          placeholder={'서울시립미술관'}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='상세 주소*'
           name='address'
           value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+        <FormInput
+          label='위도*'
+          name='LAT'
+          value={LAT}
+          onChange={handleChangeInfoInputs}
+        />
+        <FormInput
+          label='경도*'
+          name='LOT'
+          value={LOT}
           onChange={handleChangeInfoInputs}
         />
         <tr>
@@ -122,15 +174,15 @@ const PostsDetail = () => {
           <td>
             <div css={period}>
               <input
-                name='strtdate'
-                value={strtdate}
+                name='STRTDATE'
+                value={STRTDATE}
                 type={'date'}
                 onChange={handleChangeInfoInputs}
               />
               ~
               <input
-                name='end_date'
-                value={end_date}
+                name='END_DATE'
+                value={END_DATE}
                 type={'date'}
                 onChange={handleChangeInfoInputs}
               />
@@ -139,51 +191,57 @@ const PostsDetail = () => {
         </tr>
         <FormInput
           label='이용 대상'
-          name='use_trgt'
-          value={use_trgt}
+          name='USE_TRGT'
+          value={USE_TRGT}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='유무료*'
-          name='is_free'
-          value={is_free}
+          name='IS_FREE'
+          value={IS_FREE}
           type={'select'}
           options={[...FeeOptions]}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='이용 요금*'
-          name='use_fee'
-          value={use_fee}
+          name='USE_FEE'
+          value={USE_FEE}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='홈페이지 주소'
-          name='org_link'
-          value={org_link}
+          name='ORG_LINK'
+          value={ORG_LINK}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='출연자 정보'
-          name='player'
-          value={player}
+          name='PLAYER'
+          value={PLAYER}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='프로그램 소개'
-          name='program'
-          value={program}
+          name='PROGRAM'
+          value={PROGRAM}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='기타 내용'
-          name='etc_des'
-          value={etc_des}
+          name='ETC_DESC'
+          value={ETC_DESC}
+          onChange={handleChangeInfoInputs}
+        />
+        <FormInput
+          label='DATE'
+          name='DATE'
+          value={DATE}
           onChange={handleChangeInfoInputs}
         />
         <FileInput
-          name='posterUrl'
-          value={''}
+          name='MAIN_IMG'
+          value={MAIN_IMG}
           onChange={handleChangeInfoInputs}
           imgRef={imgRef}
         />

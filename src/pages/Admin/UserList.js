@@ -3,104 +3,74 @@ import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Pagination from '../../components/Pagination';
-import AdminFilter from '../../components/AdminFilter';
-import { getListAllPosts, getOpenApi } from '../../api/adminAPI';
+import { getListAllUsers } from '../../api/adminAPI';
 
-const Posts = () => {
+const UserList = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchQuery1, setSearchQuery1] = useState('');
-  const [searchTriggered, setSearchTriggered] = useState(false);
-
   const postsPerPage = 10;
 
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
-
-  const currentPosts = posts
-    .filter((post) =>
-      post.TITLE.toLowerCase().includes(searchQuery1.toLowerCase())
-    )
-    .slice(indexOfFirst, indexOfLast);
+  const currentPosts = (posts) => {
+    let currentPosts = 0;
+    currentPosts = posts ? posts.slice(indexOfFirst, indexOfLast) : [];
+    return currentPosts;
+  };
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await getOpenApi();
-      if (res) {
-        const response = await getListAllPosts();
-        setPosts(response);
-      }
+      const res = await getListAllUsers();
+      console.log(res);
+      setPosts(res);
     };
 
     fetchData();
-  }, [searchTriggered]);
+  }, []);
 
   return (
     <div css={posts}>
-      <h2>게시물 관리</h2>
-      <div>
-        <AdminFilter
-          setSearchQuery={setSearchQuery1}
-          setSearchTriggered={setSearchTriggered}
-        />
-      </div>
+      <h2>유저 관리</h2>
       <div css={list}>
         <table>
           <tbody>
             <tr>
               <th>NO</th>
-              <th>카테고리</th>
-              <th>공연/행사명</th>
-              <th>작성일</th>
+              <th>이름</th>
+              <th>이메일</th>
+              <th>생년월일</th>
+              <th>권한</th>
             </tr>
-            {currentPosts.map((post) => (
-              <PostItem key={post.id} data={post} />
-            ))}
+            {currentPosts(posts).map((post) => {
+              return <PostItem key={post.id} data={post} />;
+            })}
           </tbody>
         </table>
         <Pagination
           postsPerPage={postsPerPage}
           totalPosts={posts.length}
           paginate={setCurrentPage}
-          currentPage={currentPage}
         ></Pagination>
       </div>
-      <Link to={'/admin/post-register'}>
-        <button css={rgst_btn}>등록</button>
-      </Link>
     </div>
   );
 };
 
-export default Posts;
+export default UserList;
 
 export const PostItem = ({ data }) => {
   return (
     <tr>
       <td css={id}>{data.id}</td>
-      <td css={codename}>{data.CODENAME}</td>
+      <td css={codename}>{data.name}</td>
       <td css={title}>
-        <Link to={`/admin/post-detail/${data.id}`}>{data.TITLE}</Link>
+        <Link to={`/admin/post-detail/${data.id}`}>{data.email}</Link>
       </td>
-      <td css={status}>{data.RGSTDATE}</td>
+      <td css={birthday}>{data.birthday}</td>
+      <td css={role}>유저</td>
     </tr>
   );
 };
-
-const rgst_btn = css`
-  width: 102px;
-  height: 41px;
-  background-color: white;
-  border: 1px solid #5e5e5e;
-  font-size: 18px;
-  cursor: pointer;
-  float: right;
-
-  a {
-    text-decoration: none;
-    color: black;
-  }
-`;
 
 const list = css`
   width: 95%;
@@ -118,6 +88,7 @@ const list = css`
     width: 100%;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
+    margin-top: 80px;
     margin-bottom: 30px;
 
     tr {
@@ -149,17 +120,21 @@ const list = css`
 `;
 
 const id = css`
-  width: 70px;
+  width: 100px;
 `;
 
 const codename = css`
-  width: 100px;
+  width: 200px;
 `;
 
 const title = css`
   width: 400px;
 `;
 
-const status = css`
-  width: 100px;
+const birthday = css`
+  width: 300px;
+`;
+
+const role = css`
+  width: 200px;
 `;

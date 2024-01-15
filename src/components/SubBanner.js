@@ -37,7 +37,7 @@ const SubBanner = ({ name, mapPoint, data }) => {
                 <BoardItem
                   key={item.id}
                   data={item}
-                  {...item}
+                  linkPath={`/exhibition/${item.id}`}
                   showLikeBtn={false}
                 />
               }

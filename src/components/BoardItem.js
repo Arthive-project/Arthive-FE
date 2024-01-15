@@ -8,15 +8,16 @@ const BoardItem = ({ data, linkPath, showLikeBtn = true }) => {
     <div css={item}>
       <div css={poster}>
         <Link to={linkPath}>
-          <img src={data.posterUrl} alt='포스터' />
+          <img src={data.MAIN_IMG} alt='포스터' />
         </Link>
       </div>
       <div css={title}>
-        <Link to={linkPath}>{data.title}</Link>
+        <Link to={linkPath}>{data.TITLE}</Link>
         {showLikeBtn && <LikeBtn />}
       </div>
       <div css={period}>
-        {data.startDate} ~ {data.endDate}
+        {/* {data.STRTDATE} ~ {data.END_DATE} */}
+        {data.DATE}
       </div>
     </div>
   );
@@ -29,8 +30,8 @@ const item = css`
   flex-direction: column;
   width: 250px;
   height: 100%;
+  max-height: 1000px;
   margin-bottom: 20px;
-  border
 `;
 
 const poster = css`
@@ -48,8 +49,8 @@ const title = css`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 38px;
-  font-size: 20px;
+  max-height: 100%;
+  font-size: 19px;
   font-weight: 500;
 
   a {

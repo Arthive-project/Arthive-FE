@@ -1,15 +1,24 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 import InfoList from '../components/InfoList';
 import Button from '../components/Button';
+import { getUserInfo, requestLogin } from '../api/userAPI';
+import { TokenAtom } from '../recoil/TokenAtom';
+import { getCookie, setCookie } from '../util/cookie';
+import { isAdminState } from '../recoil/auth';
 
 const Login = () => {
-  const navigate = useNavigate();
-
   const [email, setEmail] = useState('');
   const [password, setPw] = useState('');
+  const setAccessToken = useSetRecoilState(TokenAtom);
+  const setAdmin = useSetRecoilState(isAdminState);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.redirectedFrom?.pathname || '/';
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -19,10 +28,43 @@ const Login = () => {
     setPw(e.target.value);
   };
 
-  const handleSubmitLogin = (e) => {
+  const handleSubmitLogin = async (e) => {
     e.preventDefault();
-    navigate('/');
+    const result = await requestLogin(email, password);
+
+    if (result) {
+      const { accessToken, refreshToken } = result;
+      setCookie('accessToken', accessToken);
+      setCookie('refreshToken', refreshToken);
+      setAccessToken(accessToken);
+      const userEmail = await getUserInfo();
+
+      if (userEmail === 'admin123@arthive.com') {
+        setAdmin(true);
+        navigate('/admin');
+      } else {
+        navigate(from);
+      }
+    }
   };
+
+  useEffect(() => {
+    const checkAccessToken = async () => {
+      if (getCookie('accessToken')) {
+        const userEmail = await getUserInfo();
+
+        if (userEmail === 'admin123@arthive.com') {
+          setAdmin(true);
+          navigate('/admin');
+        } else {
+          alert('잘못된 접근입니다.');
+          navigate('/');
+        }
+      }
+    };
+
+    checkAccessToken();
+  }, [navigate, setAdmin]);
 
   return (
     <div css={login}>
@@ -50,7 +92,7 @@ const Login = () => {
           <Button name='로그인' form='login' type='submit' />
         </form>
         <section>
-          <Link to='/signup' css={link_signup}>
+          <Link to='/sign-up' css={link_signup}>
             회원가입
           </Link>
         </section>
@@ -78,7 +120,7 @@ const login_wrap = css`
   height: 480px;
   border-radius: 30px;
   background-color: white;
-  margin: 0 auto;
+  margin: 70px auto 0 auto;
   padding: 50px 35px;
   overflow: scroll;
 `;

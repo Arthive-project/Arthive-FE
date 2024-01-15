@@ -71,9 +71,31 @@ const ApplicationFormPage = () => {
 
   const handleSubmitRegister = (e) => {
     e.preventDefault();
+
+    if (
+      !username ||
+      !email ||
+      !phoneNumber ||
+      !category ||
+      !exhibitionTitle ||
+      !area ||
+      !place ||
+      !address ||
+      !startDate ||
+      !endDate ||
+      !homePage ||
+      !use_trgt ||
+      !isFree ||
+      !entranceFee ||
+      !file
+    ) {
+      alert('필수 항목을 모두 입력해주세요.');
+      return;
+    }
+
     alert('입력하신 정보로 등록 신청되었습니다.');
     console.log(inputs);
-    navigate('/exhibition');
+    navigate('/');
   };
 
   return (

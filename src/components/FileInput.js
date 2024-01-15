@@ -1,6 +1,6 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const imgPreview = css`
   width: 200px;
@@ -11,18 +11,24 @@ function FileInput({ name, value, onChange, imgRef }) {
 
   const saveImgFile = () => {
     if (imgRef.current) {
-      // imgRef가 정의되어 있는 경우에만 처리
       const file = imgRef.current.files[0];
       if (file) {
-        // 파일이 존재하는 경우에만 처리
         const reader = new FileReader();
-        reader.readAsDataURL(file);
         reader.onloadend = () => {
           setImgFile(reader.result);
+          onChange({ target: { name, value: reader.result } });
         };
+        reader.readAsDataURL(file);
       }
     }
   };
+
+  useEffect(() => {
+    setImgFile(
+      value || `${process.env.PUBLIC_URL}/assets/register-preview.png`
+    );
+  }, [value]);
+
   return (
     <tr>
       <th>이미지</th>
@@ -40,11 +46,7 @@ function FileInput({ name, value, onChange, imgRef }) {
           type='file'
           accept='image/*'
           name={name}
-          value={value}
-          onChange={(e) => {
-            onChange(e);
-            saveImgFile();
-          }}
+          onChange={saveImgFile}
           ref={imgRef}
         />
       </td>

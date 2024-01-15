@@ -16,7 +16,6 @@ import Button from '../components/Button';
 import FileInput from '../components/FileInput';
 
 const MyRegisterDetail = () => {
-  // TODO: 필수 입력란 alert
   const { registerId } = useParams();
   const register = getMyRegisterById(registerId);
   const [inputs, setInputs] = useState(register);
@@ -33,7 +32,6 @@ const MyRegisterDetail = () => {
     endDate,
     artist,
     gallerySiteUrl,
-    // posterUrl,
     category,
     codename,
     Fee,

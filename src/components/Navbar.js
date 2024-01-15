@@ -1,10 +1,41 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { TokenAtom, isLoginSelector } from '../recoil/TokenAtom';
+import { requestLogout } from '../api/userAPI';
+import { getCookie, removeCookie } from '../util/cookie';
+import { isAdminState } from '../recoil/auth';
 
 const Navbar = () => {
   const [isSubMenuVisible, setSubMenuVisible] = useState(false);
+  const isLogin = useRecoilValue(isLoginSelector);
+  const setAccessToken = useSetRecoilState(TokenAtom);
+  const setAdmin = useSetRecoilState(isAdminState);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    if (window.confirm('로그아웃 하시겠습니까?')) {
+      await requestLogout();
+      /**
+       * CORS 오류로 response 값에 상관없이 쿠키 제거 (임시)
+       */
+      removeCookie('accessToken');
+      removeCookie('refreshToken');
+      setAccessToken(null);
+      setAdmin(false);
+      navigate('/');
+    }
+  };
+
+  useEffect(() => {
+    const access = getCookie('accessToken');
+    const refresh = getCookie('refreshToken');
+    if (access && refresh) {
+      setAccessToken(access);
+    }
+  }, [setAccessToken]);
 
   return (
     <header css={nav_wrap}>
@@ -135,11 +166,17 @@ const Navbar = () => {
         </section>
 
         <span css={nav_user}>
-          {/* <div id='user-loggedIn'></div> */}
-          <div id='user-loggedOut'>
-            <Link to='/login'>로그인</Link>
-            <Link to='/sign-up'>회원가입</Link>
-          </div>
+          {isLogin ? (
+            <div id='user-loggedIn'>
+              유저 이름
+              <Link onClick={handleLogout}>로그아웃</Link>
+            </div>
+          ) : (
+            <div id='user-loggedOut'>
+              <Link to='/login'>로그인</Link>
+              <Link to='/sign-up'>회원가입</Link>
+            </div>
+          )}
         </span>
       </nav>
     </header>

@@ -2,13 +2,25 @@
 import { css } from '@emotion/react';
 import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineLogout } from 'react-icons/md';
+import { requestLogout } from '../api/userAPI';
+import { removeCookie } from '../util/cookie';
+import { useSetRecoilState } from 'recoil';
+import { TokenAtom } from '../recoil/TokenAtom';
+import { isAdminState } from '../recoil/auth';
 
 const AdminHeader = () => {
   const navigate = useNavigate();
+  const setAccessToken = useSetRecoilState(TokenAtom);
+  const setAdmin = useSetRecoilState(isAdminState);
 
   const handleLogout = async () => {
     if (window.confirm('로그아웃 하시겠습니까?')) {
       try {
+        await requestLogout();
+        setAdmin(false);
+        removeCookie('accessToken');
+        removeCookie('refreshToken');
+        setAccessToken(null);
         alert('로그아웃이 완료 되었습니다.');
         navigate('/');
       } catch {

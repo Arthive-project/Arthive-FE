@@ -5,14 +5,15 @@ import BoardHeader from '../components/BoardHeader';
 import InfoList from '../components/InfoList';
 import Button from '../components/Button';
 import { getUserInfoById, updateUserInfoById } from '../api/userAPI';
-import { Link } from 'react-router-dom';
 
-const MyPage = () => {
+const MyPageChangePw = () => {
   const [inputs, setInputs] = useState({
-    email: '',
-    name: '',
-    phoneNumber: '',
-    birthday: '',
+    curPassword: '',
+    newPwd: '',
+    checkNewPwd: '',
+  });
+  const [pw, setPw] = useState({
+    password: '',
   });
 
   useEffect(() => {
@@ -20,10 +21,10 @@ const MyPage = () => {
       const response = await getUserInfoById(1);
       console.log(response);
       setInputs({
-        email: response.email,
-        name: response.name,
-        phoneNumber: response.phoneNumber,
-        birthday: response.birthday,
+        curPassword: response.password,
+      });
+      setPw({
+        password: response.password,
       });
     };
     fetchData();
@@ -31,7 +32,7 @@ const MyPage = () => {
 
   const handleChangeInfoInputs = (e) => {
     const { value, name } = e.target;
-    setInputs({
+    setPw({
       ...inputs,
       [name]: value,
     });
@@ -39,9 +40,9 @@ const MyPage = () => {
 
   const handleSubmitInfo = async (e) => {
     e.preventDefault();
-    if (isConfirmPhoneNumber) {
-      console.log(inputs);
-      await updateUserInfoById(1, inputs);
+    if (isConfirmPwd && isConfirmCheckPwd) {
+      console.log(pw);
+      await updateUserInfoById(1, pw);
       alert('수정되었습니다.');
     } else {
       alert('변경 사항을 조건에 맞게 입력해주세요.');
@@ -49,74 +50,83 @@ const MyPage = () => {
     }
   };
 
-  const [isConfirmPhoneNumber, setIsConfirmPhoneNumber] = useState(false);
-  const PHONE_REGEX = /^010-\d{4}-\d{4}$/;
-  const validatePhoneNumber = () => PHONE_REGEX.test(inputs.phoneNumber);
+  // 유효성 검사
+  const [isConfirmPwd, setIsConfirmPassword] = useState(false);
+  const [isConfirmCheckPwd, setIsConfirmCheckPassword] = useState(false);
+
+  const PWD_REGEX =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
+
+  const validatePassword = () => PWD_REGEX.test(inputs.newPwd);
+  const validateCheckPassword = () =>
+    inputs.checkNewPwd === inputs.newPwd || inputs.newPwd.length === 0;
 
   useEffect(() => {
-    setIsConfirmPhoneNumber(validatePhoneNumber());
-  }, [inputs.phoneNumber]);
+    setIsConfirmPassword(validatePassword());
+  }, [inputs.newPwd]);
+
+  useEffect(() => {
+    setIsConfirmCheckPassword(validateCheckPassword());
+  }, [inputs.checkNewPwd]);
 
   return (
     <div css={my_page}>
       <BoardHeader
-        text='회원 정보'
+        text='비밀번호 변경'
         showHr={false}
         showText={true}
-        subText='회원 정보 관리 페이지입니다.'
+        subText='안전한 비밀번호로 내정보를 보호하세요.'
       />
-      <div css={board_btn}>
-        <a href={'/my-page'}>
-          <div>회원 정보 수정</div>
-        </a>
-        <a href={'/my-register'}>
-          <div>공연/행사 등록신청 내역</div>
-        </a>
-        <a href={'/my-register'}>
-          <div>작성한 리뷰 관리</div>
-        </a>
-      </div>
       <div css={user_info}>
-        <h2>기본 정보</h2>
+        <h2>비밀번호 변경</h2>
         <form id='newMyInfo' onSubmit={handleSubmitInfo}>
           <table>
             <tbody>
               <tr>
-                <th>이메일</th>
-                <td>{inputs.email}</td>
-              </tr>
-              <tr>
                 <th>비밀번호</th>
                 <td>
-                  <Link to={'/change-password'}>
-                    <button css={new_pw}>비밀번호 변경</button>
-                  </Link>
-                </td>
-              </tr>
-              <tr>
-                <th>이름</th>
-                <td>{inputs.name}</td>
-              </tr>
-              <tr>
-                <th>휴대폰</th>
-                <td>
                   <InfoList
+                    label={'현재 비밀번호'}
                     input={{
-                      name: 'phoneNumber',
-                      value: inputs.phoneNumber,
+                      name: 'currentPwd',
+                      value: inputs.currentPwd,
+                      type: 'password',
                       onChange: handleChangeInfoInputs,
                       checkInput: {
-                        isConfirm: isConfirmPhoneNumber,
+                        isConfirm: isConfirmPwd,
                         errorMessage:
-                          '형식에 맞춰 입력해주세요. (ex. 010-0000-0000)',
+                          '영문, 숫자, 특수문자 포함 8~20자 사이로 입력해주세요.',
+                      },
+                    }}
+                  />
+                  <InfoList
+                    label={'새 비밀번호'}
+                    input={{
+                      name: 'newPwd',
+                      value: inputs.newPwd,
+                      type: 'password',
+                      onChange: handleChangeInfoInputs,
+                      checkInput: {
+                        isConfirm: isConfirmPwd,
+                        errorMessage:
+                          '영문, 숫자, 특수문자 포함 8~20자 사이로 입력해주세요.',
+                      },
+                    }}
+                  />
+                  <InfoList
+                    label={'비밀번호 확인'}
+                    input={{
+                      name: 'checkNewPwd',
+                      value: inputs.checkNewPwd,
+                      type: 'password',
+                      onChange: handleChangeInfoInputs,
+                      checkInput: {
+                        isConfirm: isConfirmCheckPwd,
+                        errorMessage: '비밀번호가 일치하지 않습니다.',
                       },
                     }}
                   />
                 </td>
-              </tr>
-              <tr>
-                <th>생년월일</th>
-                <td>{inputs.birthday}</td>
               </tr>
             </tbody>
           </table>
@@ -129,7 +139,7 @@ const MyPage = () => {
   );
 };
 
-export default MyPage;
+export default MyPageChangePw;
 
 const my_page = css`
   display: flex;
@@ -137,36 +147,6 @@ const my_page = css`
   align-items: center;
   width: 1160px;
   margin: 0 auto;
-`;
-
-const board_btn = css`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 50px;
-
-  a {
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    font-size: 18px;
-  }
-
-  div {
-    border: 1px solid black;
-    width: 385px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #d9d9d9;
-  }
-
-  div:hover {
-    background-color: black;
-    color: white;
-  }
 `;
 
 const user_info = css`
@@ -216,11 +196,6 @@ const user_info = css`
       margin-right: 10px;
     }
   }
-`;
-
-const new_pw = css`
-  width: 100px;
-  height: 30px;
 `;
 
 const button_wrap = css`

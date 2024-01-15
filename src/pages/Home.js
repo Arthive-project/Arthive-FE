@@ -18,12 +18,12 @@ const Home = () => {
         data={hotExhibitions}
       />
       <SubBanner
-        name='꼭 가봐야 할 공연'
+        name={`${currentMonth}월 추천 공연`}
         mapPoint={'/concert-all'}
         data={recConcert}
       />
       <SubBanner
-        name={`${currentMonth}월 추천 축제`}
+        name='꼭 가봐야 할 축제'
         mapPoint={'/festival-all'}
         data={recFestival}
       />

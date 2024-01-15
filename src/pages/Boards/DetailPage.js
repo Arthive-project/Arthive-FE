@@ -7,56 +7,57 @@ import BoardHeader from '../../components/BoardHeader';
 import AddContainer from '../../components/AddContainer';
 import KaKaoMap from '../../components/KakaoMap';
 import LikeBtn from '../../components/LikeBtn';
-import { getDetailByCategory } from '../../api';
+import { getPostDetailById } from '../../api/requestAPI';
 
-const DetailPage = ({ category }) => {
+const DetailPage = () => {
   const { itemId } = useParams();
-  const [item, setItem] = useState(null);
+  const [item, setItem] = useState({});
+  const [address, setAddress] = useState('');
 
   useEffect(() => {
     const fetchItem = async () => {
-      const result = await getDetailByCategory(category, itemId);
+      const result = await getPostDetailById(itemId);
       setItem(result);
     };
+
     fetchItem();
-  }, [category, itemId]);
+  }, [itemId]);
+
+  const handleAddressChange = (newAddress) => {
+    setAddress(newAddress);
+  };
 
   return (
     <>
-      <BoardHeader text={item.category} showHr={true} />
-      <BoardDetail src={item.posterUrl}>
-        <h2>
-          서울시향과 함께하는 미라클(美樂Classic)서울 - 크리스마스 페스티벌
-          {item.title}
-        </h2>
+      <BoardHeader text={item.CODENAME} showHr={true} />
+      <BoardDetail src={item.MAIN_IMG}>
+        <h2>{item.TITLE}</h2>
         <table>
           <tbody>
             <tr>
               <th>장소</th>
-              <td>{item.galleryName}</td>
+              <td>{item.PLACE}</td>
             </tr>
             <tr>
               <th>주소</th>
-              <td>{item.address}</td>
+              <td>{address}</td>
             </tr>
             <tr>
               <th>기간</th>
-              <td>
-                {item.startDate} ~ {item.endDate}
-              </td>
+              <td>{item.DATE}</td>
             </tr>
             <tr>
               <th>대상</th>
-              <td>{item.use_trgt}</td>
+              <td>{item.USE_TRGT}</td>
             </tr>
             <tr>
               <th>요금</th>
-              <td>{item.isFree || item.entranceFee}</td>
+              <td>{item.IS_FREE || item.USE_FEE}</td>
             </tr>
             <tr>
               <th>사이트</th>
               <td>
-                <a href={item.gallerySiteUrl}>홈페이지 바로가기</a>
+                <a href={item.ORG_LINK}>홈페이지 바로가기</a>
               </td>
             </tr>
           </tbody>
@@ -65,27 +66,27 @@ const DetailPage = ({ category }) => {
       </BoardDetail>
 
       <AddContainer>
-        {item.player || item.program || item.etc_des ? (
+        {item.PLAYER || item.PROGRAM ? (
           <div css={additional_info}>
             <h2>추가 정보</h2>
             <p>
               ㅇ<span>출연자 정보: </span>
-              {item.player}
+              {item.PLAYER}
             </p>
             <p>
               ㅇ <span>프로그램 소개: </span>
-              {item.program}
-            </p>
-            <p>
-              ㅇ <span>기타 내용: </span>
-              {item.etc_des}
+              {item.PROGRAM}
             </p>
           </div>
         ) : (
           <></>
         )}
         <h2>위치 안내</h2>
-        <KaKaoMap address={item.address} />
+        <KaKaoMap
+          LOT={item.LOT}
+          LAT={item.LAT}
+          onAddressChange={handleAddressChange}
+        />
       </AddContainer>
     </>
   );
