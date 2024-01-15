@@ -1,34 +1,37 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { TokenAtom, isLoginSelector } from '../recoil/TokenAtom';
-// import { requestLogout } from '../api/userAPI';
+import { requestLogout } from '../api/userAPI';
+import { getCookie, removeCookie } from '../util/cookie';
+import { isAdminState } from '../recoil/auth';
 
 const Navbar = () => {
   const [isSubMenuVisible, setSubMenuVisible] = useState(false);
   const isLogin = useRecoilValue(isLoginSelector);
   const setAccessToken = useSetRecoilState(TokenAtom);
+  const setAdmin = useSetRecoilState(isAdminState);
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
-    try {
-      if (window.confirm('로그아웃 하시겠습니까?')) {
-        // const response = await requestLogout();
-        // if (response) {
-        localStorage.removeItem('access');
-        localStorage.removeItem('refresh');
-        setAccessToken(null);
-        // }
-      }
-    } catch (error) {
-      console.log(error);
+    if (window.confirm('로그아웃 하시겠습니까?')) {
+      await requestLogout();
+      /**
+       * CORS 오류로 response 값에 상관없이 쿠키 제거 (임시)
+       */
+      removeCookie('accessToken');
+      removeCookie('refreshToken');
+      setAccessToken(null);
+      setAdmin(false);
+      navigate('/');
     }
   };
 
   useEffect(() => {
-    const access = localStorage.getItem('access');
-    const refresh = localStorage.getItem('refresh');
+    const access = getCookie('accessToken');
+    const refresh = getCookie('refreshToken');
     if (access && refresh) {
       setAccessToken(access);
     }
