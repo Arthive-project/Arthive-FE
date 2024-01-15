@@ -2,15 +2,17 @@
 import { css } from '@emotion/react';
 import { useState } from 'react';
 
-const AdminFilter = ({ setSearchQuery1 }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+const AdminFilter = ({ setSearchQuery, setSearchTriggered }) => {
+  const [searchQuery, setSearchQueryLocal] = useState('');
 
   const handleSearch = () => {
-    setSearchQuery1(searchQuery);
+    setSearchQuery(searchQuery);
+    setSearchTriggered(true);
   };
 
   const onClearSelect = () => {
     setSearchQuery('');
+    setSearchTriggered(true);
   };
 
   return (
@@ -20,7 +22,7 @@ const AdminFilter = ({ setSearchQuery1 }) => {
         type='text'
         placeholder='공연/행사명을 입력하세요'
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={(e) => setSearchQueryLocal(e.target.value)}
       ></input>
       <button onClick={handleSearch}>검색</button>
       <button onClick={onClearSelect}>초기화</button>

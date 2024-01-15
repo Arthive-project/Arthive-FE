@@ -9,15 +9,19 @@ import { getListAllPosts, getOpenApi } from '../../api/adminAPI';
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery1, setSearchQuery1] = useState('');
+  const [searchTriggered, setSearchTriggered] = useState(false);
+
   const postsPerPage = 10;
 
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
-  const currentPosts = (posts) => {
-    let currentPosts = 0;
-    currentPosts = posts ? posts.slice(indexOfFirst, indexOfLast) : [];
-    return currentPosts;
-  };
+
+  const currentPosts = posts
+    .filter((post) =>
+      post.TITLE.toLowerCase().includes(searchQuery1.toLowerCase())
+    )
+    .slice(indexOfFirst, indexOfLast);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,13 +33,16 @@ const Posts = () => {
     };
 
     fetchData();
-  }, []);
+  }, [searchTriggered]);
 
   return (
     <div css={posts}>
       <h2>게시물 관리</h2>
       <div>
-        <AdminFilter />
+        <AdminFilter
+          setSearchQuery={setSearchQuery1}
+          setSearchTriggered={setSearchTriggered}
+        />
       </div>
       <div css={list}>
         <table>
@@ -46,9 +53,9 @@ const Posts = () => {
               <th>공연/행사명</th>
               <th>작성일</th>
             </tr>
-            {currentPosts(posts).map((post) => {
-              return <PostItem key={post.id} data={post} />;
-            })}
+            {currentPosts.map((post) => (
+              <PostItem key={post.id} data={post} />
+            ))}
           </tbody>
         </table>
         <Pagination
