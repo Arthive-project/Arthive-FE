@@ -27,66 +27,91 @@
 ```
 📦src
  ┣ 📂api
+ ┃ ┣ 📜admin-application-mock.json
+ ┃ ┣ 📜admin-posts-mock.json
+ ┃ ┣ 📜adminAPI.js
  ┃ ┣ 📜exhibition-mock.json
  ┃ ┣ 📜home-mock.json
  ┃ ┣ 📜index.js
  ┃ ┣ 📜myRegister-mock.json
- ┃ ┗ 📜seoulData.json
+ ┃ ┣ 📜requestAPI.js
+ ┃ ┗ 📜userAPI.js
  ┣ 📂components
  ┃ ┣ 📜AdBanner.js
+ ┃ ┣ 📜AddContainer.js
+ ┃ ┣ 📜AdminFilter.js
+ ┃ ┣ 📜AdminHeader.js
+ ┃ ┣ 📜AdminNavItem.js
+ ┃ ┣ 📜AdminNavbar.js
  ┃ ┣ 📜App.js
  ┃ ┣ 📜BoardDetail.js
  ┃ ┣ 📜BoardHeader.js
  ┃ ┣ 📜BoardItem.js
  ┃ ┣ 📜BoardList.js
  ┃ ┣ 📜Button.js
- ┃ ┣ 📜ExhibitionFilter.js
- ┃ ┣ 📜ExhibitionItem.js
  ┃ ┣ 📜FileInput.js
+ ┃ ┣ 📜Filter.js
  ┃ ┣ 📜Footer.js
  ┃ ┣ 📜Form.js
  ┃ ┣ 📜FormInput.js
- ┃ ┣ 📜GalleryItem.js
  ┃ ┣ 📜InfoList.js
  ┃ ┣ 📜KakaoMap.js
  ┃ ┣ 📜LikeBtn.js
  ┃ ┣ 📜Navbar.js
  ┃ ┣ 📜Pagination.js
+ ┃ ┣ 📜ScrollToTop.js
+ ┃ ┣ 📜SearchBar.js
  ┃ ┗ 📜SubBanner.js
  ┣ 📂data
- ┃ ┗ 📜locationLists.js
- ┣ 📂hooks
+ ┃ ┣ 📜formOptions.js
+ ┃ ┗ 📜initialInputs.js
+ ┣ 📂lib
+ ┃ ┗ 📜axios.js
  ┣ 📂pages
  ┃ ┣ 📂Admin
- ┃ ┃ ┣ 📜ExhibitionRegister.js
- ┃ ┃ ┗ 📜GalleryRegister.js
+ ┃ ┃ ┣ 📜Admin.js
+ ┃ ┃ ┣ 📜Application.js
+ ┃ ┃ ┣ 📜ApplicationDetail.js
+ ┃ ┃ ┣ 📜PostDetail.js
+ ┃ ┃ ┣ 📜PostRegister.js
+ ┃ ┃ ┣ 📜Posts.js
+ ┃ ┃ ┗ 📜UserList.js
  ┃ ┣ 📂Boards
- ┃ ┃ ┣ 📜About.js
- ┃ ┃ ┣ 📜BoardsDetail.js
+ ┃ ┃ ┣ 📜ApplicationFormPage.js
  ┃ ┃ ┣ 📜Citizen.js
  ┃ ┃ ┣ 📜Classical.js
  ┃ ┃ ┣ 📜Concert.js
+ ┃ ┃ ┣ 📜ConcertAll.js
  ┃ ┃ ┣ 📜Culture.js
  ┃ ┃ ┣ 📜Dance.js
  ┃ ┃ ┣ 📜DetailPage.js
  ┃ ┃ ┣ 📜Exhibition.js
- ┃ ┃ ┣ 📜ExhibitionRegisterUser.js
- ┃ ┃ ┣ 📜MapContainer.js
+ ┃ ┃ ┣ 📜FestivalAll.js
  ┃ ┃ ┣ 📜Musical.js
  ┃ ┃ ┣ 📜Nature.js
  ┃ ┃ ┣ 📜OtherFestival.js
+ ┃ ┃ ┣ 📜Review.js
+ ┃ ┃ ┣ 📜ReviewDetail.js
+ ┃ ┃ ┣ 📜ReviewWrite.js
  ┃ ┃ ┣ 📜Theater.js
  ┃ ┃ ┗ 📜Tradition.js
  ┃ ┣ 📜Home.js
  ┃ ┣ 📜Login.js
  ┃ ┣ 📜MyLikes.js
  ┃ ┣ 📜MyPage.js
+ ┃ ┣ 📜MyPagePw.js
  ┃ ┣ 📜MyRegisterDetail.js
  ┃ ┣ 📜MyRegisterList.js
  ┃ ┣ 📜NotFound.js
  ┃ ┣ 📜Search.js
  ┃ ┗ 📜SignUp.js
- ┣ 📂store
+ ┣ 📂recoil
+ ┃ ┣ 📜TokenAtom.js
+ ┃ ┗ 📜auth.js
+ ┣ 📂routes
+ ┃ ┗ 📜ProtectedRoute.js
+ ┣ 📂util
+ ┃ ┗ 📜cookie.js
  ┣ 📜Main.js
  ┗ 📜index.js
 ```
@@ -225,7 +250,8 @@
      
       
 ![어드민_게시물등록](https://github.com/Arthive-project/Arthive-FE/assets/111138337/4a2c8363-f2f7-40d7-bb67-6bf91900a3a5)
-  
+  ![게시물검색필터](https://github.com/Arthive-project/Arthive-FE/assets/111138337/fdc8c369-b56d-472c-aea7-b4864e3f2a1d)
+
 2. 문화 정보 게시물 관리
     - 문화행사 정보 게시물 전체 렌더링
     - 문화행사 정보 키워드 검색
