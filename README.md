@@ -3,7 +3,7 @@
 <img alt="" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcFDeKg%2FbtsAPXufKUu%2FUSRknuDPdlFkaWfpPgPS2k%2Fimg.png">
 
 
-# 0. 프로젝트 소개
+# 1. 프로젝트 소개
 ### 기획 의도 및 서비스 소개
 
 - Arthive(아타이브)는 평소 전시, 공연 행사에 관심이 많은 사용자에게 서울 모든 문화 행사 정보를 소개합니다. 서울의 전시, 공연 행사를 관람하려는 사용자에게 편리함으로 제공하고자 기획하였습니다.🎨
@@ -17,14 +17,14 @@
 - 프론트엔드 1명, 백엔드 2명
 
   
-# 1. 개발 환경
+# 2. 개발 환경
 - FE: React, JavaScript, Emotion, Recoil, Axios
 - 버전 및 이슈관리: Github
 - 협업 툴: Notion, Slack, Discord
 - 디자인: Figma
 
 
-# 2. 구현 기능 동작 예시 🛠
+# 3. 구현 기능 동작 예시 🛠
 
 <details>
  <summary>1. 메인페이지 & 네비바</summary>
@@ -175,7 +175,7 @@
     - 유저 상세 정보 확인
 </details>
 
-# 3. 프로젝트 회고 👍
+# 4. 프로젝트 회고 👍
 
 - 아타이브는 첫 팀 프로젝트이자 기획, 디자인, 팀원 모집, 개발까지 한 가지의 서비스가 탄생하기까지의 과정을 모두 겪어보며 많은 걸 배우게 해준 프로젝트이다.
 - 데이터, UX/UI, 기능 등 확장성을 고려하여 개발해야 한다는 것을 깨달았으며, 개발을 진행할수록 이론 공부와 기본기가 가장 중요하다는 것을 알게 되었다.
