@@ -23,100 +23,8 @@
 - 협업 툴: Notion, Slack, Discord
 - 디자인: Figma
 
-# 2. 프로젝트 구조
-```
-📦src
- ┣ 📂api
- ┃ ┣ 📜admin-application-mock.json
- ┃ ┣ 📜admin-posts-mock.json
- ┃ ┣ 📜adminAPI.js
- ┃ ┣ 📜exhibition-mock.json
- ┃ ┣ 📜home-mock.json
- ┃ ┣ 📜index.js
- ┃ ┣ 📜myRegister-mock.json
- ┃ ┣ 📜requestAPI.js
- ┃ ┗ 📜userAPI.js
- ┣ 📂components
- ┃ ┣ 📜AdBanner.js
- ┃ ┣ 📜AddContainer.js
- ┃ ┣ 📜AdminFilter.js
- ┃ ┣ 📜AdminHeader.js
- ┃ ┣ 📜AdminNavItem.js
- ┃ ┣ 📜AdminNavbar.js
- ┃ ┣ 📜App.js
- ┃ ┣ 📜BoardDetail.js
- ┃ ┣ 📜BoardHeader.js
- ┃ ┣ 📜BoardItem.js
- ┃ ┣ 📜BoardList.js
- ┃ ┣ 📜Button.js
- ┃ ┣ 📜FileInput.js
- ┃ ┣ 📜Filter.js
- ┃ ┣ 📜Footer.js
- ┃ ┣ 📜Form.js
- ┃ ┣ 📜FormInput.js
- ┃ ┣ 📜InfoList.js
- ┃ ┣ 📜KakaoMap.js
- ┃ ┣ 📜LikeBtn.js
- ┃ ┣ 📜Navbar.js
- ┃ ┣ 📜Pagination.js
- ┃ ┣ 📜ScrollToTop.js
- ┃ ┣ 📜SearchBar.js
- ┃ ┗ 📜SubBanner.js
- ┣ 📂data
- ┃ ┣ 📜formOptions.js
- ┃ ┗ 📜initialInputs.js
- ┣ 📂lib
- ┃ ┗ 📜axios.js
- ┣ 📂pages
- ┃ ┣ 📂Admin
- ┃ ┃ ┣ 📜Admin.js
- ┃ ┃ ┣ 📜Application.js
- ┃ ┃ ┣ 📜ApplicationDetail.js
- ┃ ┃ ┣ 📜PostDetail.js
- ┃ ┃ ┣ 📜PostRegister.js
- ┃ ┃ ┣ 📜Posts.js
- ┃ ┃ ┗ 📜UserList.js
- ┃ ┣ 📂Boards
- ┃ ┃ ┣ 📜ApplicationFormPage.js
- ┃ ┃ ┣ 📜Citizen.js
- ┃ ┃ ┣ 📜Classical.js
- ┃ ┃ ┣ 📜Concert.js
- ┃ ┃ ┣ 📜ConcertAll.js
- ┃ ┃ ┣ 📜Culture.js
- ┃ ┃ ┣ 📜Dance.js
- ┃ ┃ ┣ 📜DetailPage.js
- ┃ ┃ ┣ 📜Exhibition.js
- ┃ ┃ ┣ 📜FestivalAll.js
- ┃ ┃ ┣ 📜Musical.js
- ┃ ┃ ┣ 📜Nature.js
- ┃ ┃ ┣ 📜OtherFestival.js
- ┃ ┃ ┣ 📜Review.js
- ┃ ┃ ┣ 📜ReviewDetail.js
- ┃ ┃ ┣ 📜ReviewWrite.js
- ┃ ┃ ┣ 📜Theater.js
- ┃ ┃ ┗ 📜Tradition.js
- ┃ ┣ 📜Home.js
- ┃ ┣ 📜Login.js
- ┃ ┣ 📜MyLikes.js
- ┃ ┣ 📜MyPage.js
- ┃ ┣ 📜MyPagePw.js
- ┃ ┣ 📜MyRegisterDetail.js
- ┃ ┣ 📜MyRegisterList.js
- ┃ ┣ 📜NotFound.js
- ┃ ┣ 📜Search.js
- ┃ ┗ 📜SignUp.js
- ┣ 📂recoil
- ┃ ┣ 📜TokenAtom.js
- ┃ ┗ 📜auth.js
- ┣ 📂routes
- ┃ ┗ 📜ProtectedRoute.js
- ┣ 📂util
- ┃ ┗ 📜cookie.js
- ┣ 📜Main.js
- ┗ 📜index.js
-```
 
-# 3. 구현 기능 동작 예시 🛠
+# 2. 구현 기능 동작 예시 🛠
 
 <details>
  <summary>1. 메인페이지 & 네비바</summary>
@@ -267,7 +175,7 @@
     - 유저 상세 정보 확인
 </details>
 
-# 4. 프로젝트 회고 👍
+# 3. 프로젝트 회고 👍
 
 - 아타이브는 첫 팀 프로젝트이자 기획, 디자인, 팀원 모집, 개발까지 한 가지의 서비스가 탄생하기까지의 과정을 모두 겪어보며 많은 걸 배우게 해준 프로젝트이다.
 - 데이터, UX/UI, 기능 등 확장성을 고려하여 개발해야 한다는 것을 깨달았으며, 개발을 진행할수록 이론 공부와 기본기가 가장 중요하다는 것을 알게 되었다.
