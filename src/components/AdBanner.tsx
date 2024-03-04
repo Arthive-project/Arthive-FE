@@ -16,10 +16,6 @@ const AdBanner = () => {
         loop={true} // 루프 슬라이드
         pagination={{ clickable: true }}
         autoplay={{ delay: 4000 }}
-        style={{
-          '--swiper-pagination-color': '#C3FD1E',
-          '--swiper-pagination-bullet-size': '10px',
-        }}
       >
         <SwiperSlide>
           <a href='/exhibition/860'>

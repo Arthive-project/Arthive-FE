@@ -8,20 +8,47 @@ import BoardList from '../components/BoardList';
 import BoardItem from '../components/BoardItem';
 import SearchBar from '../components/SearchBar';
 
-const Search = () => {
+interface EventItem {
+  id: string;
+  MAIN_IMG: string;
+  TITLE: string;
+  DATE?: string;
+  linkPath: string;
+}
+
+interface Exhibition extends EventItem {
+  id: string;
+  MAIN_IMG: string;
+  TITLE: string;
+  DATE?: string;
+}
+
+interface DisplayItem {
+  id: string;
+}
+
+const Search: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const initKeyword = searchParams.get('keyword');
-  const [keyword, setKeyword] = useState(initKeyword || '');
-  const [trimmedKeyword, setTrimmedKeyword] = useState();
-  const [count, setCount] = useState(null);
+  const [keyword, setKeyword] = useState<string>(initKeyword || '');
+  const [trimmedKeyword, setTrimmedKeyword] = useState<string | undefined>(
+    undefined
+  );
+  const [count, setCount] = useState<number | null>(null);
 
-  const [exhibitions, setExhibitions] = useState([]);
-  const [concerts, setConcerts] = useState([]);
-  const [festivals, setFestivals] = useState([]);
+  const [exhibitions, setExhibitions] = useState<EventItem[]>([]);
+  const [concerts, setConcerts] = useState<EventItem[]>([]);
+  const [festivals, setFestivals] = useState<EventItem[]>([]);
 
-  const handleKeywordChange = (e) => setKeyword(e.target.value);
+  const handleKeywordChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    setKeyword(e.target.value);
+  };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
 
     setExhibitions([]);
@@ -43,9 +70,14 @@ const Search = () => {
     );
 
     try {
-      const exhibitionsData = await getExhibitions(trimmedKeyword);
-      setExhibitions(exhibitionsData);
-      setCount(exhibitions.length);
+      const exhibitionsData: Exhibition[] =
+        await getExhibitions(trimmedKeyword);
+      const eventItems: EventItem[] = exhibitionsData.map((exhibition) => ({
+        id: exhibition.id,
+        MAIN_IMG: exhibition.MAIN_IMG,
+        TITLE: exhibition.TITLE,
+      }));
+      setExhibitions(eventItems);
     } catch (error) {
       console.error('데이터를 가져오는 데 실패했습니다.:', error);
     }

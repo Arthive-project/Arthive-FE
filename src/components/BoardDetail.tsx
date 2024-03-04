@@ -1,7 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-const BoardDetail = ({ children, src }) => {
+interface BoardDetailProps {
+  children: React.ReactNode;
+  src: string;
+}
+
+const BoardDetail: React.FC<BoardDetailProps> = ({ children, src }) => {
   return (
     <div css={detail_wrap}>
       <div css={img_wrap}>

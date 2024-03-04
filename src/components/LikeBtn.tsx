@@ -1,7 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-const LikeBtn = ({ like, onClick }) => {
+interface LikeBtnProps {
+  like: boolean;
+  onClick: () => void;
+}
+
+const LikeBtn: React.FC<LikeBtnProps> = ({ like, onClick }) => {
   const heartEmpty = `${process.env.PUBLIC_URL}/assets/heartEmpty.png`;
   const heartFull = `${process.env.PUBLIC_URL}/assets/heartFull.png`;
 

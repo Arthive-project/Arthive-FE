@@ -1,7 +1,19 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-const BoardHeader = ({ text, showHr = false, showText = false, subText }) => {
+interface BoardHeaderProps {
+  text: string;
+  showHr?: boolean;
+  showText?: boolean;
+  subText?: string;
+}
+
+const BoardHeader: React.FC<BoardHeaderProps> = ({
+  text,
+  showHr = false,
+  showText = false,
+  subText,
+}) => {
   return (
     <div css={boardHeader}>
       <h2>{text}</h2>

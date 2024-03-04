@@ -1,7 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-const Button = ({ name, onClick }) => {
+interface ButtonProps {
+  name: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  form?: string;
+  type?: 'button' | 'submit' | 'reset';
+}
+
+const Button: React.FC<ButtonProps> = ({ name, onClick, form, type }) => {
   return (
     <button css={button} onClick={onClick}>
       <span>{name}</span>

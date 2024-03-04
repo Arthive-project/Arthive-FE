@@ -1,7 +1,34 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-const InfoList = ({
+interface Option {
+  value: string;
+  label: string;
+}
+
+interface InfoListProps {
+  label: string;
+  input: {
+    name: string;
+    value: string;
+    type?: string;
+    onChange: React.ChangeEventHandler<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >;
+    placeholder: string;
+    accept?: string;
+    checkInput?: {
+      isConfirm: boolean;
+      errorMessage: string;
+    };
+  };
+  typeIs?: string;
+  options?: Option[];
+  labelSub?: boolean;
+  labelSubText?: string;
+}
+
+const InfoList: React.FC<InfoListProps> = ({
   label,
   input,
   typeIs,
@@ -15,7 +42,7 @@ const InfoList = ({
     type,
     onChange,
     placeholder,
-    checkInput = '',
+    checkInput = { isConfirm: true, errorMessage: '' },
     accept,
   } = input;
 
@@ -27,7 +54,7 @@ const InfoList = ({
       {labelSub && <p css={label_sub}>{labelSubText}</p>}
       {typeIs === 'select' ? (
         <select name={name} value={value} onChange={onChange}>
-          {options.map((option) => (
+          {options?.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>

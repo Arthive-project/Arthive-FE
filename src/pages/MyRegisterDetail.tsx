@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useParams } from 'react-router-dom';
-import { useState, useRef } from 'react';
+import { useState, useRef, ChangeEvent } from 'react';
 import { getMyRegisterById } from '../api';
 import {
   locationLists,
@@ -15,11 +15,35 @@ import Form from '../components/Form';
 import Button from '../components/Button';
 import FileInput from '../components/FileInput';
 
+interface Register {
+  registerDay?: string;
+  applicant?: string;
+  email?: string;
+  title?: string;
+  galleryName?: string;
+  area?: string;
+  address?: string;
+  startDate?: string;
+  endDate?: string;
+  artist?: string;
+  gallerySiteUrl?: string;
+  category?: string;
+  codename?: string;
+  Fee?: string;
+  entranceFee?: string;
+  status?: string;
+}
+
 const MyRegisterDetail = () => {
-  const { registerId } = useParams();
-  const register = getMyRegisterById(registerId);
-  const [inputs, setInputs] = useState(register);
-  const imgRef = useRef();
+  const { registerId } = useParams<{ registerId: string | undefined }>();
+  const register = registerId ? getMyRegisterById(registerId) : undefined;
+
+  if (!register) {
+    return <div>정보를 불러오고 있습니다.</div>;
+  }
+  const [inputs, setInputs] = useState<Register>(register as Register);
+
+  const imgRef = useRef<HTMLInputElement>(null);
 
   const locationOptions = [...locationLists];
 
@@ -38,7 +62,9 @@ const MyRegisterDetail = () => {
     entranceFee,
   } = inputs;
 
-  const handleChangeInfoInputs = (e) => {
+  const handleChangeInfoInputs = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { value, name } = e.target;
     setInputs({
       ...inputs,
@@ -158,7 +184,7 @@ const MyRegisterDetail = () => {
         />
       </Form>
 
-      {register.status === '검토중' ? (
+      {register?.status === '검토중' ? (
         <div css={buttonWrap}>
           <Button name={'저장하기'} form='myRegisterDetail' type='submit' />
         </div>

@@ -6,6 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import InfoList from '../components/InfoList';
 import Button from '../components/Button';
 
+interface SignUpInputs {
+  email: string;
+  name: string;
+  phoneNumber: string;
+  password: string;
+  birthday: string;
+}
+
 const SIGN_UP_INPUTS = {
   email: '',
   name: '',
@@ -23,12 +31,14 @@ const PHONE_REGEX = /^010-\d{4}-\d{4}$/;
 const SignUp = () => {
   const navigate = useNavigate();
 
-  const [inputs, setInputs] = useState(SIGN_UP_INPUTS);
-  const [checkPassword, setCheckPassword] = useState('');
+  const [inputs, setInputs] = useState<SignUpInputs>(SIGN_UP_INPUTS);
+  const [checkPassword, setCheckPassword] = useState<string>('');
 
   const { email, name, phoneNumber, password, birthday } = inputs;
 
-  const handleChangeInfoInputs = (e) => {
+  const handleChangeInfoInputs: React.ChangeEventHandler<HTMLInputElement> = (
+    e
+  ) => {
     const { value, name } = e.target;
     setInputs({
       ...inputs,
@@ -37,11 +47,13 @@ const SignUp = () => {
   };
 
   // 유효성 검사
-  const [isConfirmEmail, setIsConfirmEmail] = useState(true);
-  const [isConfirmName, setIsConfirmName] = useState(true);
-  const [isConfirmPhoneNumber, setIsConfirmPhoneNumber] = useState(false);
-  const [isConfirmPassword, setIsConfirmPassword] = useState(false);
-  const [isConfirmCheckPassword, setIsConfirmCheckPassword] = useState(false);
+  const [isConfirmEmail, setIsConfirmEmail] = useState<boolean>(true);
+  const [isConfirmName, setIsConfirmName] = useState<boolean>(true);
+  const [isConfirmPhoneNumber, setIsConfirmPhoneNumber] =
+    useState<boolean>(false);
+  const [isConfirmPassword, setIsConfirmPassword] = useState<boolean>(false);
+  const [isConfirmCheckPassword, setIsConfirmCheckPassword] =
+    useState<boolean>(false);
 
   // 각 유효성 검사 함수
   const validateEmail = () => EMAIL_REGEX.test(email);
@@ -71,11 +83,13 @@ const SignUp = () => {
     setIsConfirmCheckPassword(validateCheckPassword());
   }, [password, checkPassword, validateCheckPassword]);
 
-  const handleChangeCheckPassword = (e) => {
+  const handleChangeCheckPassword = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setCheckPassword(e.currentTarget.value);
   };
 
-  const handleSubmitSignUp = async (e) => {
+  const handleSubmitSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (
@@ -95,7 +109,7 @@ const SignUp = () => {
       if (response.status === 201) {
         navigate('/login');
       }
-    } catch (error) {
+    } catch (error: any) {
       if (error.response.status === 400) alert('이미 존재하는 회원입니다.');
     }
   };

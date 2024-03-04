@@ -4,8 +4,14 @@ import BoardItem from '../../components/BoardItem';
 import { getPostByCategory } from '../../api/requestAPI';
 import { useState, useEffect } from 'react';
 
+interface CulturePost {
+  id: number;
+  MAIN_IMG: string;
+  TITLE: string;
+}
+
 const Culture = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<CulturePost[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +27,7 @@ const Culture = () => {
 
   return (
     <>
-      <BoardHeader text='축제' showText='false' subText='문화/예술' />
+      <BoardHeader text='축제' showText={false} subText='문화/예술' />
       <BoardList>
         {posts.map((culture) => (
           <BoardItem

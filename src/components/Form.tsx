@@ -1,7 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import React, { ReactNode, FormEvent } from 'react';
 
-const Form = ({ formId, onSubmit, children }) => {
+interface FormProps {
+  formId: string;
+  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  children: ReactNode;
+  buttonName: string;
+}
+
+const Form: React.FC<FormProps> = ({ formId, onSubmit, children }) => {
   return (
     <div css={FormInfo}>
       <form id={formId} onSubmit={onSubmit}>

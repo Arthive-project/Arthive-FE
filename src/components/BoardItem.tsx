@@ -2,8 +2,29 @@
 import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import LikeBtn from './LikeBtn';
+import { useState } from 'react';
 
-const BoardItem = ({ data, linkPath, showLikeBtn = true }) => {
+interface BoardItemData {
+  MAIN_IMG: string;
+  TITLE: string;
+  DATE?: string;
+}
+
+interface BoardItemProps {
+  data: BoardItemData;
+  linkPath: string;
+  showLikeBtn?: boolean;
+  showAddress?: boolean;
+}
+
+const BoardItem: React.FC<BoardItemProps> = ({
+  data,
+  linkPath,
+  showLikeBtn = true,
+}) => {
+  const [like, setLike] = useState(false);
+
+  const handleLikeClick = () => setLike(!like);
   return (
     <div css={item}>
       <div css={poster}>
@@ -13,7 +34,7 @@ const BoardItem = ({ data, linkPath, showLikeBtn = true }) => {
       </div>
       <div css={title}>
         <Link to={linkPath}>{data.TITLE}</Link>
-        {showLikeBtn && <LikeBtn />}
+        {showLikeBtn && <LikeBtn like={like} onClick={handleLikeClick} />}
       </div>
       <div css={period}>
         {/* {data.STRTDATE} ~ {data.END_DATE} */}
