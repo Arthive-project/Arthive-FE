@@ -20,7 +20,7 @@ const AdminHeader = () => {
         setAdmin(false);
         removeCookie('accessToken');
         removeCookie('refreshToken');
-        setAccessToken(null);
+        setAccessToken(undefined);
         alert('로그아웃이 완료 되었습니다.');
         navigate('/');
       } catch {

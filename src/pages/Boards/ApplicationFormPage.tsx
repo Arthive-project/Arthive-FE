@@ -12,6 +12,29 @@ import {
   codenames,
 } from '../../data/formOptions';
 
+interface ApplicationFormInputs {
+  username: string;
+  email: string;
+  phoneNumber: string;
+  exhibitionTitle: string;
+  galleryName?: string;
+  place?: string;
+  address: string;
+  startDate: string;
+  endDate: string;
+  player: string;
+  program?: string;
+  homePage: string;
+  entranceFee: string;
+  area: string;
+  file: string;
+  isFree: string;
+  category: string;
+  codename: string;
+  use_trgt: string;
+  etc_des?: string;
+}
+
 const INITIAL_INPUT = {
   username: '',
   email: '',
@@ -32,7 +55,7 @@ const INITIAL_INPUT = {
   use_trgt: '',
 };
 
-const ApplicationFormPage = () => {
+const ApplicationFormPage: React.FC = () => {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState(INITIAL_INPUT);
 

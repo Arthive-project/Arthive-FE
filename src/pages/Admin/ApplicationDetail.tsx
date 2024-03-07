@@ -14,18 +14,42 @@ import FileInput from '../../components/FileInput';
 import Form from '../../components/Form';
 import Button from '../../components/Button';
 
+interface ApplicationDetail {
+  application_date?: string;
+  applicant?: string;
+  email?: string;
+  status?: string;
+  category?: string;
+  codename?: string;
+  title?: string;
+  guname?: string;
+  place?: string;
+  address?: string;
+  strtdate?: string;
+  end_date?: string;
+  use_trgt?: string;
+  is_free?: string;
+  use_fee?: string;
+  org_link?: string;
+  player?: string;
+  program?: string;
+  etc_des?: string;
+  posterUrl?: string;
+}
+
 const ApplicationDetail = () => {
-  const { applicationId } = useParams();
-  const [inputs, setInputs] = useState({});
-  const imgRef = useRef();
+  const { applicationId } = useParams<{ applicationId: string | undefined }>();
+  const [inputs, setInputs] = useState<ApplicationDetail>({});
+  const imgRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await getApplicationById(applicationId);
-      setInputs(response);
-    };
-    fetchData();
-    console.log(inputs);
+    if (applicationId) {
+      const fetchData = async () => {
+        const response: undefined = await getApplicationById(applicationId);
+        setInputs(response ?? {});
+      };
+      fetchData();
+    }
   }, [inputs]);
 
   const {
@@ -107,6 +131,7 @@ const ApplicationDetail = () => {
           label='공연/행사명*'
           name='title'
           value={title}
+          type='text'
           onChange={handleChangeInfoInputs}
         />
         <FormInput
@@ -121,12 +146,14 @@ const ApplicationDetail = () => {
           label='장소*'
           name='place'
           value={place}
+          type='text'
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='상세 주소*'
           name='address'
           value={address}
+          type='text'
           onChange={handleChangeInfoInputs}
         />
         <tr>
@@ -152,6 +179,7 @@ const ApplicationDetail = () => {
         <FormInput
           label='이용 대상'
           name='use_trgt'
+          type='text'
           value={use_trgt}
           onChange={handleChangeInfoInputs}
         />
@@ -166,30 +194,35 @@ const ApplicationDetail = () => {
         <FormInput
           label='이용 요금*'
           name='use_fee'
+          type='text'
           value={use_fee}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='홈페이지 주소'
           name='org_link'
+          type='text'
           value={org_link}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='출연자 정보'
           name='player'
+          type='text'
           value={player}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='프로그램 소개'
           name='program'
+          type='text'
           value={program}
           onChange={handleChangeInfoInputs}
         />
         <FormInput
           label='기타 내용'
           name='etc_des'
+          type='text'
           value={etc_des}
           onChange={handleChangeInfoInputs}
         />

@@ -1,7 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { ReactNode } from 'react';
 
-const AddContainer = ({ children }) => {
+interface AddContainerProps {
+  children: ReactNode;
+}
+
+const AddContainer = ({ children }: AddContainerProps) => {
   return <div css={map_container}>{children}</div>;
 };
 

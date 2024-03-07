@@ -1,7 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { ReactNode } from 'react';
 
-const BoardList = ({ children }) => {
+interface BoardListProps {
+  children: ReactNode;
+}
+
+const BoardList = ({ children }: BoardListProps) => {
   return <div css={board_list}>{children}</div>;
 };
 

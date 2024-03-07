@@ -7,7 +7,13 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import BoardItem from './BoardItem';
 
-const SubBanner = ({ name, mapPoint, data }) => {
+interface SubBannerProps {
+  name: string;
+  mapPoint: string;
+  data: any;
+}
+
+const SubBanner: React.FC<SubBannerProps> = ({ name, mapPoint, data }) => {
   return (
     <div css={subBanner}>
       <div css={subBanner_title}>
@@ -24,13 +30,9 @@ const SubBanner = ({ name, mapPoint, data }) => {
         loop={true}
         navigation={true}
         scrollbar={{ draggable: true }}
-        style={{
-          // 화살표 스타일
-          '--swiper-navigation-color': '#000000',
-          '--swiper-navigation-size': '28px',
-        }}
+        // css={[subBanner_swiper, swiperStyles]}
       >
-        {data.map((item) => {
+        {data.map((item: any) => {
           return (
             <SwiperSlide key={item.id}>
               {
@@ -82,4 +84,12 @@ const more_btn = css`
 const subBanner_swiper = css`
   width: 100%;
   padding: 10px 40px 0 40px;
+`;
+
+const swiperStyles = css`
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #000000;
+    --swiper-navigation-size: 28px;
+  }
 `;

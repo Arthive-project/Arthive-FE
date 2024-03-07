@@ -1,25 +1,32 @@
 // /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, ChangeEvent, RefObject } from 'react';
 
-const imgPreview = css`
-  width: 200px;
-`;
+interface FileInputProps {
+  name: string;
+  value: string;
+  onChange: (event: {
+    target: { name: string; value: string | ArrayBuffer | null };
+  }) => void;
+  imgRef: RefObject<HTMLInputElement>;
+}
 
-function FileInput({ name, value, onChange, imgRef }) {
+function FileInput({ name, value, onChange, imgRef }: FileInputProps) {
   const [imgFile, setImgFile] = useState('');
 
   const saveImgFile = () => {
-    if (imgRef.current) {
+    if (
+      imgRef.current &&
+      imgRef.current.files &&
+      imgRef.current.files.length > 0
+    ) {
       const file = imgRef.current.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setImgFile(reader.result);
-          onChange({ target: { name, value: reader.result } });
-        };
-        reader.readAsDataURL(file);
-      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImgFile(reader.result as string);
+        onChange({ target: { name, value: reader.result as string } });
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -40,7 +47,7 @@ function FileInput({ name, value, onChange, imgRef }) {
               : `${process.env.PUBLIC_URL}/assets/register-preview.png`
           }
           alt='이미지 미리보기'
-          css={imgPreview}
+          // css={imgPreview}
         />
         <input
           type='file'
@@ -55,3 +62,7 @@ function FileInput({ name, value, onChange, imgRef }) {
 }
 
 export default FileInput;
+
+const imgPreview = css`
+  width: 200px;
+`;

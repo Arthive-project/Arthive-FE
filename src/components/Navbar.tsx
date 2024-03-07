@@ -23,7 +23,7 @@ const Navbar = () => {
        */
       removeCookie('accessToken');
       removeCookie('refreshToken');
-      setAccessToken(null);
+      setAccessToken(undefined);
       setAdmin(false);
       navigate('/');
     }
@@ -169,7 +169,7 @@ const Navbar = () => {
           {isLogin ? (
             <div id='user-loggedIn'>
               유저 이름
-              <Link onClick={handleLogout}>로그아웃</Link>
+              <a onClick={handleLogout}>로그아웃</a>
             </div>
           ) : (
             <div id='user-loggedOut'>

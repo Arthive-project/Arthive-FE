@@ -3,7 +3,12 @@ import { css } from '@emotion/react';
 import { Link, useLocation } from 'react-router-dom';
 import { MdOutlineArrowForwardIos } from 'react-icons/md';
 
-const AdminNavItem = ({ page, title }) => {
+interface AdminNavItemProps {
+  page: string;
+  title: string;
+}
+
+const AdminNavItem = ({ page, title }: AdminNavItemProps) => {
   const location = useLocation();
   return (
     <li

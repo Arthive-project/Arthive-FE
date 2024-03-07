@@ -1,7 +1,19 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-const Pagination = ({ postsPerPage, totalPosts, currentPage, paginate }) => {
+interface PaginationProps {
+  postsPerPage: number;
+  totalPosts: number;
+  currentPage: number;
+  paginate: (pageNumber: number) => void;
+}
+
+const Pagination: React.FC<PaginationProps> = ({
+  postsPerPage,
+  totalPosts,
+  currentPage,
+  paginate,
+}) => {
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);

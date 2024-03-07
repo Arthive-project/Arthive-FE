@@ -11,23 +11,43 @@ import { getPostById } from '../../api/requestAPI';
 import { deletePost, updatePost } from '../../api/adminAPI';
 import { INITIAL_INPUTS } from '../../data/initialInputs';
 
+interface PostDetails {
+  CODENAME?: string;
+  GUNAME?: string;
+  TITLE?: string;
+  PLACE?: string;
+  DATE?: string;
+  USE_TRGT?: string;
+  USE_FEE?: string;
+  PLAYER?: string;
+  PROGRAM?: string;
+  ETC_DESC?: string;
+  ORG_LINK?: string;
+  MAIN_IMG?: string;
+  RGSTDATE?: string;
+  STRTDATE?: string;
+  END_DATE?: string;
+  LOT?: string;
+  LAT?: string;
+  IS_FREE?: string;
+}
+
 const PostsDetail = () => {
-  const { postId } = useParams();
-  const { kakao } = window;
-  const [inputs, setInputs] = useState(INITIAL_INPUTS);
+  const { postId } = useParams<{ postId: string }>();
+  const [inputs, setInputs] = useState<PostDetails>(INITIAL_INPUTS);
   const [address, setAddress] = useState('');
-  const [originalInputs, setOriginalInputs] = useState({});
-  const imgRef = useRef();
+  const [originalInputs, setOriginalInputs] = useState<PostDetails>({});
+  const imgRef = useRef<HTMLImageElement>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await getPostById(postId);
-      setInputs(response);
-      setOriginalInputs(response);
+      setInputs(response || {});
+      setOriginalInputs(response || {});
     };
     fetchData();
-  }, []);
+  }, [postId]);
 
   const {
     CODENAME,
@@ -67,23 +87,27 @@ const PostsDetail = () => {
     }
   }, [address]);
 
-  const handleChangeInfoInputs = (e) => {
+  const handleChangeInfoInputs = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
-    setInputs({
-      ...inputs,
+    setInputs((prev) => ({
+      ...prev,
       [name]: value,
-    });
+    }));
   };
 
   const findModifiedData = () => {
     const modifiedData = {};
     Object.keys(inputs).forEach((key) => {
       if (
-        inputs[key] !== null &&
-        inputs[key] !== undefined &&
-        inputs[key] !== originalInputs[key]
+        inputs[key as keyof PostDetails] !==
+          originalInputs[key as keyof PostDetails] &&
+        inputs[key as keyof PostDetails] !== undefined &&
+        inputs[key as keyof PostDetails] !== null
       ) {
-        modifiedData[key] = inputs[key];
+        modifiedData[key as keyof PostDetails] =
+          inputs[key as keyof PostDetails];
       }
     });
     return modifiedData;
@@ -135,6 +159,7 @@ const PostsDetail = () => {
           name='TITLE'
           value={TITLE}
           onChange={handleChangeInfoInputs}
+          type='text'
         />
         <FormInput
           label='자치구*'
@@ -150,24 +175,28 @@ const PostsDetail = () => {
           value={PLACE}
           placeholder={'서울시립미술관'}
           onChange={handleChangeInfoInputs}
+          type='text'
         />
         <FormInput
           label='상세 주소*'
           name='address'
           value={address}
           onChange={(e) => setAddress(e.target.value)}
+          type='text'
         />
         <FormInput
           label='위도*'
           name='LAT'
           value={LAT}
           onChange={handleChangeInfoInputs}
+          type='text'
         />
         <FormInput
           label='경도*'
           name='LOT'
           value={LOT}
           onChange={handleChangeInfoInputs}
+          type='text'
         />
         <tr>
           <th>기간*</th>

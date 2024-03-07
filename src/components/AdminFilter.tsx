@@ -1,8 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 
-const AdminFilter = ({ setSearchQuery, setSearchTriggered }) => {
+interface AdminFilterProps {
+  setSearchQuery: (query: string) => void;
+  setSearchTriggered: (triggered: boolean) => void;
+}
+
+const AdminFilter = ({
+  setSearchQuery,
+  setSearchTriggered,
+}: AdminFilterProps) => {
   const [searchQuery, setSearchQueryLocal] = useState('');
 
   const handleSearch = () => {

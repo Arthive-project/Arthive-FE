@@ -14,9 +14,7 @@ const Application = () => {
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
   const currentPosts = (posts) => {
-    let currentPosts = 0;
-    currentPosts = posts ? posts.slice(indexOfFirst, indexOfLast) : [];
-    return currentPosts;
+    return posts.slice(indexOfFirst, indexOfLast);
   };
 
   useEffect(() => {
@@ -51,6 +49,7 @@ const Application = () => {
           postsPerPage={postsPerPage}
           totalPosts={applications.length}
           paginate={setCurrentPage}
+          currentPage={currentPage}
         ></Pagination>
       </div>
     </div>

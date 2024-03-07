@@ -12,7 +12,7 @@ const UserList = () => {
 
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
-  const currentPosts = (posts) => {
+  const currentPosts = (posts: any) => {
     let currentPosts = 0;
     currentPosts = posts ? posts.slice(indexOfFirst, indexOfLast) : [];
     return currentPosts;
@@ -50,6 +50,7 @@ const UserList = () => {
           postsPerPage={postsPerPage}
           totalPosts={posts.length}
           paginate={setCurrentPage}
+          currentPage={currentPage}
         ></Pagination>
       </div>
     </div>

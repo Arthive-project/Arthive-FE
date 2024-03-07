@@ -1,7 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 
-const SearchBar = ({ value, onChange }) => {
+interface SearchBarProps {
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ value, onChange }) => {
   return (
     <div css={search_bar}>
       <input

@@ -12,7 +12,7 @@ const INITIAL_STATE = {
 const Filter = () => {
   const [state, setState] = useState(INITIAL_STATE);
 
-  const handleChangeState = (e) => {
+  const handleChangeState = (e: any) => {
     setState({
       ...state,
       [e.target.name]: e.target.value,
