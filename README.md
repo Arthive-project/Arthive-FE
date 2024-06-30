@@ -13,7 +13,7 @@
 
 ### 개발 기간
 
-- 2023.11.17 ~ 진행 중
+- 2023.11.17 ~ 2023.01.31
 - 프론트엔드 1명, 백엔드 2명
 
   
@@ -116,15 +116,9 @@
  
 </details>
 
-<details>
- <summary>5. 통합 검색 페이지</summary>
- (구현 진행중입니다!)
-1. 키워드 검색
-2. 일치하는 공연 정보 렌더링
-</details>
 
 <details>
- <summary>6. 마이 페이지</summary>
+ <summary>5. 마이 페이지</summary>
   
 ![휴대폰번호변경](https://github.com/Arthive-project/Arthive-FE/assets/111138337/f327c3a7-0732-4ac3-853d-a222ea6228c0)
 
@@ -136,7 +130,7 @@
 </details>
 
 <details>
- <summary>7. 공연/행사 등록 페이지</summary>
+ <summary>6. 공연/행사 등록 페이지</summary>
  
 ![공연행사등록신청폼](https://github.com/Arthive-project/Arthive-FE/assets/111138337/c3aa30bd-4ab8-484f-b23e-4184087a1ead)
 
@@ -147,7 +141,7 @@
 </details>
 
 <details>
- <summary>8. 어드민 대시보드</summary>
+ <summary>7. 어드민 대시보드</summary>
   
 ![어드민로그인로그아웃](https://github.com/Arthive-project/Arthive-FE/assets/111138337/71cca7af-215e-44bd-973c-bdc7cd0845a1)
 
